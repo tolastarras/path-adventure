@@ -1,0 +1,90 @@
+@import 'tailwindcss';
+
+/* Base glossy button styles using Tailwind classes */
+.glossy-button {
+  @apply cursor-pointer relative inline-block text-center bg-transparent rounded-full;
+  @apply transition-all duration-100;
+  @apply disabled:cursor-not-allowed disabled:grayscale disabled:opacity-80 disabled:scale-100;
+}
+
+/* Size variants */
+.glossy-button--sm {
+  @apply px-6 py-3 min-w-32 max-w-48 m-2;
+}
+
+.glossy-button--md {
+  @apply px-8 py-4 min-w-48 max-w-72 m-3;
+}
+
+.glossy-button--lg {
+  @apply px-10 py-5 min-w-56 max-w-80 m-4;
+}
+
+/* Color variant base styles */
+.glossy-button--primary {
+  @apply before:bg-gradient-to-b before:from-blue-700 before:via-blue-500 before:to-blue-200 before:to-90% before:via-60%;
+  @apply after:bg-gradient-to-b after:from-blue-500 after:to-blue-600;
+}
+
+.glossy-button--success {
+  @apply before:bg-gradient-to-b before:from-green-700 before:via-green-500 before:to-green-200 before:to-90% before:via-60%;
+  @apply after:bg-gradient-to-b after:from-green-500 after:to-green-600;
+}
+
+.glossy-button--danger {
+  @apply before:bg-gradient-to-b before:from-red-700 before:via-red-500 before:to-red-200 before:to-90% before:via-60%;
+  @apply after:bg-gradient-to-b after:from-red-500 after:to-red-600;
+}
+
+.glossy-button--purple {
+  @apply before:bg-gradient-to-b before:from-purple-700 before:via-purple-500 before:to-purple-200 before:to-90% before:via-60%;
+  @apply after:bg-gradient-to-b after:from-purple-500 after:to-purple-600;
+}
+
+/* Pseudo-element base styles */
+.glossy-button::before {
+  @apply content-[''] absolute inset-0 rounded-full z-[-2];
+}
+
+.glossy-button::after {
+  @apply content-[''] absolute inset-0 rounded-full z-[-1] opacity-40;
+  @apply transition-opacity duration-400;
+}
+
+.glossy-button:hover::after {
+  @apply opacity-80;
+}
+
+/* Shadow effects */
+.glossy-button:not(:disabled) {
+  box-shadow: 0 5px 20px rgba(255, 255, 255, 0.4),
+              -8px 8px 5px rgba(0, 0, 0, 0.15),
+              5px 18px 10px rgba(0, 0, 0, 0.2);
+}
+
+.glossy-button:not(:disabled):hover {
+  @apply scale-105;
+  box-shadow: 0 5px 20px rgba(255, 255, 255, 0.4),
+              -12px 12px 5px rgba(0, 0, 0, 0.15),
+              10px 25px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Gloss effect */
+.glossy-button__effect {
+  @apply absolute w-[80%] h-[50%] top-1 left-1/2 -translate-x-1/2 rounded-full pointer-events-none;
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.4), transparent);
+}
+
+/* Content styles */
+.glossy-button__content {
+  @apply text-white text-2xl drop-shadow-lg;
+}
+
+.glossy-button:hover .glossy-button__content {
+  @apply drop-shadow-xl;
+}
+
+/* Container styles */
+.glossy-button-container {
+  @apply flex items-center justify-center flex-wrap p-5;
+}
