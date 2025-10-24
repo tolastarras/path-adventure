@@ -77,7 +77,19 @@
 
 /* Content styles */
 .glossy-button__content {
-  @apply text-white text-2xl drop-shadow-lg;
+  @apply text-white drop-shadow-lg font-medium;
+}
+
+.glossy-button__content.sm {
+  @apply text-xl;
+}
+
+.glossy-button__content.md {
+  @apply text-2xl;
+}
+
+.glossy-button__content.lg {
+  @apply text-3xl;
 }
 
 .glossy-button:hover .glossy-button__content {

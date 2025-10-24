@@ -30,7 +30,7 @@ const GlossyButton = ({
       <div className="glossy-button__effect" />
       
       <div className="relative z-10">
-        <span className="glossy-button__content">
+        <span className={`glossy-button__content ${size}`}>
           {children}
         </span>
       </div>
