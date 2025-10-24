@@ -1,10 +1,8 @@
-import React from 'react';
-
 const About = () => {
   return (
     <div className="container mx-auto px-4 py-8 max-w-4xl">
       <h1 className="text-4xl font-bold text-center mb-8 text-blue-800">About Path Adventure</h1>
-      
+
       <div className="bg-white rounded-lg shadow-lg p-6 mb-6">
         <h2 className="text-2xl font-semibold mb-4 text-gray-800">How to Play</h2>
         <p className="text-gray-600 mb-4">

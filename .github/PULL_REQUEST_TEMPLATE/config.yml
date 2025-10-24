@@ -1,9 +1,5 @@
 # .github/PULL_REQUEST_TEMPLATE/config.yml
 blank_issues_enabled: false
-contact_links:
-  - name: 🚀 Feature
-    url: https://github.com/tolastarras/path-adventure/issues/new?template=feature.md
-    about: Add a new feature or enhancement
-  - name: 🐛 Bug Fix
-    url: https://github.com/tolastarras/path-adventure/issues/new?template=bug-fix.md
-    about: Fix a bug or issue
+template:
+  - feature.md
+  - bug-fix.md
