@@ -45,4 +45,6 @@ const ButtonContainer = ({ children, className = '' }) => (
   </div>
 );
 
-export { GlossyButton, ButtonContainer };
+export { ButtonContainer };
+
+export default GlossyButton;

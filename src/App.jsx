@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import PathFollowingGame from './components/PathFollowingGame';
 import About from './pages/About';
 import Leaderboard from './pages/Leaderboard';
+import ComponentsTest from './pages/ComponentsTest';
 import './App.css';
 
 function App() {
@@ -42,6 +43,8 @@ function App() {
             <Route path="/" element={<PathFollowingGame />} />
             <Route path="/leaderboard" element={<Leaderboard />} />
             <Route path="/about" element={<About />} />
+            <Route path="/components-test" element={<ComponentsTest />} />
+            <Route path="*" element={<div>404 Not Found</div>} />
           </Routes>
         </main>
 
