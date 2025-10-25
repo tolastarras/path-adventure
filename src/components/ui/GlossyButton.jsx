@@ -3,20 +3,33 @@ import './GlossyButton.css';
 const GlossyButton = ({
   children,
   disabled = false,
-  variant = 'primary',
+  variant = 'success',
   size = 'md',
   onClick,
   className = '',
+  showGlow = false,
+  showShadow = false,
+  withGlare = true,
   ...props
 }) => {
   const baseClass = 'glossy-button';
   const variantClass = `glossy-button--${variant}`;
   const sizeClass = `glossy-button--${size}`;
+
+    
+  const effectClasses = [
+    showGlow && 'glossy-button--with-glow-soft',
+    showShadow && 'glossy-button--with-shadow',
+    withGlare && 'glossy-button--with-glare',
+    className
+  ].filter(Boolean).join(' ');
+
   
   const combinedClasses = [
     baseClass,
     variantClass,
     sizeClass,
+    effectClasses,
     className
   ].filter(Boolean).join(' ');
 

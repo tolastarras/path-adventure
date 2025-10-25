@@ -7,14 +7,16 @@ const GlossyCard = ({
   showGlare = false,
   showGlow = false,
   showShine = true,
+  showShadow = false,
   className = ''
 }) => {
-  const baseClass = 'glossy-card';
+  const baseClass = 'glossy-card--transparent';
   
   const effectClasses = [
     showGlare && 'glossy-card--with-glare',
-    showGlow && 'glossy-card--with-glow',
+    showGlow && 'glossy-card--with-glow-soft',
     showShine && 'glossy-card--with-shine',
+    showShadow && 'glossy-card--with-shadow',
     className
   ].filter(Boolean).join(' ');
 
