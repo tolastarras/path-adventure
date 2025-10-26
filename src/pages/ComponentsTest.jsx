@@ -1,9 +1,13 @@
-import { GlossyButton, GlossyCard } from "../components";
+import { GlossyButton, GlossyCard, NumberInput } from "../components";
 
 const ComponentsTest = () => {
+  const handleChange = (newCount) => {
+    console.log('Count changed to:', newCount);
+  };
+
   return (
     <div className="flex flex-col mx-auto gap-8 w-full h-100-vh p-20 space-y-5 text-white/90 bg-blue-500">
-      <div className>
+      <div>
         <h1 className="text-3xl mb-5">Glossy Button</h1>
         <GlossyButton
           onClick={() => console.log('Button clicked')}
@@ -25,8 +29,15 @@ const ComponentsTest = () => {
           <button>test</button>
         </GlossyCard>
       </div>
+
+      <div>
+        <h1 className="text-3xl mb-5">Number Input</h1>
+        <GlossyCard title="Squares:" className='max-w-[250px]'>
+          <NumberInput onChange={handleChange} />
+        </GlossyCard>
+      </div>
     </div>
   );
 }
 
-export default ComponentsTest
+export default ComponentsTest;
