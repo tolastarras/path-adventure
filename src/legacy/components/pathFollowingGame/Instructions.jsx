@@ -2,7 +2,7 @@ import React from 'react';
 
 const Instructions = () => {
   return (
-    <div className="mt-6 bg-white rounded-lg p-4 shadow-md max-w-2xl">
+    <div className="my-12 bg-white rounded-lg p-8 shadow-md max-w-2xl">
       <h3 className="font-bold text-lg mb-2">How to Play:</h3>
       <ul className="list-disc list-inside text-gray-600 space-y-1">
         <li>Follow the <span className="text-blue-500 font-semibold">blue path</span> from the bicycle to the finish flag</li>

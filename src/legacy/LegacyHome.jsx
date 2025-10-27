@@ -1,13 +1,12 @@
 import React, { useState, useCallback } from 'react';
-import GameCanvas from '../Canvas/GameCanvas';
-import GameControls from './GameControls';
-import GameStats from './GameStats';
-import GameStatus from './GameStatus';
-import Instructions from './Instructions';
-import { usePathGenerator } from '../../hooks/usePathGenerator';
-import { useGameAnimation } from '../../hooks/useGameAnimation';
 
-const PathFollowingGame = () => {
+import GameCanvas from '../components/Canvas/GameCanvas';
+import { GameControls, GameStats, GameStatus, Instructions } from './components';
+
+import { usePathGenerator } from '../hooks/usePathGenerator';
+import { useGameAnimation } from '../hooks/useGameAnimation';
+
+const LegacyHome = () => {
   const [playerMoves, setPlayerMoves] = useState([]);
   const [currentDirection, setCurrentDirection] = useState('');
   const [moveCount, setMoveCount] = useState(1);
@@ -45,17 +44,21 @@ const PathFollowingGame = () => {
   };
 
   return (
-    <div className="flex flex-col items-center p-6 bg-gradient-to-br from-blue-50 to-green-50 min-h-screen">
-      <h1 className="text-4xl font-bold mb-2 text-blue-800">Path Adventure! 🚴‍♂️</h1>
+    <div className="flex flex-col items-center bg-linear-to-br from-blue-50 to-green-50 min-h-screen py-8">
+      <h1 className="text-4xl font-bold text-blue-800">Path Adventure! 🚴‍♂️</h1>
       <p className="text-gray-600 mb-4 text-lg">Follow the blue path from 🚴‍♂️ to 🏁 with your moves!</p>
 
-      <GameStats gamesWon={gamesWon} totalPoints={totalPoints} />
+      <div className="pt-5">
+        <GameStats gamesWon={gamesWon} totalPoints={totalPoints} />
+      </div>
       
-      <GameStatus 
-        gameStatus={gameStatus} 
-        showPointsAnimation={showPointsAnimation}
-        playerMoves={playerMoves}
-      />
+      <div className="py-5">
+        <GameStatus 
+          gameStatus={gameStatus} 
+          showPointsAnimation={showPointsAnimation}
+          playerMoves={playerMoves}
+        />
+      </div>
 
       <GameControls
         currentDirection={currentDirection}
@@ -106,4 +109,4 @@ const PathFollowingGame = () => {
   );
 };
 
-export default PathFollowingGame;
+export default LegacyHome;
