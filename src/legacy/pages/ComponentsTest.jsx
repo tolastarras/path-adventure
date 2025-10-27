@@ -1,4 +1,4 @@
-import { GlossyButton, GlossyCard, NumberInput } from "../components";
+import { GlossyButton, GlossyCard, NumberInput } from "../../components";
 
 const ComponentsTest = () => {
   const handleChange = (newCount) => {

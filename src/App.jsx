@@ -1,60 +1,63 @@
-import React from 'react';
-import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
-import PathFollowingGame from './components/PathFollowingGame';
-import About from './pages/About';
-import Leaderboard from './pages/Leaderboard';
-import ComponentsTest from './pages/ComponentsTest';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+
+import NewHome from './new/NewHome';
+
+// Legacy Code
+import {
+  Navbar as LegacyNavbar,
+  Footer as LegacyFooter,
+  LegacyHome,
+  About as LegacyAbout,
+  Leaderboard as LegacyLeaderboard,
+  ComponentsTest
+} from './legacy';
+
 import './App.css';
 
 function App() {
   return (
     <Router>
-      <div className="App">
-        <nav className="bg-blue-600 text-white p-4 shadow-lg">
-          <div className="container mx-auto flex justify-between items-center">
-            <Link to="/" className="text-2xl font-bold hover:text-blue-200 transition-colors">
-              🚴‍♂️ Path Adventure
-            </Link>
-            <div className="flex gap-6">
-              <Link 
-                to="/" 
-                className="hover:text-blue-200 transition-colors font-medium"
-              >
-                Play Game
-              </Link>
-              <Link 
-                to="/leaderboard" 
-                className="hover:text-blue-200 transition-colors font-medium"
-              >
-                Leaderboard
-              </Link>
-              <Link 
-                to="/about" 
-                className="hover:text-blue-200 transition-colors font-medium"
-              >
-                About
-              </Link>
-            </div>
-          </div>
-        </nav>
-
-        <main>
-          <Routes>
-            <Route path="/" element={<PathFollowingGame />} />
-            <Route path="/leaderboard" element={<Leaderboard />} />
-            <Route path="/about" element={<About />} />
-            <Route path="/components-test" element={<ComponentsTest />} />
-            <Route path="*" element={<div>404 Not Found</div>} />
-          </Routes>
-        </main>
-
-        <footer className="bg-gray-800 text-white py-6 mt-12">
-          <div className="container mx-auto text-center">
-            <p>&copy; 2024 Path Adventure Game. Built with React and Tailwind CSS.</p>
-          </div>
-        </footer>
-      </div>
+      <Routes>
+        {/* New Code Routes */}
+        <Route path="/new/*" element={<NewApp />} />
+        
+        {/* Legacy Code Routes */}
+        <Route path="/legacy/*" element={<LegacyApp />} />
+        
+        {/* Default redirect */}
+        <Route path="/*" element={<Navigate to="/new" replace />} />
+      </Routes>
     </Router>
+  );
+}
+
+// New Code App
+function NewApp() {
+  return (
+    <div className="new-app">
+      <nav>New Navigation</nav>
+      <Routes>
+        <Route path="/" element={<NewHome />} />
+      </Routes>
+    </div>
+  );
+}
+
+// Legacy Code App
+function LegacyApp() {
+  return (
+    <div className="flex flex-col min-h-screen">
+      <LegacyNavbar />
+      <main className="flex flex-col grow">
+        <Routes>
+          <Route path="/" element={<LegacyHome />} />
+          <Route path="/leaderboard" element={<LegacyLeaderboard />} />
+          <Route path="/about" element={<LegacyAbout />} />
+          <Route path="/components-test" element={<ComponentsTest />} />
+        </Routes>
+      </main>
+      <LegacyFooter />
+    </div>
   );
 }
 
