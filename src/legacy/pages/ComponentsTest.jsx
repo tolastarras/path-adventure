@@ -1,4 +1,4 @@
-import { GlossyButton, GlossyCard, NumberInput } from "../../components";
+import { GlossyButton, GlossyCard, NumberInput } from "../../new/components";
 
 const ComponentsTest = () => {
   const handleChange = (newCount) => {
@@ -6,7 +6,7 @@ const ComponentsTest = () => {
   };
 
   return (
-    <div className="flex flex-col mx-auto gap-8 w-full h-100-vh p-20 space-y-5 text-white/90 bg-blue-500">
+    <div className="flex flex-col mx-auto gap-8 w-full p-20 space-y-5 text-white/90 bg-blue-500 grow">
       <div>
         <h1 className="text-3xl mb-5">Glossy Button</h1>
         <GlossyButton
