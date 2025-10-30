@@ -3,7 +3,9 @@ import {
   GlossyButton,
   NumberInput,
   TextInput,
-  GameControls
+  GameControls,
+  ProgressBar,
+  HeaderTitle,
 } from './components';
 
 import { useState, useMemo } from 'react';
@@ -96,14 +98,14 @@ const NewHome = () => {
             </div>
             <div>
               <GlossyCard>
-                <h2 className="mb-4 opacity-90">Current Step</h2>
+                <HeaderTitle title="Current Step" />
                 <TextInput disabled className='text-blue-200'>
                   {currentStep}
                 </TextInput>
               </GlossyCard>
             </div>
             <div>
-              <h3 className="mb-4 opacity-90">Plan Your Route</h3>
+              <HeaderTitle title="Plan Your Route" />
               <ol className="text-blue-200 list-decimal list-inside space-y-2">
                 <li>Select the squares</li>
                 <li>Select a direction</li>
@@ -113,17 +115,17 @@ const NewHome = () => {
           </div>
           <div className='w-full flex flex-col gap-6'>
             <div className="flex space-x-6">
-              <GlossyCard className="w-[33%]">
-                <h3>Games Won</h3>
-                progress ...
+              <GlossyCard className="w-1/3">
+                <HeaderTitle title="Games Won" />
+                <ProgressBar percentage={50} />
               </GlossyCard>
-              <GlossyCard className="w-[33%]">
-                <h3>Total Points</h3>
-                progress ...
+              <GlossyCard className="w-1/3">
+                <HeaderTitle title="Total Points" />
+                <ProgressBar percentage={90} />
               </GlossyCard>
-              <GlossyCard className="w-[33%]">
-                <h3>Total Points</h3>
-                progress ...
+              <GlossyCard className="w-1/3">
+                <HeaderTitle title="Leaderboard" />
+                <ProgressBar percentage={75} />
               </GlossyCard>
             </div>
             <div>
