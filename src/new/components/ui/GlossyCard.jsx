@@ -1,5 +1,3 @@
-import { twMerge } from 'tailwind-merge';
-
 import './GlossyCard.css';
 
 const GlossyCard = ({
@@ -14,7 +12,6 @@ const GlossyCard = ({
   className = ''
 }) => {
   const baseClass = 'glossy-card--transparent';
-
   const hoverClasses = !disableHover && 'glossy-card--hover';
   
   const effectClasses = [
@@ -31,8 +28,8 @@ const GlossyCard = ({
   ].filter(Boolean).join(' ');
 
   return (
-    <div className="glossy-card-grid">
-      <div className={twMerge(combinedClasses, className)}>
+    <div className={`glossy-card-grid ${className}`}>
+      <div className={combinedClasses}>
         <div className="glossy-card__content">
           <h3 className="glossy-card__title">{title}</h3>
           <p className="glossy-card__description">{description}</p>

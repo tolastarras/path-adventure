@@ -112,18 +112,16 @@ const NewHome = () => {
             </div>
           </div>
           <div className='w-full flex flex-col gap-6'>
-            <div className="flex justify-between">
-              <div className="flex space-x-6">
-                <GlossyCard>
-                  <h3>Games Won</h3>
-                  progress ...
-                </GlossyCard>
-                <GlossyCard>
-                  <h3>Total Points</h3>
-                  progress ...
-                </GlossyCard>
-              </div>
-              <GlossyCard>
+            <div className="flex space-x-6">
+              <GlossyCard className="w-[33%]">
+                <h3>Games Won</h3>
+                progress ...
+              </GlossyCard>
+              <GlossyCard className="w-[33%]">
+                <h3>Total Points</h3>
+                progress ...
+              </GlossyCard>
+              <GlossyCard className="w-[33%]">
                 <h3>Total Points</h3>
                 progress ...
               </GlossyCard>
