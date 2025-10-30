@@ -1,7 +1,14 @@
+# Project Information
+
+**Issue:** [#5 - description](https://github.com/tolastarras/path-adventure/issues/X)  
+**Feature ID:** [UI-X]  
+**Branch:** feature/your-branch-name  
+
 ## Feature Description
 <!-- Clearly describe what this PR does and why it's needed -->
 
 ## User Story
+
 **As a** [type of user]  
 **I want** [goal]  
 **So that** [benefit]
@@ -27,23 +34,26 @@ Fixes #<issue_number>
 <!-- List the specific changes made in this PR -->
 
 ### Added
-- 
-- 
+
+- File 1
+- File 2
 
 ### Modified
-- 
-- 
+
+- File 1
+- File 2
 
 ### Removed
-- 
-- 
+
+- File 1
+- File 2
 
 ## Screenshots / Screen Recordings
 <!-- Add screenshots or screen recordings for visual changes -->
 
 | Before | After |
 |--------|-------|
-| <img src="" width="300"> | <img src="" width="300"> |
+| image 1 | image 2 |
 
 ## Testing
 <!-- Describe how you tested these changes -->
@@ -55,6 +65,7 @@ Fixes #<issue_number>
 - [ ] Manual testing performed
 
 ### Test Cases
+
 - [ ] Test case 1
 - [ ] Test case 2
 - [ ] Test case 3
@@ -80,3 +91,5 @@ Fixes #<issue_number>
 
 ## Additional Notes
 <!-- Any additional information reviewers should know -->
+
+This PR closes #<issue_number>
