@@ -11,6 +11,8 @@ export const ICONS = {
   up: '⬆️',
   down: '⬇️',
   arrow: '/icons/arrow.svg',
+  success: '/icons/success.svg',
+  close: '/icons/close.svg',
 };
 
 export const DIRECTIONS = [
