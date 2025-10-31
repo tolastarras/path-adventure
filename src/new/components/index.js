@@ -8,3 +8,4 @@ export { default as GlossyButton } from './ui/GlossyButton';
 export { default as NumberInput } from './ui/NumberInput';
 export { default as TextInput } from './ui/TextInput';
 export { default as ProgressBar } from './ui/ProgressBar';
+export { default as AlertBox } from './ui/AlertBox';
