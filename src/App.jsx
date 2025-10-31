@@ -35,10 +35,11 @@ function App() {
 function NewApp() {
   return (
     <div className="new-app">
-      <nav>New Navigation</nav>
-      <Routes>
-        <Route path="/" element={<NewHome />} />
-      </Routes>
+      <main className="flex flex-col grow">
+        <Routes>
+          <Route path="/" element={<NewHome />} />
+        </Routes>
+      </main>
     </div>
   );
 }
