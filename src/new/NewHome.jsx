@@ -6,6 +6,7 @@ import {
   GameControls,
   ProgressBar,
   HeaderTitle,
+  AlertBox,
 } from './components';
 
 import { useState, useMemo } from 'react';
@@ -71,6 +72,10 @@ const NewHome = () => {
 
   return (
     <div className="flex flex-col md:w-full lg:w-[1250px] mx-auto">
+      <AlertBox
+        title="Welcome to Path Adventure"
+        description="This is a game where you follow the blue path from 🚴‍♂️ to 🏁 with your moves!"
+      />
       <GlossyCard
         className="main-card"
         title={title}
