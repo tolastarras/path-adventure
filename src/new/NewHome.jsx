@@ -6,13 +6,16 @@ import {
   GameControls,
   ProgressBar,
   HeaderTitle,
+  AlertBox,
 } from './components';
 
 import { useState, useMemo } from 'react';
 
-import { DATA, DIRECTIONS } from '../utils/constants';
+import { DATA, DIRECTIONS, GAME_RESULTS } from '../utils/constants';
 
 import './NewHome.css';
+
+const gameResult = GAME_RESULTS.success;
 
 const NewHome = () => {
   const { title, description } = DATA;
@@ -20,6 +23,7 @@ const NewHome = () => {
   const [plannedRoute, setPlannedRoute] = useState([]);
   const [resetControlButtons, setResetControlButtons] = useState(false);
   const [resetNumberInput, setResetNumberInput] = useState(false);
+  const [isAlertBoxOpen, setIsAlertBoxOpen] = useState(false);
 
   const handleSquares = (squares) => {
     setStep(prevStep => ({ ...prevStep, squares }));
@@ -60,6 +64,17 @@ const NewHome = () => {
   const handleStartJourney = () => {
     console.log('start journey');
     setPlannedRoute([]);
+
+    setIsAlertBoxOpen(true);
+
+    // auto close alert box
+    setTimeout(() => {
+      setIsAlertBoxOpen(false);
+    }, 5000);
+  }
+
+  const closeAlertBox = () => {
+    setIsAlertBoxOpen(false);
   }
 
   const directionIcon = DIRECTIONS.find(item => item.id === step.direction)?.icon ?? '';
@@ -71,6 +86,14 @@ const NewHome = () => {
 
   return (
     <div className="flex flex-col md:w-full lg:w-[1250px] mx-auto">
+      {isAlertBoxOpen && <AlertBox
+        isOpen={isAlertBoxOpen}
+        onClose={closeAlertBox}
+        icon={gameResult.icon}
+        variant={gameResult.variant}
+        title={gameResult.title}
+        description={gameResult.description}
+      />}
       <GlossyCard
         className="main-card"
         title={title}

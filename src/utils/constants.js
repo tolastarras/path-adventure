@@ -11,7 +11,26 @@ export const ICONS = {
   up: '⬆️',
   down: '⬇️',
   arrow: '/icons/arrow.svg',
+  success: '/icons/success.svg',
+  close: '/icons/close.svg',
+  warning: '/icons/warning.svg',
+  danger: '/icons/danger.svg',
 };
+
+export const GAME_RESULTS = {
+  success: {
+    title:"Congratulations! You found the correct path.",
+    description: "You earned 150 points.",
+    icon: ICONS.success,
+    variant: 'success',
+  },
+  fail: {
+    title:"Sorry! You didn't fine the path :(",
+    description: "You didn't earn any points.",
+    icon: ICONS.danger,
+    variant: 'danger',
+  }
+}
 
 export const DIRECTIONS = [
   { id: 'up', label: 'Up', icon: '↑', rotation: 270 },
