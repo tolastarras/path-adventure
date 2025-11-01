@@ -11,3 +11,4 @@ export { default as NumberInput } from './ui/NumberInput';
 export { default as TextInput } from './ui/TextInput';
 export { default as ProgressBar } from './ui/ProgressBar';
 export { default as AlertBox } from './ui/AlertBox';
+export { default as CustomIcon } from './ui/CustomIcon';

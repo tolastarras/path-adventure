@@ -3,8 +3,6 @@ import { GlossyCard, HeaderTitle, ProgressBar} from '.';
 import './GameStats.css';
 
 const GameStats = ({gameStats: stats}) => {
-  console.log('stats', stats);
-
   return (
     <div className="game-stats__container">
       {stats.map(({ id,title, percent }) => (

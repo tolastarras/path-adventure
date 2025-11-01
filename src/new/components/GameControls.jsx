@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { GlossyCard, GlossyButton } from '.';
-import CustomIcon from './ui/CustomIcon';
-import { ICONS, ROTATION_ANGLES } from '../../utils/constants';
+import { CustomIcon } from '@/new/components';
+import { ICONS, ROTATION_ANGLES } from '@/utils/constants';
 
 const GameControls = ({ onClick, directions, resetButtons }) => {
   const [selectedDirection, setSelectedDirection] = useState(null);
