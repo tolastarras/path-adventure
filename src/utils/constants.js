@@ -1,6 +1,6 @@
 export const DATA = {
   title: 'Path Adventure',
-  description: 'Follow the blue path from 🚴‍♂️ to 🏁 with your moves!',
+  description: 'Follow the path from 🚴‍♂️ to 🏁 with your moves!',
 };
 
 export const ICONS = {
@@ -15,6 +15,14 @@ export const ICONS = {
   close: '/icons/close.svg',
   warning: '/icons/warning.svg',
   danger: '/icons/danger.svg',
+  info: '/icons/info.svg',
+};
+
+export const ROTATION_ANGLES = {
+  0: 'rotate-0',
+  90: 'rotate-90',
+  180: 'rotate-180',
+  270: 'rotate-270',
 };
 
 export const GAME_RESULTS = {

@@ -89,10 +89,6 @@
   @apply mt-3 opacity-90 drop-shadow-md;
 }
 
-.glossy-card__children {
-  @apply my-4;
-}
-
 /* Grid container */
 .glossy-card-grid {
   @apply grid grid-cols-1 gap-6;

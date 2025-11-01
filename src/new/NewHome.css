@@ -6,7 +6,3 @@
   @apply grow;
   @apply text-4xl text-white/90;
 }
-
-.main-card > .glossy-card__content{
-  @apply pt-8 pb-2 px-4;
-}

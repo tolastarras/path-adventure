@@ -1,5 +1,7 @@
 // app components
 export { default as GameControls } from './GameControls';
+export { default as GameStats } from './GameStats';
+export { default as HowToPlay } from './HowToPlay';
 
 // ui components
 export { default as HeaderTitle } from './ui/HeaderTitle';
