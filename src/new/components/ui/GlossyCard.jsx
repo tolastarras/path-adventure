@@ -1,3 +1,5 @@
+import HeaderTitle from './HeaderTitle';
+
 import './GlossyCard.css';
 
 const GlossyCard = ({
@@ -31,9 +33,9 @@ const GlossyCard = ({
     <div className={`glossy-card-grid ${className}`}>
       <div className={combinedClasses}>
         <div className="glossy-card__content">
-          <h3 className="glossy-card__title">{title}</h3>
-          <p className="glossy-card__description">{description}</p>
-          <div className="glossy-card__children">{children}</div>
+          {title && <HeaderTitle className="glossy-card__title">{title}</HeaderTitle>}
+          {description && <p className="glossy-card__description">{description}</p> }
+          <div>{children}</div>
         </div>
       </div>
     </div>

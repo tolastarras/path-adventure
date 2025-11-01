@@ -3,10 +3,11 @@ import {
   GlossyButton,
   NumberInput,
   TextInput,
-  GameControls,
-  ProgressBar,
   HeaderTitle,
   AlertBox,
+  HowToPlay as HowToPlaySection,
+  GameControls as GameControlsSection,
+  GameStats as GameStatsSection,
 } from './components';
 
 import { useState, useMemo } from 'react';
@@ -77,6 +78,24 @@ const NewHome = () => {
     setIsAlertBoxOpen(false);
   }
 
+  const gameStats = [
+    {
+      id: 1,
+      title: 'Games Won',
+      percent: 50,
+    },
+    {
+      id: 2,
+      title: 'Total Points',
+      percent: 90,
+    },
+    {
+      id: 3,
+      title: 'Leaderboard',
+      percent: 75,
+    }
+  ];
+
   const directionIcon = DIRECTIONS.find(item => item.id === step.direction)?.icon ?? '';
 
   const currentStep = useMemo(() => {
@@ -94,98 +113,82 @@ const NewHome = () => {
         title={gameResult.title}
         description={gameResult.description}
       />}
-      <GlossyCard
-        className="main-card"
-        title={title}
-        description={description}
-      >
-        <img className="absolute top-0 right-0" width={150} src="/cyclist.webp" alt="logo" />
-        <div className="pt-6 lg:flex space-x-6">
-          <div className="flex flex-col space-y-6">
-            <div className="min-w-[300px]">
-              <GlossyCard>
-                <h1 className="mb-4">Squares</h1>
-                <NumberInput
-                  resetInput={resetNumberInput}
-                  value={step.squares}
-                  onChange={handleSquares}
-                />
-              </GlossyCard>
-            </div>
+      <GlossyCard>
+        <div className="p-2 lg:p-10">
+          <div className="flex justify-between">
             <div>
-              <GameControls
-                resetButtons={resetControlButtons}
-                directions={DIRECTIONS}
-                onClick={handleDirection}
-              />
+              <HeaderTitle className="glossy-card__title">{title}</HeaderTitle>
+              <p className="glossy-card__description">{description}</p>
             </div>
-            <div>
-              <GlossyCard>
-                <HeaderTitle title="Current Step" />
-                <TextInput disabled className='text-blue-200'>
-                  {currentStep}
-                </TextInput>
-              </GlossyCard>
-            </div>
-            <div>
-              <HeaderTitle title="Plan Your Route" />
-              <ol className="text-blue-200 list-decimal list-inside space-y-2">
-                <li>Select the squares</li>
-                <li>Select a direction</li>
-                <li>Click "Add Move"</li>
-              </ol>
-            </div>
+            <img className="object-contain pl-4" width={150} src="/cyclist.png" alt="logo" />
           </div>
-          <div className='w-full flex flex-col gap-6'>
-            <div className="flex space-x-6">
-              <GlossyCard className="w-1/3">
-                <HeaderTitle title="Games Won" />
-                <ProgressBar percentage={50} />
-              </GlossyCard>
-              <GlossyCard className="w-1/3">
-                <HeaderTitle title="Total Points" />
-                <ProgressBar percentage={90} />
-              </GlossyCard>
-              <GlossyCard className="w-1/3">
-                <HeaderTitle title="Leaderboard" />
-                <ProgressBar percentage={75} />
-              </GlossyCard>
-            </div>
-            <div>
-              <GlossyCard className="min-h-[700px]">
-                CANVAS
-              </GlossyCard>
-            </div>
-            <div>
-              <h1 className="mb-3">Planned Route:</h1>
-              <TextInput disabled className='text-green-400/90'>
-                {plannedRoute.join(' ')}
-              </TextInput>
-            </div>
-            <div className='flex justify-between mt-4'>
-              <div className="flex space-x-4">
-                <GlossyButton
-                  disabled={!step.direction}
-                  onClick={handleAddStepToPath}
-                >
-                  Add Move
-                </GlossyButton>
-                <GlossyButton
-                  variant="danger"
-                  disabled={plannedRoute.length === 0}
-                  onClick={handleUndoStepToPath}
-                >
-                  Undo Move
-                </GlossyButton>
+          <div className="pt-6 space-x-0 lg:flex lg:space-x-6">
+            <div className="flex flex-col space-y-6">
+              <div className="min-w-[300px]">
+                <GlossyCard>
+                  <h1 className="mb-4">Squares</h1>
+                  <NumberInput
+                    resetInput={resetNumberInput}
+                    value={step.squares}
+                    onChange={handleSquares}
+                  />
+                </GlossyCard>
               </div>
               <div>
-                <GlossyButton
-                  variant="primary"
-                  disabled={plannedRoute.length === 0}
-                  onClick={handleStartJourney}
-                >
-                  Start Journey
-                </GlossyButton>
+                <GameControlsSection
+                  resetButtons={resetControlButtons}
+                  directions={DIRECTIONS}
+                  onClick={handleDirection}
+                />
+              </div>
+              <div>
+                <GlossyCard>
+                  <HeaderTitle title="Current Step" />
+                  <TextInput disabled className='text-blue-200'>
+                    {currentStep}
+                  </TextInput>
+                </GlossyCard>
+              </div>
+              <HowToPlaySection />
+            </div>
+            <div className='w-full flex flex-col gap-6'>
+              <GameStatsSection gameStats={gameStats} />
+              <div>
+                <GlossyCard className="min-h-[700px]">
+                  CANVAS
+                </GlossyCard>
+              </div>
+              <div>
+                <h1 className="mb-3">Planned Route:</h1>
+                <TextInput disabled className='text-green-400/90'>
+                  {plannedRoute.join(' ')}
+                </TextInput>
+              </div>
+              <div className='flex justify-between mt-4'>
+                <div className="flex space-x-4">
+                  <GlossyButton
+                    disabled={!step.direction}
+                    onClick={handleAddStepToPath}
+                  >
+                    Add Move
+                  </GlossyButton>
+                  <GlossyButton
+                    variant="danger"
+                    disabled={plannedRoute.length === 0}
+                    onClick={handleUndoStepToPath}
+                  >
+                    Undo Move
+                  </GlossyButton>
+                </div>
+                <div>
+                  <GlossyButton
+                    variant="primary"
+                    disabled={plannedRoute.length === 0}
+                    onClick={handleStartJourney}
+                  >
+                    Start Journey
+                  </GlossyButton>
+                </div>
               </div>
             </div>
           </div>
