@@ -1,7 +1,7 @@
 import HeaderTitle from './HeaderTitle';
 import CustomIcon from './CustomIcon';
 
-import { ICONS } from '../../../utils/constants';
+import { ICONS } from '@/utils/constants';
 
 import './AlertBox.css';
 

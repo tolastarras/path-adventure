@@ -12,7 +12,7 @@ import {
 
 import { useState, useMemo } from 'react';
 
-import { DATA, DIRECTIONS, GAME_RESULTS } from '../utils/constants';
+import { DATA, DIRECTIONS, GAME_RESULTS } from '@/utils/constants';
 
 import './NewHome.css';
 
