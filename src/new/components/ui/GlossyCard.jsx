@@ -10,10 +10,11 @@ const GlossyCard = ({
   showGlow = false,
   showShine = true,
   showShadow = false,
+  showPadding = true,
   disableHover = true,
   className = ''
 }) => {
-  const baseClass = 'glossy-card--transparent';
+  const baseClass = `glossy-card--transparent ${showPadding && 'glossy-card--padding'}`;
   const hoverClasses = !disableHover && 'glossy-card--hover';
   
   const effectClasses = [

@@ -18,6 +18,7 @@ export const ICONS = {
   info: '/icons/info.svg',
 };
 
+// arrow button
 export const ROTATION_ANGLES = {
   0: 'rotate-0',
   90: 'rotate-90',
@@ -47,7 +48,6 @@ export const DIRECTIONS = [
   { id: 'down', label: 'Down', icon: '↓', rotation: 90 },
 ];
 
-// Make squares bigger by increasing CELL_SIZE
-export const GRID_SIZE = 10;
-export const CELL_SIZE = 50; // Increased from 40 to 60 (50% bigger)
-export const CANVAS_PADDING = 80; // Increased padding to accommodate larger squares
+export const GRID_SIZE = 11;      // Make squares bigger by increasing CELL_SIZE
+export const CELL_SIZE = 70;      // Increased cell size
+export const CANVAS_PADDING = 0;  // Increased padding to accommodate larger squares

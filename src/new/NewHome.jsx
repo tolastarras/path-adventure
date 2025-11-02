@@ -8,6 +8,7 @@ import {
   HowToPlay as HowToPlaySection,
   GameControls as GameControlsSection,
   GameStats as GameStatsSection,
+  GameCanvas,
 } from './components';
 
 import { useState, useMemo } from 'react';
@@ -154,8 +155,8 @@ const NewHome = () => {
             <div className='w-full flex flex-col gap-6'>
               <GameStatsSection gameStats={gameStats} />
               <div>
-                <GlossyCard className="min-h-[700px]">
-                  CANVAS
+                <GlossyCard showPadding={false}>
+                  <GameCanvas />
                 </GlossyCard>
               </div>
               <div>
