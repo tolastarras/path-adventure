@@ -6,7 +6,7 @@ import bicycleImage from '/bicycle-kid.webp';
 
 export const useBicycleDraw = () => {
   const bicycleImageRef = useRef(null);
-  const [bicycleImageLoaded, setBicycleImageLoaded] = useState(false);
+  const [isBicycleImageLoaded, setIsBicycleImageLoaded] = useState(false);
 
   // Load image once when hook initializes
   useEffect(() => {
@@ -14,9 +14,9 @@ export const useBicycleDraw = () => {
     img.src = bicycleImage;
     img.onload = () => {
       bicycleImageRef.current = img;
-      setBicycleImageLoaded(true);
+      setIsBicycleImageLoaded(true);
     }
-    img.onerror = () => setBicycleImageLoaded(false);
+    img.onerror = () => setIsBicycleImageLoaded(false);
   }, []);
 
   const drawBicycle = useCallback((ctx, x, y, direction = 'right', isSmall = false) => {
@@ -49,7 +49,7 @@ export const useBicycleDraw = () => {
 
   return {
     drawBicycle,
-    bicycleImageLoaded,
+    isBicycleImageLoaded,
   };
 };
 

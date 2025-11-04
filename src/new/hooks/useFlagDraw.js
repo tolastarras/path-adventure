@@ -6,7 +6,7 @@ import flagImage from '/finish-flag.webp';
 
 export const useFlagDraw = () => {
   const flagImageRef = useRef(null);
-  const [flagImageLoaded, setFlagImageLoaded] = useState(false);
+  const [isFlagImageLoaded, setIsFlagImageLoaded] = useState(false);
 
   // Load image once when hook initializes
   useEffect(() => {
@@ -14,9 +14,9 @@ export const useFlagDraw = () => {
     img.src = flagImage;
     img.onload = () => {
       flagImageRef.current = img;
-      setFlagImageLoaded(true);
+      setIsFlagImageLoaded(true);
     }
-    img.onerror = () => setFlagImageLoaded(false);  
+    img.onerror = () => setIsFlagImageLoaded(false);  
   }, []);
 
   const drawFlag = useCallback((ctx, x, y, isSmall = false) => {
@@ -42,7 +42,7 @@ export const useFlagDraw = () => {
 
   return {
     drawFlag,
-    flagImageLoaded,
+    isFlagImageLoaded,
   };
 };
 

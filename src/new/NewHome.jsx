@@ -1,3 +1,5 @@
+import { useState, useMemo } from 'react';
+
 import {
   GlossyCard,
   GlossyButton,
@@ -11,7 +13,7 @@ import {
   GameCanvas,
 } from './components';
 
-import { useState, useMemo } from 'react';
+import { usePathGenerator } from '@/new/hooks';
 
 import { DATA, DIRECTIONS, GAME_RESULTS } from '@/utils/constants';
 
@@ -26,6 +28,8 @@ const NewHome = () => {
   const [resetControlButtons, setResetControlButtons] = useState(false);
   const [resetNumberInput, setResetNumberInput] = useState(false);
   const [isAlertBoxOpen, setIsAlertBoxOpen] = useState(false);
+
+  const { path } = usePathGenerator();
 
   const handleSquares = (squares) => {
     setStep(prevStep => ({ ...prevStep, squares }));
@@ -155,7 +159,7 @@ const NewHome = () => {
               <GameStatsSection gameStats={gameStats} />
               <div>
                 <GlossyCard showPadding={false}>
-                  <GameCanvas />
+                  <GameCanvas path={path} />
                 </GlossyCard>
               </div>
               <div>

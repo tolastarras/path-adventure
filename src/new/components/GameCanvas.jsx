@@ -1,19 +1,18 @@
 import { useEffect, useRef } from 'react';
-import { useCanvasDraw } from '@/new/hooks/useCanvasDraw';
+import { useGameDraw } from '@/new/hooks/useGameDraw';
 import { GRID_SIZE, CELL_SIZE, CANVAS_PADDING } from '@/utils/constants';
 
-const GameCanvas = (
-  // {
-  // path,
+const GameCanvas = ({
+  path,
+  staticPath = false,
   // animationPosition,
   // gameStatus,
   // playerMoves,
   // animationProgress
-// }
-) => {
+}) => {
   const canvasRef = useRef(null);
-  const { draw } = useCanvasDraw(canvasRef);
-  // const { draw } = useCanvasDraw(canvasRef, path, animationPosition, gameStatus, playerMoves);
+  const { draw } = useGameDraw(canvasRef, path, staticPath);
+  // const { draw } = useGameDraw(canvasRef, path, animationPosition, gameStatus, playerMoves);
 
   useEffect(() => {
     draw();
