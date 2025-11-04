@@ -51,3 +51,30 @@ export const DIRECTIONS = [
 export const GRID_SIZE = 11;      // Make squares bigger by increasing CELL_SIZE
 export const CELL_SIZE = 70;      // Increased cell size
 export const CANVAS_PADDING = 0;  // Increased padding to accommodate larger squares
+
+export const COLORS = {
+  primary: '#3b82f6',
+  secondary: '#f59e0b',
+  success: '#22c55e',
+  danger: '#ef4444',
+  warning: '#fbbf24',
+  info: '#3b82f6',
+  canvasBackground: '#cbd5e1',
+  canvasStroke: '#3b82f6',
+  pathStroke: '#3b82f6',
+  pathFill: '#1d4ed8',
+
+  // Environment colors
+  water: '#87ceeb',     // Blue
+  trees: '#00b050',     // Green
+  sand: '#f1bd63',      // Light brown
+  grass: '#2e7d32',     // Dark green
+  mud: '#8b4513',       // Brown
+};
+
+export const PATH = {
+  lineWidth: 4,
+  dotRadius: 5,
+  strokeColor: COLORS.pathStroke,
+  fillColor: COLORS.pathFill
+}

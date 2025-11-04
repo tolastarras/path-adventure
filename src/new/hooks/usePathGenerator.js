@@ -1,7 +1,7 @@
 import { useState, useEffect, useCallback } from 'react';
-import { generateRandomPath } from '../utils/pathUtils';
+import { generateRandomPath } from '@/utils/pathUtils';
 
-export const usePathGenerator = () => {
+const usePathGenerator = () => {
   const [path, setPath] = useState([]);
 
   const generateNewPath = useCallback(() => {
@@ -23,3 +23,5 @@ export const usePathGenerator = () => {
     clearGame
   };
 };
+
+export default usePathGenerator;

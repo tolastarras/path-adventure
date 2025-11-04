@@ -35,8 +35,7 @@ export const generateRandomPath = () => {
       ].filter(dir => {
         const newX = currentX + dir.dx;
         const newY = currentY + dir.dy;
-        return isValidPosition(newX, newY) && 
-               !newPath.some(step => step.x === newX && step.y === newY);
+        return isValidPosition(newX, newY) && !newPath.some(step => step.x === newX && step.y === newY);
       });
 
       if (directions.length === 0) break;
@@ -89,8 +88,9 @@ export const generateRandomPath = () => {
     ].filter(dir => {
       const newX = lastPos.x + dir.dx;
       const newY = lastPos.y + dir.dy;
-      return isValidPosition(newX, newY) && isOnEdge(newX, newY) && 
-             !isStartPosition(newX, newY);
+      return isValidPosition(newX, newY) &&
+        isOnEdge(newX, newY) &&
+        !isStartPosition(newX, newY);
     });
     
     if (directions.length > 0) {
