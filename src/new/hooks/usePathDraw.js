@@ -46,7 +46,6 @@ const usePathDraw = () => {
   }, []);
 
   const drawAnimatedPath = useCallback((ctx, path, options = {}) => {
-    console.log({options})
     const {
       duration = 2000,
       onAnimationComplete

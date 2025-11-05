@@ -30,7 +30,6 @@ export const useGameDraw = (
     
     // Draw bicycle first (before path animation)
     drawBicycleElement(ctx, path);
-        console.log(path.length);
 
     // Draw path (over the bicycle)
     if (staticPath) {

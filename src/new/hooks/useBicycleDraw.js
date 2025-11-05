@@ -1,26 +1,15 @@
-import { useState, useCallback, useRef, useEffect } from 'react';
+import { useCallback } from 'react';
+import { useImageLoader } from '.';
 
 import { CELL_SIZE } from '@/utils/constants';
 
 import bicycleImage from '/bicycle-kid.webp';
 
 export const useBicycleDraw = () => {
-  const bicycleImageRef = useRef(null);
-  const [isBicycleImageLoaded, setIsBicycleImageLoaded] = useState(false);
-
-  // Load image once when hook initializes
-  useEffect(() => {
-    const img = new Image();
-    img.src = bicycleImage;
-    img.onload = () => {
-      bicycleImageRef.current = img;
-      setIsBicycleImageLoaded(true);
-    }
-    img.onerror = () => setIsBicycleImageLoaded(false);
-  }, []);
+  const { imageRef, isLoaded } = useImageLoader(bicycleImage);
 
   const drawBicycle = useCallback((ctx, x, y, direction = 'right', isSmall = false) => {
-    if (!bicycleImageRef.current) return;
+    if (!imageRef.current) return;
     
     const scale = isSmall ? 0.8 : 1;
 
@@ -43,13 +32,13 @@ export const useBicycleDraw = () => {
     if (direction === 'left') {
       ctx.scale(-1, 1);
     }
-    ctx.drawImage(bicycleImageRef.current, -size/2, -size/2, size, size);
+    ctx.drawImage(imageRef.current, -size/2, -size/2, size, size);
     ctx.restore();
-  }, []);
+  }, [imageRef]);
 
   return {
     drawBicycle,
-    isBicycleImageLoaded,
+    isBicycleImageLoaded: isLoaded,
   };
 };
 
