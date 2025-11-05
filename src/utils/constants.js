@@ -41,6 +41,9 @@ export const GAME_RESULTS = {
   }
 }
 
+export const FONT_SCALE_FACTOR = 6;
+export const MIN_FONT_SIZE = 10;
+
 export const DIRECTIONS = [
   { id: 'up', label: 'Up', icon: '↑', rotation: 270 },
   { id: 'left', label: 'Left', icon: '←', rotation: 180 },
@@ -51,6 +54,24 @@ export const DIRECTIONS = [
 export const GRID_SIZE = 11;      // Make squares bigger by increasing CELL_SIZE
 export const CELL_SIZE = 70;      // Increased cell size
 export const CANVAS_PADDING = 0;  // Increased padding to accommodate larger squares
+
+export const TERRAIN_TYPES = [
+  'water',
+  'tree',
+  'sand',
+  'mud',
+  'grass',
+  'rock',
+];
+
+export const TERRAIN_COLORS = {
+  water: '#87ceeb',
+  tree: '#00b050',
+  sand: '#f1bd63',
+  grass: '#1fbd2f',
+  mud: '#8b4513',
+  rock: '#c3b9b2',
+};
 
 export const COLORS = {
   primary: '#3b82f6',
@@ -63,13 +84,6 @@ export const COLORS = {
   canvasStroke: '#3b82f6',
   pathStroke: '#3b82f6',
   pathFill: '#1d4ed8',
-
-  // Environment colors
-  water: '#87ceeb',     // Blue
-  trees: '#00b050',     // Green
-  sand: '#f1bd63',      // Light brown
-  grass: '#2e7d32',     // Dark green
-  mud: '#8b4513',       // Brown
 };
 
 export const PATH = {

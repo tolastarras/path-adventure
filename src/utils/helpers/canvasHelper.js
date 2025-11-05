@@ -1,4 +1,10 @@
-import { CANVAS_PADDING, CELL_SIZE, PATH } from '@/utils/constants'; 
+import {
+  CANVAS_PADDING,
+  CELL_SIZE,
+  MIN_FONT_SIZE,
+  PATH,
+  FONT_SCALE_FACTOR,
+} from '@/utils/constants';
 
 // Helper function to calculate center coordinates
 export const getCellCenterPoint = ({ x, y }) => ({
@@ -64,3 +70,28 @@ export const drawPartialPath = ((ctx, path, segmentsToShow) => {
     ctx.fill();
   }
 });
+
+// Draw text in the center of the cell
+export const drawCellText = (ctx, text, options = {}) => {
+  const {
+    position = 'bottom', // 'bottom', 'top', 'center'
+    offset = CELL_SIZE * 0.15,
+    fontSize = Math.max(MIN_FONT_SIZE, CELL_SIZE / FONT_SCALE_FACTOR),
+    color = '#000',
+    fontFamily = 'Arial'
+  } = options;
+
+  const positions = {
+    bottom: CELL_SIZE/2 - offset,
+    top: -CELL_SIZE/2 + offset,
+    center: 0
+  };
+
+  const textY = positions[position] || positions.bottom;
+
+  ctx.fillStyle = color;
+  ctx.font = `bold ${fontSize}px ${fontFamily}`;
+  ctx.textAlign = 'center';
+  ctx.textBaseline = 'middle';
+  ctx.fillText(text, 0, textY);
+};

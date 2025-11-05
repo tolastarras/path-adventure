@@ -6,3 +6,6 @@ export { default as useGameElementsDraw } from './useGameElementsDraw';
 export { default as usePathDraw } from './usePathDraw';
 export { default as useCanvasGridDraw } from './useCanvasGridDraw';
 export { default as usePathGenerator } from './usePathGenerator';
+export { default as useImageLoader } from './useImageLoader';
+export { default as useTerrainImages } from './useTerrainImages';
+export { default as useEnvironmentGeneration } from './useEnvironmentGeneration';
