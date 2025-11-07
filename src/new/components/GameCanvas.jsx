@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react';
 import { useGameDraw } from '@/new/hooks/useGameDraw';
-import { GRID_SIZE, CELL_SIZE, CANVAS_PADDING } from '@/utils/constants';
+import { CANVAS } from '@/utils/constants';
 
 const GameCanvas = ({
   path,
@@ -12,6 +12,7 @@ const GameCanvas = ({
 }) => {
   const canvasRef = useRef(null);
   const { draw } = useGameDraw(canvasRef, path, staticPath);
+  const { width, height } = CANVAS;
   // const { draw } = useGameDraw(canvasRef, path, animationPosition, gameStatus, playerMoves);
 
   useEffect(() => {
@@ -33,11 +34,7 @@ const GameCanvas = ({
       )} */}
 
       <div className="relative">
-        <canvas
-          ref={canvasRef}
-          width={GRID_SIZE * CELL_SIZE + CANVAS_PADDING * 2}
-          height={GRID_SIZE * CELL_SIZE + CANVAS_PADDING * 2}
-        />
+        <canvas ref={canvasRef} width={width} height={height} />
       </div>
     </>
   );

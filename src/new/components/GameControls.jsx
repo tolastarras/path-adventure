@@ -1,6 +1,5 @@
 import { useState } from 'react';
-import { GlossyCard, GlossyButton } from '.';
-import { CustomIcon } from '@/new/components';
+import { GlossyCard, GlossyButton,CustomIcon } from '@/new/components';
 import { ICONS, ROTATION_ANGLES } from '@/utils/constants';
 
 const GameControls = ({ onClick, directions, resetButtons }) => {
@@ -13,7 +12,7 @@ const GameControls = ({ onClick, directions, resetButtons }) => {
 
   return (
     <GlossyCard>
-      <div className="flex flex-col gap-3">
+      <div className="flex flex-col">
         {[
           [directions[0]],           // First item alone
           directions.slice(1, 3),    // Second and third items together
