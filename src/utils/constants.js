@@ -55,6 +55,11 @@ export const GRID_SIZE = 11;      // Make squares bigger by increasing CELL_SIZE
 export const CELL_SIZE = 70;      // Increased cell size
 export const CANVAS_PADDING = 0;  // Increased padding to accommodate larger squares
 
+export const CANVAS = {
+  width: GRID_SIZE * CELL_SIZE + 2 * CANVAS_PADDING,
+  height: GRID_SIZE * CELL_SIZE + 2 * CANVAS_PADDING
+};
+
 export const TERRAIN_TYPES = [
   'water',
   'tree',
@@ -92,3 +97,21 @@ export const PATH = {
   strokeColor: COLORS.pathStroke,
   fillColor: COLORS.pathFill
 }
+
+export const GAME_STATS = [
+  {
+    id: 1,
+    title: 'Games Won',
+    percent: 50,
+  },
+  {
+    id: 2,
+    title: 'Total Points',
+    percent: 90,
+  },
+  {
+    id: 3,
+    title: 'Leaderboard',
+    percent: 75,
+  }
+];

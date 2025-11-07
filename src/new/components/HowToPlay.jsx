@@ -7,7 +7,7 @@ const HowToPlay = () => {
       <ol className="text-blue-200 list-decimal list-inside space-y-2">
         <li>Select the squares</li>
         <li>Select a direction</li>
-        <li>Click "Add Move"</li>
+        <li>Click "Add"</li>
       </ol>
     </div>
   )

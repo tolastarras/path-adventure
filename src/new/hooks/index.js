@@ -9,3 +9,4 @@ export { default as usePathGenerator } from './usePathGenerator';
 export { default as useImageLoader } from './useImageLoader';
 export { default as useTerrainImages } from './useTerrainImages';
 export { default as useEnvironmentGeneration } from './useEnvironmentGeneration';
+export { default as useCanvas } from './useCanvas';
