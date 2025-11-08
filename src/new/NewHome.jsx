@@ -29,7 +29,7 @@ const NewHome = () => {
   const [resetNumberInput, setResetNumberInput] = useState(false);
   const [isAlertBoxOpen, setIsAlertBoxOpen] = useState(false);
 
-  const { path } = usePathGenerator();
+  const { currentPath, generateNewPath } = usePathGenerator();
 
   const handleSquares = (squares) => {
     setStep(prevStep => ({ ...prevStep, squares }));
@@ -78,8 +78,12 @@ const NewHome = () => {
     }, 5000);
   }
 
-  const handleNewAdventure = () => {
+  const handleClearPath = () => {
     setPlannedRoute([]);
+  }
+
+  const handleNewAdventure = () => {
+    generateNewPath();
   }
 
   const closeAlertBox = () => {
@@ -104,7 +108,7 @@ const NewHome = () => {
         description={gameResult.description}
       />}
       <GlossyCard>
-        <div className="p-2 lg:p-10">
+        <div className="p-2 lg:p-10 space-y-6">
           <HeaderSection />
           <div className="pt-6 space-x-0 lg:flex lg:space-x-6">
             <div className="flex flex-col space-y-6">
@@ -152,10 +156,10 @@ const NewHome = () => {
               </div>
               <HowToPlaySection />
             </div>
-            <div className='w-full flex flex-col gap-6'>
+            <div className='w-full flex flex-col space-y-6'>
               <GameStatsSection gameStats={GAME_STATS} />
               <GlossyCard showPadding={false}>
-                <GameCanvas path={path} />
+                <GameCanvas path={currentPath} />
               </GlossyCard>
               <div>
                 <h1 className="mb-3">Planned Route:</h1>
@@ -163,19 +167,30 @@ const NewHome = () => {
                   {plannedRoute.join(' ')}
                 </TextInput>
               </div>
-              <div className='flex gap-6'>
-                <GlossyButton
-                  variant="primary"
-                  disabled={plannedRoute.length === 0}
-                  onClick={handleStartJourney}
-                >
-                  Start Journey
-                </GlossyButton>
-                <GlossyButton
-                  onClick={handleNewAdventure}
-                >
-                  New Adventure
-                </GlossyButton>
+              <div className='flex gap-6 justify-between'>
+                <div className='flex gap-3'>
+                  <GlossyButton
+                    variant="primary"
+                    disabled={plannedRoute.length === 0}
+                    onClick={handleStartJourney}
+                  >
+                    Start Journey!
+                  </GlossyButton>
+                  <GlossyButton
+                    variant="success"
+                    disabled={plannedRoute.length === 0}
+                    onClick={handleClearPath}
+                  >
+                    Clear Path
+                  </GlossyButton>
+                </div>
+                <div>
+                  <GlossyButton
+                    onClick={handleNewAdventure}
+                  >
+                    New Adventure
+                  </GlossyButton>
+                </div>
               </div>
             </div>
           </div>

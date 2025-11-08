@@ -1,4 +1,3 @@
-import { useCallback } from 'react';
 import {
   usePathDraw,
   useCanvasGridDraw,
@@ -16,7 +15,7 @@ export const useGameDraw = (
   const { drawBicycleElement, drawFlagElement } = useGameElementsDraw();
   const { drawEnvironment } = useEnvironmentDraw();
 
-  const draw = useCallback(() => {
+  const draw = () => {
     const canvas = canvasRef.current;
     if (!canvas) return;
 
@@ -46,17 +45,7 @@ export const useGameDraw = (
         }
       });
     }
-  }, [
-    path,
-    canvasRef,
-    staticPath,
-    drawStaticPath,
-    drawAnimatedPath,
-    drawBicycleElement,
-    drawFlagElement,
-    drawEnvironment,
-    drawCanvasGrid,
-  ]);
+  }
 
   return {
     draw,
