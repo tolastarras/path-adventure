@@ -29,7 +29,7 @@
 }
 
 .glossy-button:not(:disabled):hover::after {
-  @apply opacity-80;
+  @apply opacity-40;
 }
 
 .glossy-button--sm {
@@ -54,7 +54,7 @@
 
 /* Color variant base styles */
 .glossy-button--primary {
- @apply before:bg-linear-to-b before:from-blue-500 before:via-blue-400 before:to-blue-100 before:to-90% before:via-60%;
+  @apply before:bg-linear-to-b before:from-blue-500 before:via-blue-400 before:to-blue-100 before:to-90% before:via-60%;
   @apply after:bg-linear-to-b after:from-blue-400 after:to-blue-500;
 }
 
@@ -69,9 +69,9 @@
 }
 
 .glossy-button--disabled {
-  @apply disabled:cursor-not-allowed text-gray-300/50 border-gray-400;
+  @apply disabled:cursor-not-allowed text-gray-300/80 border-gray-300/30;
   @apply before:bg-linear-to-b before:from-gray-300 before:via-gray-400 before:to-gray-300 before:to-90% before:via-60%;
-  @apply after:bg-linear-to-b after:from-gray-600 after:to-gray-700;
+  @apply after:bg-linear-to-b after:from-gray-400 after:to-gray-500;
 }
 
 .glossy-button--purple {
@@ -85,7 +85,7 @@
 }
 
 .glossy-button::after {
-  @apply content-[''] absolute inset-0 z-[-1] opacity-40;
+  @apply content-[''] absolute inset-0 z-[-1] opacity-80;
   @apply transition-opacity duration-400;
 }
 

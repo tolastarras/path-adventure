@@ -18,7 +18,7 @@ const usePathGenerator = () => {
   }, [generateNewPath]);
 
   return {
-    path,
+    currentPath: path,
     generateNewPath,
     clearGame
   };

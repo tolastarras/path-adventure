@@ -25,11 +25,11 @@ const useTerrainImages = () => {
     rock,
   };
 
-  const isAnyImageLoading = Object.values(terrainImages).some(img => !img.isLoaded);
+  const allImagesLoaded = Object.values(terrainImages).every(img => img.isLoaded);
 
   return {
     terrainImages,
-    isAnyImageLoading,
+    allImagesLoaded,
   };
 };
 

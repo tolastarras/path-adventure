@@ -42,7 +42,7 @@ const GlossyButton = ({
       className={twMerge(combinedClasses, className)}
       {...props}
     >
-      {showGlare && <div className={`glossy-button__with-glare ${type}`} />}
+      {showGlare && !disabled && <div className={`glossy-button__with-glare ${type}`} />}
       
       <div className="relative z-10">
         <span className={`glossy-button__content ${size}`}>
