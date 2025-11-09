@@ -1,6 +1,6 @@
 import { useCallback } from 'react';
 import { CELL_SIZE, CANVAS_PADDING, TERRAIN_COLORS } from '@/utils/constants';
-import { useTerrainImages, useEnvironmentGeneration } from '@/new/hooks';
+import { useTerrainImages, useEnvironmentGeneration } from '@/hooks';
 import {
   drawTree,
   drawMud,

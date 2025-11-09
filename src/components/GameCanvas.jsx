@@ -1,5 +1,5 @@
 import { useEffect, useRef } from 'react';
-import { useGameDraw, useTerrainImages } from '@/new/hooks';
+import { useGameDraw, useTerrainImages } from '@/hooks';
 
 import { CANVAS } from '@/utils/constants';
 
