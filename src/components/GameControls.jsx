@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { GlossyCard, GlossyButton,CustomIcon } from '@/new/components';
+import { GlossyCard, GlossyButton,CustomIcon } from '@/components';
 import { ICONS, ROTATION_ANGLES } from '@/utils/constants';
 
 const GameControls = ({ onClick, directions, resetButtons }) => {

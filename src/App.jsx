@@ -1,6 +1,6 @@
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 
-import NewHome from './new/NewHome';
+import NewHome from './NewHome';
 
 // Legacy Code
 import {
@@ -18,14 +18,8 @@ function App() {
   return (
     <Router>
       <Routes>
-        {/* New Code Routes */}
-        <Route path="/new/*" element={<NewApp />} />
-        
-        {/* Legacy Code Routes */}
+        <Route path="/*" element={<NewApp />} />
         <Route path="/legacy/*" element={<LegacyApp />} />
-        
-        {/* Default redirect */}
-        <Route path="/*" element={<Navigate to="/new" replace />} />
       </Routes>
     </Router>
   );
