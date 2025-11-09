@@ -12,9 +12,9 @@ import {
   GameControls as GameControlsSection,
   GameStats as GameStatsSection,
   GameHeader as HeaderSection,
-} from '@/new/components';
+} from '@/components';
 
-import { usePathGenerator } from '@/new/hooks';
+import { usePathGenerator } from '@/hooks';
 
 import { DIRECTIONS, GAME_RESULTS, GAME_STATS } from '@/utils/constants';
 
@@ -29,7 +29,7 @@ const NewHome = () => {
   const [resetNumberInput, setResetNumberInput] = useState(false);
   const [isAlertBoxOpen, setIsAlertBoxOpen] = useState(false);
 
-  const { currentPath, generateNewPath } = usePathGenerator();
+  const { currentPath, generateNewPath, clearGame } = usePathGenerator();
 
   const handleSquares = (squares) => {
     setStep(prevStep => ({ ...prevStep, squares }));
@@ -69,16 +69,18 @@ const NewHome = () => {
 
   const handleStartJourney = () => {
     setPlannedRoute([]);
+    console.log('start path animation ...');
 
-    setIsAlertBoxOpen(true);
+    // setIsAlertBoxOpen(true);
 
-    // auto close alert box
-    setTimeout(() => {
-      setIsAlertBoxOpen(false);
-    }, 5000);
+    // // auto close alert box
+    // setTimeout(() => {
+    //   setIsAlertBoxOpen(false);
+    // }, 5000);
   }
 
   const handleClearPath = () => {
+    clearGame();
     setPlannedRoute([]);
   }
 
@@ -99,6 +101,13 @@ const NewHome = () => {
 
   return (
     <div className="flex flex-col md:w-full lg:w-[1250px] mx-auto">
+      {/* <div className="py-5">
+        <GameStatus 
+          gameStatus={gameStatus} 
+          showPointsAnimation={showPointsAnimation}
+          playerMoves={playerMoves}
+        />
+      </div> */}
       {isAlertBoxOpen && <AlertBox
         isOpen={isAlertBoxOpen}
         onClose={closeAlertBox}
@@ -132,7 +141,7 @@ const NewHome = () => {
               <div>
                 <GlossyCard>
                   <HeaderTitle title="Current Step" />
-                  <TextInput disabled className='text-blue-200'>
+                  <TextInput disabled>
                     {currentStep}
                   </TextInput>
                 </GlossyCard>
@@ -162,8 +171,7 @@ const NewHome = () => {
                 <GameCanvas path={currentPath} />
               </GlossyCard>
               <div>
-                <h1 className="mb-3">Planned Route:</h1>
-                <TextInput disabled className='text-green-400/90'>
+                <TextInput disabled placeholder='Your Planned Route'>
                   {plannedRoute.join(' ')}
                 </TextInput>
               </div>

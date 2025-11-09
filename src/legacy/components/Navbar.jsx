@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { DATA } from '../../utils/constants';
+import { DATA } from '../utils/constants';
 
 const Navbar = () => {
   return (

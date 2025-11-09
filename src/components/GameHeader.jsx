@@ -1,4 +1,4 @@
-import { HeaderTitle } from '@/new/components';
+import { HeaderTitle } from '@/components';
 import { DATA } from '@/utils/constants';
 
 const GameHeader = () => {

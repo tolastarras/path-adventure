@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from 'react';
-import { useCanvasDraw } from '../../hooks/useCanvasDraw';
-import { GRID_SIZE, CELL_SIZE, CANVAS_PADDING } from '../../utils/constants';
+import { useCanvasDraw } from '../hooks/useCanvasDraw';
+import { GRID_SIZE, CELL_SIZE, CANVAS_PADDING } from '../utils/constants';
 
 const GameCanvas = ({
   path,

@@ -1,6 +1,12 @@
 import './TextInput.css';
 
-const TextInput = ({ onChange, disabled = false, className, children }) => {
+const TextInput = ({
+  onChange,
+  disabled = false,
+  className = 'text-blue-200',
+  children,
+  placeholder = ''
+}) => {
   const handleChange = (e) => {
     onChange && onChange(e.target.value);
   }
@@ -9,6 +15,7 @@ const TextInput = ({ onChange, disabled = false, className, children }) => {
     <input
       name="text-input"
       type="text"
+      placeholder={placeholder}
       value={children}
       disabled={disabled}
       className={`text-input__field ${className}`}
