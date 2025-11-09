@@ -1,10 +1,8 @@
-import { GRID_SIZE } from './constants';
-
 export const isValidPosition = (x, y) => 
-  x >= 0 && x < GRID_SIZE && y >= 0 && y < GRID_SIZE;
+  x >= 0 && x < 10 && y >= 0 && y < 10;
 
 export const isOnEdge = (x, y) => 
-  x === 0 || x === GRID_SIZE - 1 || y === 0 || y === GRID_SIZE - 1;
+  x === 0 || x === 10 - 1 || y === 0 || y === 10 - 1;
 
 export const generateRandomPath = () => {
   let newPath = [];
@@ -12,8 +10,8 @@ export const generateRandomPath = () => {
   
   while ((newPath.length < 7 || !isValidEndPosition(newPath)) && attempts < 100) {
     newPath = [];
-    let currentX = Math.floor(Math.random() * GRID_SIZE);
-    let currentY = GRID_SIZE - 1; // Start from bottom
+    let currentX = Math.floor(Math.random() * 10);
+    let currentY = 10 - 1; // Start from bottom
     
     const startPos = { x: currentX, y: currentY };
     newPath.push(startPos);
