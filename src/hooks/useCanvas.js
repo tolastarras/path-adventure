@@ -35,7 +35,7 @@ const useCanvas = (canvasRef) => {
 
   return {
     drawOnCanvas,    // Clear + execute callback
-    getContext,      // Just get context without clearing
+    getContext,      // Get context without clearing
     clearCanvas,     // Just clear and return context
   };
 };

@@ -1,4 +1,4 @@
-import { GRID_SIZE } from './constants';
+import { GRID_SIZE, DIRECTIONS } from './constants';
 
 export const isValidPosition = (x, y) => 
   x >= 0 && x < GRID_SIZE && y >= 0 && y < GRID_SIZE;
@@ -114,4 +114,48 @@ const isValidEndPosition = (path) => {
     x === start.x && y === start.y;
   
   return isOnEdge(end.x, end.y) && !isStartPosition(end.x, end.y);
+};
+
+export const comparePathWithPlannedRoute = (originalPath, plannedRoute) => {
+  if (!originalPath.length || !plannedRoute.length) {
+    return false;
+  }
+
+  // Convert planned route (e.g., ['1→', '2↓']) to coordinates
+  const plannedPath = convertPlannedRouteToPath(plannedRoute);
+
+  // Compare the two paths
+  if (originalPath.length !== plannedPath.length) {
+    return false;
+  }
+
+  return originalPath.every((point, index) =>
+    point.x === plannedPath[index].x &&
+    point.y === plannedPath[index].y
+  );
+};
+
+// Helper to convert planned route to coordinates
+export const convertPlannedRouteToPath = (plannedRoute) => {
+  let currentX = 0;
+  let currentY = 0;
+  const path = [{ x: currentX, y: currentY }];
+  const directions = DIRECTIONS.map(dir => dir.icon).join('');
+
+  plannedRoute.forEach(step => {
+    const squares = parseInt(step.match(/\d+/)[0]);
+    const direction = step.match(new RegExp(`[${directions}]`))[0];
+
+    for (let i = 0; i < squares; i++) {
+      switch (direction) {
+        case '→': currentX++; break;
+        case '←': currentX--; break;
+        case '↑': currentY--; break;
+        case '↓': currentY++; break;
+      }
+      path.push({ x: currentX, y: currentY });
+    }
+  });
+
+  return path;
 };

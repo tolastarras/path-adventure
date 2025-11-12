@@ -1,5 +1,5 @@
 import { useCallback } from 'react';
-import { CELL_SIZE, CANVAS_PADDING, TERRAIN_COLORS } from '@/utils/constants';
+import { CELL_SIZE, CANVAS_PADDING, TERRAIN_COLORS, CANVAS } from '@/utils/constants';
 import { useTerrainImages, useEnvironmentGeneration } from '@/hooks';
 import {
   drawTree,
@@ -42,7 +42,7 @@ const useEnvironmentDraw = () => {
       }
 
       // Add border
-      ctx.strokeStyle = '#333333';
+      ctx.strokeStyle = CANVAS.stroke;
       ctx.lineWidth = 1;
       ctx.strokeRect(x, y, CELL_SIZE, CELL_SIZE);
     });

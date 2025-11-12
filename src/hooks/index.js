@@ -10,3 +10,7 @@ export { default as useImageLoader } from './useImageLoader';
 export { default as useTerrainImages } from './useTerrainImages';
 export { default as useEnvironmentGeneration } from './useEnvironmentGeneration';
 export { default as useCanvas } from './useCanvas';
+export { default as useGameAnimationDraw } from './useGameAnimationDraw';
+export { default as usePlayerPathDraw } from './usePlayerPathDraw';
+export { default as useSmoothPathAnimationDraw } from './useSmoothPathAnimationDraw';
+export { default as useTextDraw } from './useTextDraw';
