@@ -12,7 +12,7 @@ export const useGameElementsDraw = () => {
     
     const position = path[0];
     const { x: bicycleX, y: bicycleY } = getCellCenterPoint(position);
-    drawBicycle(ctx, bicycleX, bicycleY, 'right');
+    drawBicycle(ctx, bicycleX, bicycleY, 'right', false);
   }, [drawBicycle, isBicycleImageLoaded]);
 
   // Draw only the flag

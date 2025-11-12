@@ -4,6 +4,7 @@ export { default as GameControls } from './GameControls';
 export { default as GameStats } from './GameStats';
 export { default as HowToPlay } from './HowToPlay';
 export { default as GameCanvas } from './GameCanvas';
+export { default as GameStatus } from './GameStatus';
 
 // ui components
 export { default as HeaderTitle } from './ui/HeaderTitle';

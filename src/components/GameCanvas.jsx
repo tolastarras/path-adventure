@@ -4,12 +4,14 @@ import { useGameDraw, useTerrainImages } from '@/hooks';
 import { CANVAS } from '@/utils/constants';
 
 const GameCanvas = ({
+  canvasRef,
   path,
-  staticPath = false,
+  animationPosition,
+  gameStatus,
+  playerMoves,
 }) => {
-  const canvasRef = useRef(null);
   const { allImagesLoaded } = useTerrainImages();
-  const { draw } = useGameDraw(canvasRef, path, staticPath);
+  const { draw } = useGameDraw(canvasRef, path, animationPosition, gameStatus, playerMoves);
   const { width, height } = CANVAS;
 
   // Store draw in a ref to avoid dependency issues

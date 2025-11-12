@@ -17,7 +17,7 @@
 }
 
 .alert-box-overlay {
-  @apply fixed w-full bg-black/50 inset-0 grid place-items-center z-50 mx-auto;
+  @apply fixed w-full bg-black/50 inset-0 flex justify-center items-center z-50;
 }
 
 .alert-box {
@@ -64,7 +64,8 @@
 }
 
 .alert-box--danger {
-  @apply border-red-600/80 text-red-600/80;
+  @apply border-red-600/80;
+  @apply text-red-600/80;
   @apply from-red-200 via-red-200 to-red-300;
   @apply shadow-red-200/50 hover:shadow-red-300/60;
   @apply hover:bg-linear-to-br hover:from-red-200 hover:via-red-100 hover:to-red-200;
@@ -132,17 +133,15 @@
   @apply my-4;
 }
 
-/* Grid container */
-.alert-box-container {
-  @apply grid grid-cols-1 gap-6;
+.alert-box__container {
+  @apply relative;
 }
 
-.alert-box-close-icon {
-  @apply h-5 w-5 duration-200 ease-in-out;
-  @apply hover:text-black/80 hover:scale-125 hover:transition-all;
+.alert-box__close-button {
+  @apply text-5xl z-10 absolute top-2 right-6;
 }
 
-.alert-box-close-button-container {
-  @apply text-5xl cursor-pointer font-black z-10 text-black/80 relative;
+.alert-box__close-icon {
+  @apply h-5 w-5 cursor-pointer duration-200 ease-in-out;
+  @apply hover:scale-130 hover:transition-all;
 }
-

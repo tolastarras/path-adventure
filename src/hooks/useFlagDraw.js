@@ -9,15 +9,12 @@ import flagImage from '/finish-flag.webp';
 export const useFlagDraw = () => {
   const { imageRef, isLoaded } = useImageLoader(flagImage);
 
-  const drawFlag = useCallback((ctx, x, y, isSmall = false) => {
+  const drawFlag = useCallback((ctx, x, y) => {
     if (!imageRef.current) return;
-    
-    // **REFACTOR **
-    const scale = isSmall ? 0.8 : 1;
 
     // Reduce image size by 5% to create padding within grid cell
     const padding = 5;
-    const size = CELL_SIZE * scale * (1 - padding / 100);
+    const size = CELL_SIZE * (1 - padding / 100);
 
     ctx.save();
     ctx.translate(x, y);

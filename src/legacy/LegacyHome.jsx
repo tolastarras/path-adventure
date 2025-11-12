@@ -73,12 +73,7 @@ const LegacyHome = () => {
         setPlayerMoves={setPlayerMoves}
         gameStatus={gameStatus}
         checkPath={checkPath}
-        addMove={useCallback(() => {
-          if (!currentDirection || moveCount < 1) return;
-          setPlayerMoves(prev => [...prev, `${moveCount}${currentDirection}`]);
-          setCurrentDirection('');
-          setMoveCount(1);
-        }, [currentDirection, moveCount])}
+c
         removeLastMove={useCallback(() => {
           setPlayerMoves(prev => prev.slice(0, -1));
         }, [])}
