@@ -14,9 +14,12 @@ const GameArea = ({
   gameStatus,
   playerMoves,
   canStartJourney,
+  canClearRoute,
+  showNewAdventure,
   isJourneyStarted,
   onStartJourney,
-  onClearPath
+  onClearRoute,
+  onNewAdventure,
 }) => (
   <div className='w-full flex flex-col space-y-6'>
     <GameStatsSection gameStats={gameStats} />
@@ -30,10 +33,9 @@ const GameArea = ({
       />
       <canvas 
         ref={animationCanvasRef}
-        className="absolute top-0 left-0 pointer-events-none"
+        className="absolute top-0 left-0 pointer-events-none z-10"
         width={canvas.width}
         height={canvas.height}
-        style={{ zIndex: 10 }}
       />
     </GlossyCard>
     
@@ -45,24 +47,29 @@ const GameArea = ({
     
     <div className='flex gap-6 justify-between'>
       <div className='flex gap-3'>
+        {showNewAdventure ? (
+          <GlossyButton
+            variant="success"
+            onClick={onNewAdventure}
+          >
+            New Adventure
+          </GlossyButton>
+        ) : (
+          <GlossyButton
+            variant="primary"
+            disabled={!canStartJourney}
+            onClick={onStartJourney}
+          >
+            {isJourneyStarted ? 'In Progress...' : 'Start Journey!'}
+          </GlossyButton>
+        )}
+
         <GlossyButton
-          variant="primary"
-          disabled={!canStartJourney || isJourneyStarted}
-          onClick={onStartJourney}
+          variant="danger"
+          disabled={!canClearRoute || showNewAdventure}
+          onClick={onClearRoute}
         >
-          Start Journey!
-        </GlossyButton>
-        <GlossyButton
-          variant="success"
-          disabled={!canStartJourney}
-          onClick={onClearPath}
-        >
-          Clear Path
-        </GlossyButton>
-      </div>
-      <div>
-        <GlossyButton onClick={() => {}}>
-          New Adventure
+          Clear Route
         </GlossyButton>
       </div>
     </div>
