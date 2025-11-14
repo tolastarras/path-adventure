@@ -1,49 +1,8 @@
 import { useCallback, useRef } from 'react';
-import { getCellCenterPoint, drawPartialPath } from '@/utils/helpers/canvasHelper';
-import { PATH } from '@/utils/constants';
+import { drawPartialPath } from '@/utils/helpers';
 
 const usePathDraw = () => {
   const animationRef = useRef(null);
-
-  const drawStaticPath = useCallback((ctx, path) => {
-    // Draw path line
-    const drawPathLine = () => {
-      if (path.length <= 1) return;
-  
-      ctx.strokeStyle = PATH.strokeColor;
-      ctx.lineWidth = PATH.lineWidth;
-      ctx.lineCap = 'round';
-      ctx.lineJoin = 'round';
-      
-      ctx.beginPath();
-      const start = getCellCenterPoint(path[0]);
-      ctx.moveTo(start.x, start.y);
-      
-      path.slice(1).forEach(cell => {
-        const point = getCellCenterPoint(cell);
-        ctx.lineTo(point.x, point.y);
-      });
-      
-      ctx.stroke();
-    };
-  
-    // Draw path dots
-    const drawPathDots = () => {
-      ctx.fillStyle = PATH.fillColor;
-      path.forEach(cell => {
-        const center = getCellCenterPoint(cell);
-        ctx.beginPath();
-        ctx.arc(center.x, center.y, PATH.dotRadius, 0, Math.PI * 2);
-        ctx.fill();
-      });
-    };
-  
-    // Main drawing logic
-    if (path?.length > 1) {
-      drawPathLine();
-      drawPathDots();
-    }
-  }, []);
 
   const drawAnimatedPath = useCallback((ctx, path, options = {}) => {
     const {
@@ -55,12 +14,6 @@ const usePathDraw = () => {
     if (animationRef.current) {
       cancelAnimationFrame(animationRef.current);
       animationRef.current = null;
-    }
-
-    if (path?.length <= 1) {
-      drawStaticPath(ctx, path);
-      onAnimationComplete?.();
-      return;
     }
 
     const startTime = performance.now();
@@ -87,7 +40,7 @@ const usePathDraw = () => {
     };
 
     animationRef.current = requestAnimationFrame(animate);
-  }, [drawStaticPath]);
+  }, []);
 
   // Cleanup function to stop animation
   const cleanup = useCallback(() => {
@@ -97,7 +50,7 @@ const usePathDraw = () => {
     }
   }, []);
 
-  return { drawStaticPath, drawAnimatedPath, cleanup };
+  return { drawAnimatedPath, cleanup };
 };
 
 export default usePathDraw;

@@ -1,3 +1,5 @@
+import { colors } from '.';
+
 export const DATA = {
   title: 'Path Adventure',
   description: 'Follow the path from 🚴‍♂️ to 🏁 with your moves!',
@@ -6,10 +8,6 @@ export const DATA = {
 export const ICONS = {
   bicycle: '🚴‍♂️',
   finish: '🏁',
-  left: '⬅️',
-  right: '➡️',
-  up: '⬆️',
-  down: '⬇️',
   arrow: '/icons/arrow.svg',
   success: '/icons/success.svg',
   close: '/icons/close.svg',
@@ -27,16 +25,17 @@ export const ROTATION_ANGLES = {
 };
 
 export const GAME_RESULTS = {
-  success: {
-    title:"Congratulations! You found the correct path.",
-    description: "You earned 150 points.",
-    icon: ICONS.success,
+  won: {
+    title: 'Congratulations!',
+    subtitle: 'You found the correct path.',
+    description: (moves) => `You reached the destination in ${moves} moves.`,
     variant: 'success',
   },
-  fail: {
-    title:"Sorry! You didn't fine the path :(",
-    description: "You didn't earn any points.",
-    icon: ICONS.danger,
+  lost: {
+    title: "Learning experience!",
+    description: (points) => points > 0 
+      ? `You earned ${points} points. Practice makes perfect!`
+      : "Don't give up! Every explorer gets lost sometimes.",
     variant: 'danger',
   }
 }
@@ -51,14 +50,7 @@ export const DIRECTIONS = [
   { id: 'down', label: 'Down', icon: '↓', rotation: 90 },
 ];
 
-export const GRID_SIZE = 11;      // Make squares bigger by increasing CELL_SIZE
-export const CELL_SIZE = 70;      // Increased cell size
-export const CANVAS_PADDING = 0;  // Increased padding to accommodate larger squares
-
-export const CANVAS = {
-  width: GRID_SIZE * CELL_SIZE + 2 * CANVAS_PADDING,
-  height: GRID_SIZE * CELL_SIZE + 2 * CANVAS_PADDING
-};
+export const DIRECTION_ICONS = DIRECTIONS.map(dir => dir.icon).join('');
 
 export const TERRAIN_TYPES = [
   'water',
@@ -69,33 +61,21 @@ export const TERRAIN_TYPES = [
   'rock',
 ];
 
-export const TERRAIN_COLORS = {
-  water: '#87ceeb',
-  tree: '#00b050',
-  sand: '#f1bd63',
-  grass: '#1fbd2f',
-  mud: '#8b4513',
-  rock: '#c3b9b2',
+export const GRID_SIZE = 11;      // Make squares bigger by increasing CELL_SIZE
+export const CELL_SIZE = 70;      // Increased cell size
+export const CANVAS_PADDING = 0;  // Increased padding to accommodate larger squares
+
+export const CANVAS = {
+  width: GRID_SIZE * CELL_SIZE + 2 * CANVAS_PADDING,
+  height: GRID_SIZE * CELL_SIZE + 2 * CANVAS_PADDING,
+  stroke: colors.canvasStroke,
 };
 
-export const COLORS = {
-  primary: '#3b82f6',
-  secondary: '#f59e0b',
-  success: '#22c55e',
-  danger: '#ef4444',
-  warning: '#fbbf24',
-  info: '#3b82f6',
-  canvasBackground: '#cbd5e1',
-  canvasStroke: '#3b82f6',
-  pathStroke: '#3b82f6',
-  pathFill: '#1d4ed8',
-};
-
-export const PATH = {
+export const ITINERARY = {
   lineWidth: 4,
-  dotRadius: 5,
-  strokeColor: COLORS.pathStroke,
-  fillColor: COLORS.pathFill
+  dotRadius: 4,
+  color: colors.pathColor,
+  dotColor: colors.dotColor,
 }
 
 export const GAME_STATS = [
@@ -115,3 +95,8 @@ export const GAME_STATS = [
     percent: 75,
   }
 ];
+
+export const TYPOGRAPHY = {
+  fontSize: Math.max(MIN_FONT_SIZE, CELL_SIZE / FONT_SCALE_FACTOR),
+  fontFamily: 'Arial'
+}

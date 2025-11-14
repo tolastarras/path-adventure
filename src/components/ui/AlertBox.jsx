@@ -1,7 +1,6 @@
 import HeaderTitle from './HeaderTitle';
 import CustomIcon from './CustomIcon';
-
-import { ICONS } from '@/utils/constants';
+import { icons } from '@/utils/constants';
 
 import './AlertBox.css';
 
@@ -9,7 +8,6 @@ const AlertBox = ({
   title,
   description,
   variant = 'primary',
-  icon,
   children,
   showGlare = false,
   showGlow = false,
@@ -21,6 +19,7 @@ const AlertBox = ({
 }) => {
   const baseClass = `alert-box alert-box--${variant}`;
   const hoverClasses = !disableHover && 'alert-box--hover';
+  const icon = icons[variant];
 
   const effectClasses = [
     showGlare && 'alert-box--with-glare',
@@ -36,15 +35,13 @@ const AlertBox = ({
   ].filter(Boolean).join(' ');
 
   return (
-    <div
-      className="alert-box-overlay"
-    >
-      <div className={`alert-box-container ${className}`}>
-        <div className="alert-box-close-button-container">
-          <button onClick={onClose} className="absolute top-12 right-6 cursor-pointer">
+    <div className="alert-box-overlay">
+      <div className={`alert-box__container ${className}`}>
+        <div className="alert-box__close-button">
+          <button onClick={onClose}>
             <CustomIcon
-              icon={ICONS.close}
-              className={`alert-box-close-icon text-${variant}`}
+              icon={icons.close}
+              className={`alert-box__close-icon text-${variant}`}
             />
           </button>
         </div>
@@ -53,9 +50,11 @@ const AlertBox = ({
             <CustomIcon icon={icon} className={`h-20 w-20 mr-8 mt-2 text-${variant}`} />
           </div>}
           <div className="flex-col">
-            <HeaderTitle size="lg">{title}</HeaderTitle>
-            <HeaderTitle size="md">{description}</HeaderTitle>
-            <div className="alert-box__children">{children}</div>
+            <HeaderTitle size="xl">{title}</HeaderTitle>
+            <HeaderTitle size="lg">{description}</HeaderTitle>
+            <div className="alert-box__children">
+              {children}
+            </div>
           </div>
         </div>
       </div>

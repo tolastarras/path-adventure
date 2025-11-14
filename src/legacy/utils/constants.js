@@ -60,24 +60,6 @@ export const CANVAS = {
   height: GRID_SIZE * CELL_SIZE + 2 * CANVAS_PADDING
 };
 
-export const TERRAIN_TYPES = [
-  'water',
-  'tree',
-  'sand',
-  'mud',
-  'grass',
-  'rock',
-];
-
-export const TERRAIN_COLORS = {
-  water: '#87ceeb',
-  tree: '#00b050',
-  sand: '#f1bd63',
-  grass: '#1fbd2f',
-  mud: '#8b4513',
-  rock: '#c3b9b2',
-};
-
 export const COLORS = {
   primary: '#3b82f6',
   secondary: '#f59e0b',
@@ -97,21 +79,3 @@ export const PATH = {
   strokeColor: COLORS.pathStroke,
   fillColor: COLORS.pathFill
 }
-
-export const GAME_STATS = [
-  {
-    id: 1,
-    title: 'Games Won',
-    percent: 50,
-  },
-  {
-    id: 2,
-    title: 'Total Points',
-    percent: 90,
-  },
-  {
-    id: 3,
-    title: 'Leaderboard',
-    percent: 75,
-  }
-];

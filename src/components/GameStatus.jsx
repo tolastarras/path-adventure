@@ -1,22 +1,34 @@
-const GameStatus = ({ gameStatus, showPointsAnimation, playerMoves }) => {
-  if (gameStatus === 'won') {
+import { AlertBox } from '@/components';
+import { findCorrectSegments, calculateScore } from '@/utils/gameLogic';
+import { gameResults } from '@/utils/constants';
+
+const GameStatus = ({ gameStatus, playerMoves, correctPath, onClose }) => {
+  if (gameStatus === 'lost' || gameStatus === 'won') {
+    const correctSegments = findCorrectSegments(playerMoves, correctPath);
+    const points = calculateScore(gameStatus, playerMoves, correctSegments);
+    console.log('Points:', points);
+
+    const gameResult = gameResults[gameStatus];
+    const { title, variant } = gameResult;
+
+    const description = gameStatus === 'won'
+      ? gameResults.won.description(playerMoves.length)
+      : gameResult.description(points);
+
     return (
-      <div className="bg-green-100 border border-green-400 text-green-700 px-6 py-3 rounded-lg mb-4 animate-bounce">
-        <div className="text-xl font-bold text-center">🎉 Perfect Route! You won! 🎉</div>
-        {showPointsAnimation && (
-          <div className="text-center text-lg mt-2 animate-pulse">
-            +{Math.max(1, 15 - playerMoves.length)} points! ✨
+      <AlertBox
+        variant={variant}
+        title={title}
+        description={description}
+        onClose={onClose}
+      >
+        {gameStatus === 'won' && (
+          <div className="text-5xl font-bold text-center mt-2 animate-pulse">
+            {/* +{Math.max(1, 15 - playerMoves.length)} points! ✨ */}
+            You earned +{points.total} point{points.total > 1 && 's'} ✨
           </div>
         )}
-      </div>
-    );
-  }
-  
-  if (gameStatus === 'lost') {
-    return (
-      <div className="bg-red-100 border border-red-400 text-red-700 px-6 py-3 rounded-lg mb-4 animate-shake">
-        <div className="text-xl font-bold text-center">😢 Wrong Route! Try again! 😢</div>
-      </div>
+      </AlertBox>
     );
   }
   

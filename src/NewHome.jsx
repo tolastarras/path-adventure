@@ -1,206 +1,203 @@
-import { useState, useMemo } from 'react';
+import { useMemo, useRef, useEffect } from 'react';
 
 import {
   GlossyCard,
-  GlossyButton,
-  NumberInput,
-  TextInput,
-  HeaderTitle,
-  AlertBox,
-  GameCanvas,
-  HowToPlay as HowToPlaySection,
-  GameControls as GameControlsSection,
-  GameStats as GameStatsSection,
+  GameStatus,
+  ControlsPanel,
+  GameArea,
   GameHeader as HeaderSection,
 } from '@/components';
 
-import { usePathGenerator } from '@/hooks';
+import {
+  usePathGenerator,
+  usePlayerPathDraw,
+  useCanvas,
+  useBicycleDraw,
+  useSmoothPathAnimationDraw,
+  useStepManagement,
+  usePathManagement,
+  useGameState,
+} from '@/hooks';
 
-import { DIRECTIONS, GAME_RESULTS, GAME_STATS } from '@/utils/constants';
+import {
+  getCellCenterPoint,
+  calculateBicycleDirection,
+  formatStep,
+} from '@/utils/helpers';
 
 import './NewHome.css';
 
-const gameResult = GAME_RESULTS.success;
-
 const NewHome = () => {
-  const [step, setStep] = useState({ direction: '', squares: 1 });
-  const [plannedRoute, setPlannedRoute] = useState([]);
-  const [resetControlButtons, setResetControlButtons] = useState(false);
-  const [resetNumberInput, setResetNumberInput] = useState(false);
-  const [isAlertBoxOpen, setIsAlertBoxOpen] = useState(false);
+  const mainCanvasRef = useRef(null);
+  const animationCanvasRef = useRef(null);
 
-  const { currentPath, generateNewPath, clearGame } = usePathGenerator();
+  // Use the animation canvas for the player path
+  const animationCtx = animationCanvasRef.current?.getContext('2d');
 
-  const handleSquares = (squares) => {
-    setStep(prevStep => ({ ...prevStep, squares }));
+  // Custom hooks
+  const {
+    playerMoves,
+    addMove,
+    undoMove,
+    clearPath,
+  } = usePathManagement();
 
-    // reset number input
-    setResetNumberInput(false);
-  };
+  const {
+    step,
+    resetControlButtons,
+    resetNumberInput,
+    handleSquares,
+    handleDirection,
+    resetStep,
+    setResetControlButtons,
+    setResetNumberInput,
+  } = useStepManagement();
 
-  const handleDirection = (direction) => {
-    setStep(prevStep => ({ ...prevStep, direction }));
+  const {
+    gameStatus,
+    showResultAlert,
+    isJourneyStarted,
+    isJourneyComplete,
+    handleAnimationComplete,
+    closeAlert,
+    startJourney,
+    resetGame,
+  } = useGameState();
 
-    // reset control buttons
-    setResetControlButtons(false);
+  // Game hooks
+  const { isPlayerPathValid } = usePlayerPathDraw();
+  const { currentPath, generateNewPath } = usePathGenerator();
+  const { startSmoothAnimation } = useSmoothPathAnimationDraw();
+  const { drawBicycle } = useBicycleDraw();
+  const { clearCanvas } = useCanvas(animationCanvasRef);
 
-    // reset number input
-    setResetNumberInput(false);
-  };
+  // Button states
+  const canStartJourney = playerMoves.length > 0 && !isJourneyStarted && !isJourneyComplete;
+  const canClearRoute = playerMoves.length > 0 && !isJourneyStarted;
+  const showNewAdventure = isJourneyComplete;
 
+  const currentStep = useMemo(() => {
+    const newStep = formatStep(step);
+    return newStep;
+  }, [step]);
+
+  // Event handlers
   const handleAddStepToPath = () => {
-    if (step.direction && step.squares) {
-      const icon = DIRECTIONS.find(item => item.id === step.direction).icon || '?';
-      const newStep = `${step.squares}${icon}`;
-      setPlannedRoute(prev => [...prev, newStep]);
-      
+    const { squares, direction } = step;
+
+    if (direction && squares) {
+      const newStep = formatStep(step);
+      addMove(newStep);
+
       // reset direction buttons
       setResetControlButtons(true);
       setResetNumberInput(true);
-
-      // reset step
-      setStep({ direction: '', squares: 1 });
+      resetStep();
     }
-  }
-
-  const handleUndoStepToPath = () => {
-    setPlannedRoute(prev => prev.slice(0, -1));
-  }
+  };
 
   const handleStartJourney = () => {
-    setPlannedRoute([]);
-    console.log('start path animation ...');
+    if (playerMoves.length === 0 || !animationCtx) return;
 
-    // setIsAlertBoxOpen(true);
+    startJourney();
 
-    // // auto close alert box
-    // setTimeout(() => {
-    //   setIsAlertBoxOpen(false);
-    // }, 5000);
-  }
+    let lastXPosition = null;
+    let lastDirection = 'right';
 
-  const handleClearPath = () => {
-    clearGame();
-    setPlannedRoute([]);
+    startSmoothAnimation(animationCtx, playerMoves, currentPath, {
+      drawBicycle: (ctx, x, y) => {
+        const direction = calculateBicycleDirection(x, lastXPosition, lastDirection);
+        lastXPosition = x;
+        lastDirection = direction;
+        drawBicycle(ctx, x, y, direction, false);
+      },
+      onAnimationComplete: () => {
+        const isCorrect = isPlayerPathValid(playerMoves, currentPath);
+        handleAnimationComplete(isCorrect);
+      }
+    });
+  };
+
+  const handleClearRoute = () => {
+    clearPath();
   }
 
   const handleNewAdventure = () => {
+    resetGame();
+
+    // Clear current moves
+    clearPath();
+
+    // Generate new path
     generateNewPath();
   }
 
-  const closeAlertBox = () => {
-    setIsAlertBoxOpen(false);
-  }
+  const handleCloseAlert = () => {
+    closeAlert();
+  };
 
-  const directionIcon = DIRECTIONS.find(item => item.id === step.direction)?.icon ?? '';
+  useEffect(() => {
+    const animationCtx = animationCanvasRef.current?.getContext('2d');
+    const mainCtx = mainCanvasRef.current?.getContext('2d');
 
-  const currentStep = useMemo(() => {
-    if (!step.squares || !directionIcon) return '';
-    return `${step.squares}${directionIcon}`;
-  }, [step.squares, directionIcon]);
+    if (animationCtx && mainCtx && currentPath.length > 0) {
+      // Wait a brief moment for the main canvas to render
+      const timer = setTimeout(() => {
+        // Clear any existing content from animation canvas
+        clearCanvas(animationCtx);
+        animationCtx.clearRect(0, 0, animationCtx.canvas.width, animationCtx.canvas.height);
+
+        // Draw bicycle at starting position
+        const startCell = currentPath[0];
+        const { x, y } = getCellCenterPoint(startCell);
+
+        drawBicycle(animationCtx, x, y);
+      }, 100);
+
+      return () => clearTimeout(timer);
+    }
+  }, [currentPath, drawBicycle, clearCanvas]);
 
   return (
     <div className="flex flex-col md:w-full lg:w-[1250px] mx-auto">
-      {/* <div className="py-5">
-        <GameStatus 
-          gameStatus={gameStatus} 
-          showPointsAnimation={showPointsAnimation}
+      {showResultAlert && (
+        <GameStatus
+          gameStatus={gameStatus}
           playerMoves={playerMoves}
+          correctPath={currentPath}
+          onClose={handleCloseAlert}
         />
-      </div> */}
-      {isAlertBoxOpen && <AlertBox
-        isOpen={isAlertBoxOpen}
-        onClose={closeAlertBox}
-        icon={gameResult.icon}
-        variant={gameResult.variant}
-        title={gameResult.title}
-        description={gameResult.description}
-      />}
+      )}
       <GlossyCard>
         <div className="p-2 lg:p-10 space-y-6">
           <HeaderSection />
           <div className="pt-6 space-x-0 lg:flex lg:space-x-6">
-            <div className="flex flex-col space-y-6">
-              <div className="min-w-[300px]">
-                <GlossyCard>
-                  <h1 className="mb-4">Squares</h1>
-                  <NumberInput
-                    resetInput={resetNumberInput}
-                    value={step.squares}
-                    onChange={handleSquares}
-                  />
-                </GlossyCard>
-              </div>
-              <div>
-                <GameControlsSection
-                  resetButtons={resetControlButtons}
-                  directions={DIRECTIONS}
-                  onClick={handleDirection}
-                />
-              </div>
-              <div>
-                <GlossyCard>
-                  <HeaderTitle title="Current Step" />
-                  <TextInput disabled>
-                    {currentStep}
-                  </TextInput>
-                </GlossyCard>
-                <div className="flex justify-between gap-6 my-6">
-                  <GlossyButton
-                    className="w-full"
-                    disabled={!step.direction}
-                    onClick={handleAddStepToPath}
-                  >
-                    Add
-                  </GlossyButton>
-                  <GlossyButton
-                    variant="danger"
-                    className="w-full"
-                    disabled={plannedRoute.length === 0}
-                    onClick={handleUndoStepToPath}
-                  >
-                    Undo
-                  </GlossyButton>
-                </div>
-              </div>
-              <HowToPlaySection />
-            </div>
-            <div className='w-full flex flex-col space-y-6'>
-              <GameStatsSection gameStats={GAME_STATS} />
-              <GlossyCard showPadding={false}>
-                <GameCanvas path={currentPath} />
-              </GlossyCard>
-              <div>
-                <TextInput disabled placeholder='Your Planned Route'>
-                  {plannedRoute.join(' ')}
-                </TextInput>
-              </div>
-              <div className='flex gap-6 justify-between'>
-                <div className='flex gap-3'>
-                  <GlossyButton
-                    variant="primary"
-                    disabled={plannedRoute.length === 0}
-                    onClick={handleStartJourney}
-                  >
-                    Start Journey!
-                  </GlossyButton>
-                  <GlossyButton
-                    variant="success"
-                    disabled={plannedRoute.length === 0}
-                    onClick={handleClearPath}
-                  >
-                    Clear Path
-                  </GlossyButton>
-                </div>
-                <div>
-                  <GlossyButton
-                    onClick={handleNewAdventure}
-                  >
-                    New Adventure
-                  </GlossyButton>
-                </div>
-              </div>
-            </div>
+            <ControlsPanel
+              step={step}
+              resetControlButtons={resetControlButtons}
+              resetNumberInput={resetNumberInput}
+              currentStep={currentStep}
+              canStartJourney={canStartJourney}
+              onSquaresChange={handleSquares}
+              onDirectionChange={handleDirection}
+              onAddStep={handleAddStepToPath}
+              onUndoStep={undoMove}
+            />
+
+            <GameArea
+              mainCanvasRef={mainCanvasRef}
+              animationCanvasRef={animationCanvasRef}
+              currentPath={currentPath}
+              gameStatus={gameStatus}
+              playerMoves={playerMoves}
+              canStartJourney={canStartJourney}
+              canClearRoute={canClearRoute}
+              showNewAdventure={showNewAdventure}
+              isJourneyStarted={isJourneyStarted}
+              onStartJourney={handleStartJourney}
+              onClearRoute={handleClearRoute}
+              onNewAdventure={handleNewAdventure}
+            />
           </div>
         </div>
       </GlossyCard>

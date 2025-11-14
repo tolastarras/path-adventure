@@ -1,15 +1,15 @@
 import {
-  CANVAS_PADDING,
-  CELL_SIZE,
-  MIN_FONT_SIZE,
-  PATH,
-  FONT_SCALE_FACTOR,
+  canvasPadding,
+  cellSize,
+  typography,
+  itinerary,
+  colors,
 } from '@/utils/constants';
 
 // Helper function to calculate center coordinates
-export const getCellCenterPoint = ({ x, y }) => ({
-  x: CANVAS_PADDING + x * CELL_SIZE + CELL_SIZE / 2,
-  y: CANVAS_PADDING + y * CELL_SIZE + CELL_SIZE / 2
+export const getCellCenterPoint = (cell = { x: 0, y: 0 }) => ({
+  x: canvasPadding + cell.x * cellSize + cellSize / 2,
+  y: canvasPadding + cell.y * cellSize + cellSize / 2,
 });
 
 // Helper to calculate path bounds for efficient clearing
@@ -27,7 +27,7 @@ export const calculatePathBounds = ((path) => {
   });
 
   // Add padding for line width and dots
-  const padding = Math.max(PATH.lineWidth, PATH.dotRadius) + 2;
+  const padding = Math.max(itinerary.lineWidth, itinerary.dotRadius) + 2;
 
   return {
     minX: minX - padding,
@@ -44,8 +44,8 @@ export const drawPartialPath = ((ctx, path, segmentsToShow) => {
   if (segmentsToShow < 0) return;
 
   // Draw path line up to current segment
-  ctx.strokeStyle = PATH.strokeColor;
-  ctx.lineWidth = PATH.lineWidth;
+  ctx.strokeStyle = itinerary.color;
+  ctx.lineWidth = itinerary.lineWidth;
   ctx.lineCap = 'round';
   ctx.lineJoin = 'round';
 
@@ -53,8 +53,11 @@ export const drawPartialPath = ((ctx, path, segmentsToShow) => {
   const start = getCellCenterPoint(path[0]);
   ctx.moveTo(start.x, start.y);
 
+    // Draw line segments up to the current point
+  const maxSegment = Math.min(segmentsToShow + 1, path.length - 1);
+
   // Draw line segments up to the current point
-  for (let i = 1; i <= Math.min(segmentsToShow + 1, path.length - 1); i++) {
+  for (let i = 1; i <= maxSegment; i++) {
     const point = getCellCenterPoint(path[i]);
     ctx.lineTo(point.x, point.y);
   }
@@ -62,11 +65,20 @@ export const drawPartialPath = ((ctx, path, segmentsToShow) => {
   ctx.stroke();
 
   // Draw dots for completed points
-  ctx.fillStyle = PATH.fillColor;
-  for (let i = 0; i <= Math.min(segmentsToShow + 1, path.length - 1); i++) {
-    const center = getCellCenterPoint(path[i]);
+  ctx.fillStyle = itinerary.dotColor;
+
+  for (let i = 0; i <= maxSegment; i++) {
+    const point = getCellCenterPoint(path[i]);
     ctx.beginPath();
-    ctx.arc(center.x, center.y, PATH.dotRadius, 0, Math.PI * 2);
+    ctx.ellipse(
+      point.x,              // x
+      point.y,              // y
+      itinerary.dotRadius,  // radiusX
+      itinerary.dotRadius,  // radiusY (same for perfect circle)
+      0,                    // rotation
+      0,                    // startAngle
+      Math.PI * 2,          // endAngle
+    );
     ctx.fill();
   }
 });
@@ -75,15 +87,15 @@ export const drawPartialPath = ((ctx, path, segmentsToShow) => {
 export const drawCellText = (ctx, text, options = {}) => {
   const {
     position = 'bottom', // 'bottom', 'top', 'center'
-    offset = CELL_SIZE * 0.15,
-    fontSize = Math.max(MIN_FONT_SIZE, CELL_SIZE / FONT_SCALE_FACTOR),
-    color = '#000',
-    fontFamily = 'Arial'
+    offset = cellSize * 0.15,
+    fontSize= typography.fontSize,
+    color = colors.cellTextColor,
+    fontFamily = typography.fontFamily
   } = options;
 
   const positions = {
-    bottom: CELL_SIZE/2 - offset,
-    top: -CELL_SIZE/2 + offset,
+    bottom: cellSize / 2 - offset,
+    top: -cellSize / 2 + offset,
     center: 0
   };
 
@@ -94,4 +106,48 @@ export const drawCellText = (ctx, text, options = {}) => {
   ctx.textAlign = 'center';
   ctx.textBaseline = 'middle';
   ctx.fillText(text, 0, textY);
+};
+
+export const convertMovesToCoordinates = (moves, path) => {
+  const startCell = path[0];
+
+  let x = startCell.x;
+  let y = startCell.y;
+
+  const coordinates = [{ x, y }]; // Start from correct position
+
+  moves.forEach(move => {
+    const match = move.match(/(\d+)([→←↑↓])/);
+    if (!match) return;
+
+    const [, countStr, direction] = match;
+    const count = parseInt(countStr, 10);
+
+    for (let i = 0; i < count; i++) {
+      switch (direction) {
+        case '→': x += 1; break;
+        case '←': x -= 1; break;
+        case '↑': y -= 1; break;
+        case '↓': y += 1; break;
+      }
+      coordinates.push({ x, y });
+    }
+  });
+
+  return coordinates;
+};
+
+// Helper function to determine bicycle direction
+export const calculateBicycleDirection = (currentX, lastXPosition, lastDirection = 'right') => {
+  let direction = lastDirection;
+
+  if (lastXPosition !== null) {
+    if (currentX > lastXPosition) {
+      direction = 'right';
+    } else if (currentX < lastXPosition) {
+      direction = 'left';
+    }
+  }
+
+  return direction;
 };

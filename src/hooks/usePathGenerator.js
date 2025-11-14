@@ -7,6 +7,8 @@ const usePathGenerator = () => {
   const generateNewPath = useCallback(() => {
     const newPath = generateRandomPath();
     setPath(newPath);
+
+    return newPath;
   }, []);
 
   const clearGame = useCallback(() => {

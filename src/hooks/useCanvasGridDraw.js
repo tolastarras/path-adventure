@@ -1,32 +1,35 @@
 import { useCallback } from 'react';
-import { COLORS, GRID_SIZE, CELL_SIZE, CANVAS_PADDING } from '@/utils/constants';
+import { useCanvas } from '.';
+import { colors, gridSize, cellSize, canvasPadding } from '@/utils/constants';
 
-const useCanvasGridDraw = () => {
-  const drawCanvasGrid = useCallback((ctx, canvas) => {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
+const useCanvasGridDraw = (canvasRef) => {
+  const { drawOnCanvas } = useCanvas(canvasRef);
 
-    // Draw grid background
-    ctx.fillStyle = COLORS.canvasBackground;
-    ctx.fillRect(0, 0, canvas.width, canvas.height);
+  const drawCanvasGrid = useCallback(() => {
+    drawOnCanvas((ctx, canvas) => {
+      // Draw grid background
+      ctx.fillStyle = colors.canvasBackground;
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-    // Draw grid lines
-    ctx.strokeStyle = COLORS.canvasStroke;
-    ctx.lineWidth = 1;
-    
-    for (let i = 0; i <= GRID_SIZE; i++) {
-      // Vertical lines
-      ctx.beginPath();
-      ctx.moveTo(CANVAS_PADDING + i * CELL_SIZE, CANVAS_PADDING);
-      ctx.lineTo(CANVAS_PADDING + i * CELL_SIZE, CANVAS_PADDING + GRID_SIZE * CELL_SIZE);
-      ctx.stroke();
-      
-      // Horizontal lines
-      ctx.beginPath();
-      ctx.moveTo(CANVAS_PADDING, CANVAS_PADDING + i * CELL_SIZE);
-      ctx.lineTo(CANVAS_PADDING + GRID_SIZE * CELL_SIZE, CANVAS_PADDING + i * CELL_SIZE);
-      ctx.stroke();
-    }
-  }, []);
+      // Draw grid lines
+      ctx.strokeStyle = colors.canvasStroke;
+      ctx.lineWidth = 1;
+
+      for (let i = 0; i <= gridSize; i++) {
+        // Vertical lines
+        ctx.beginPath();
+        ctx.moveTo(canvasPadding + i * cellSize, canvasPadding);
+        ctx.lineTo(canvasPadding + i * cellSize, canvasPadding + gridSize * cellSize);
+        ctx.stroke();
+
+        // Horizontal lines
+        ctx.beginPath();
+        ctx.moveTo(canvasPadding, canvasPadding + i * cellSize);
+        ctx.lineTo(canvasPadding + gridSize * cellSize, canvasPadding + i * cellSize);
+        ctx.stroke();
+      }
+    });
+  }, [drawOnCanvas]);
 
   return {
     drawCanvasGrid

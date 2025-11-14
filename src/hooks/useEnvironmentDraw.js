@@ -1,14 +1,7 @@
 import { useCallback } from 'react';
-import { CELL_SIZE, CANVAS_PADDING, TERRAIN_COLORS } from '@/utils/constants';
+import { cellSize, canvasPadding, terrainColors, canvas } from '@/utils/constants';
 import { useTerrainImages, useEnvironmentGeneration } from '@/hooks';
-import {
-  drawTree,
-  drawMud,
-  drawGrass,
-  drawSand,
-  drawWater,
-  drawRock,
-} from '@/utils/helpers/terrainDrawerHelper';
+import { drawTree, drawMud, drawGrass, drawSand, drawWater, drawRock } from '@/utils/helpers';
 
 const useEnvironmentDraw = () => {
   const { terrainImages } = useTerrainImages();
@@ -16,16 +9,16 @@ const useEnvironmentDraw = () => {
 
   // Draw a single environment group
   const drawEnvironmentGroup = useCallback((ctx, group) => {
-    const color = TERRAIN_COLORS[group.type];
+    const color = terrainColors[group.type];
     const terrain = terrainImages[group.type];
 
     group.positions.forEach(position => {
-      const x = CANVAS_PADDING + position.x * CELL_SIZE;
-      const y = CANVAS_PADDING + position.y * CELL_SIZE;
+      const x = canvasPadding + position.x * cellSize;
+      const y = canvasPadding + position.y * cellSize;
 
       // Draw colored background
       ctx.fillStyle = color;
-      ctx.fillRect(x, y, CELL_SIZE, CELL_SIZE);
+      ctx.fillRect(x, y, cellSize, cellSize);
 
       // Draw terrain image if loaded
       if (terrain?.isLoaded && terrain.imageRef.current) {
@@ -42,9 +35,9 @@ const useEnvironmentDraw = () => {
       }
 
       // Add border
-      ctx.strokeStyle = '#333333';
+      ctx.strokeStyle = canvas.stroke;
       ctx.lineWidth = 1;
-      ctx.strokeRect(x, y, CELL_SIZE, CELL_SIZE);
+      ctx.strokeRect(x, y, cellSize, cellSize);
     });
   }, [terrainImages]);
 

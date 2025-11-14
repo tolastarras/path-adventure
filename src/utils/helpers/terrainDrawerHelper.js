@@ -1,11 +1,11 @@
-import { CELL_SIZE } from '@/utils/constants';
+import { cellSize } from '@/utils/constants';
 
 const drawTerrainElement = (ctx, x, y, image, type, options = { scale: 1, rotation: 0 }) => {  
   if (!image) return;
 
   const { scale = 1 } = options;
-  const size = CELL_SIZE * scale;
-  const offset = (CELL_SIZE - size) / 2;
+  const size = cellSize * scale;
+  const offset = (cellSize - size) / 2;
 
   // Apply random rotation
   // ctx.rotate((Math.PI / 180) * rotation);
