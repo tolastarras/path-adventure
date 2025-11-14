@@ -2,7 +2,6 @@ import { useMemo, useRef, useEffect } from 'react';
 
 import {
   GlossyCard,
-  NumberInput,
   GameStatus,
   ControlsPanel,
   GameArea,
@@ -36,20 +35,47 @@ const NewHome = () => {
   const animationCtx = animationCanvasRef.current?.getContext('2d');
 
   // Custom hooks
-  const { step, resetControlButtons, resetNumberInput, handleSquares, handleDirection, resetStep, setResetControlButtons, setResetNumberInput } = useStepManagement();
-  const { playerMoves, addMove, undoMove, clearPath } = usePathManagement();
-  const { gameStatus, showResultAlert, isJourneyStarted, handleAnimationComplete, closeAlert, startJourney } = useGameState();
+  const {
+    playerMoves,
+    addMove,
+    undoMove,
+    clearPath,
+  } = usePathManagement();
+
+  const {
+    step,
+    resetControlButtons,
+    resetNumberInput,
+    handleSquares,
+    handleDirection,
+    resetStep,
+    setResetControlButtons,
+    setResetNumberInput,
+  } = useStepManagement();
+
+  const {
+    gameStatus,
+    showResultAlert,
+    isJourneyStarted,
+    isJourneyComplete,
+    handleAnimationComplete,
+    closeAlert,
+    startJourney,
+    resetGame,
+  } = useGameState();
 
   // Game hooks
   const { isPlayerPathValid } = usePlayerPathDraw();
-  const { currentPath, clearGame } = usePathGenerator();
+  const { currentPath, generateNewPath } = usePathGenerator();
   const { startSmoothAnimation } = useSmoothPathAnimationDraw();
   const { drawBicycle } = useBicycleDraw();
   const { clearCanvas } = useCanvas(animationCanvasRef);
 
-  // Helpers
-  const canStartJourney = playerMoves.length > 0;
-  
+  // Button states
+  const canStartJourney = playerMoves.length > 0 && !isJourneyStarted && !isJourneyComplete;
+  const canClearRoute = playerMoves.length > 0 && !isJourneyStarted;
+  const showNewAdventure = isJourneyComplete;
+
   const currentStep = useMemo(() => {
     const newStep = formatStep(step);
     return newStep;
@@ -92,10 +118,23 @@ const NewHome = () => {
     });
   };
 
-  const handleClearPath = () => {
-    clearGame();
+  const handleClearRoute = () => {
     clearPath();
   }
+
+  const handleNewAdventure = () => {
+    resetGame();
+
+    // Clear current moves
+    clearPath();
+
+    // Generate new path
+    generateNewPath();
+  }
+
+  const handleCloseAlert = () => {
+    closeAlert();
+  };
 
   useEffect(() => {
     const animationCtx = animationCanvasRef.current?.getContext('2d');
@@ -126,7 +165,7 @@ const NewHome = () => {
           gameStatus={gameStatus}
           playerMoves={playerMoves}
           correctPath={currentPath}
-          onClose={closeAlert}
+          onClose={handleCloseAlert}
         />
       )}
       <GlossyCard>
@@ -152,9 +191,12 @@ const NewHome = () => {
               gameStatus={gameStatus}
               playerMoves={playerMoves}
               canStartJourney={canStartJourney}
+              canClearRoute={canClearRoute}
+              showNewAdventure={showNewAdventure}
               isJourneyStarted={isJourneyStarted}
               onStartJourney={handleStartJourney}
-              onClearPath={handleClearPath}
+              onClearRoute={handleClearRoute}
+              onNewAdventure={handleNewAdventure}
             />
           </div>
         </div>
