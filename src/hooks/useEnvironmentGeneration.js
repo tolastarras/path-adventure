@@ -1,5 +1,5 @@
 import { useCallback } from 'react';
-import { GRID_SIZE, TERRAIN_TYPES } from '@/utils/constants';
+import { gridSize, terrainTypes } from '@/utils/constants';
 
 const useEnvironmentGeneration = () => {
   const generateEnvironmentGroups = useCallback((currentPath = [], groupCount = 15) => {
@@ -8,14 +8,14 @@ const useEnvironmentGeneration = () => {
     const groups = [];
 
     const getRandomPosition = () => ({
-      x: Math.floor(Math.random() * GRID_SIZE),
-      y: Math.floor(Math.random() * GRID_SIZE)
+      x: Math.floor(Math.random() * gridSize),
+      y: Math.floor(Math.random() * gridSize)
     });
 
     const isCellAvailable = (x, y) => {
       return !usedCells.has(`${x},${y}`) && 
-        x >= 0 && x < GRID_SIZE && 
-        y >= 0 && y < GRID_SIZE;
+        x >= 0 && x < gridSize &&
+        y >= 0 && y < gridSize;
     };
 
     const getGroupPositions = (startX, startY, groupSize) => {
@@ -51,7 +51,7 @@ const useEnvironmentGeneration = () => {
 
     // Generate groups
     for (let i = 0; i < groupCount; i++) {
-      const randomType = TERRAIN_TYPES[Math.floor(Math.random() * TERRAIN_TYPES.length)];
+      const randomType = terrainTypes[Math.floor(Math.random() * terrainTypes.length)];
       const groupSize = Math.floor(Math.random() * 3) + 1;
 
       let startPos;

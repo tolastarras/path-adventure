@@ -1,6 +1,5 @@
 import { useCallback, useRef } from 'react';
-import { getCellCenterPoint, drawPartialPath } from '@/utils/helpers/canvasHelper';
-import { PATH } from '@/utils/constants';
+import { drawPartialPath } from '@/utils/helpers';
 
 const usePathDraw = () => {
   const animationRef = useRef(null);

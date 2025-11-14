@@ -1,8 +1,8 @@
 import { useCallback } from 'react';
 import { useImageLoader } from '.';
-import { drawCellText } from '@/utils/helpers/canvasHelper';
+import { drawCellText } from '@/utils/helpers';
 
-import { CELL_SIZE } from '@/utils/constants';
+import { cellSize } from '@/utils/constants';
 
 import flagImage from '/finish-flag.webp';
 
@@ -14,7 +14,7 @@ export const useFlagDraw = () => {
 
     // Reduce image size by 5% to create padding within grid cell
     const padding = 5;
-    const size = CELL_SIZE * (1 - padding / 100);
+    const size = cellSize * (1 - padding / 100);
 
     ctx.save();
     ctx.translate(x, y);

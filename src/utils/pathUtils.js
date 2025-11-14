@@ -1,10 +1,10 @@
-import { GRID_SIZE, DIRECTIONS } from './constants';
+import { gridSize, directionIcons } from './constants';
 
 export const isValidPosition = (x, y) => 
-  x >= 0 && x < GRID_SIZE && y >= 0 && y < GRID_SIZE;
+  x >= 0 && x < gridSize && y >= 0 && y < gridSize;
 
 export const isOnEdge = (x, y) => 
-  x === 0 || x === GRID_SIZE - 1 || y === 0 || y === GRID_SIZE - 1;
+  x === 0 || x === gridSize - 1 || y === 0 || y === gridSize - 1;
 
 export const generateRandomPath = () => {
   let newPath = [];
@@ -12,8 +12,8 @@ export const generateRandomPath = () => {
   
   while ((newPath.length < 7 || !isValidEndPosition(newPath)) && attempts < 100) {
     newPath = [];
-    let currentX = Math.floor(Math.random() * GRID_SIZE);
-    let currentY = GRID_SIZE - 1; // Start from bottom
+    let currentX = Math.floor(Math.random() * gridSize);
+    let currentY = gridSize - 1; // Start from bottom
     
     const startPos = { x: currentX, y: currentY };
     newPath.push(startPos);
@@ -140,11 +140,10 @@ export const convertPlannedRouteToPath = (plannedRoute) => {
   let currentX = 0;
   let currentY = 0;
   const path = [{ x: currentX, y: currentY }];
-  const directions = DIRECTIONS.map(dir => dir.icon).join('');
 
   plannedRoute.forEach(step => {
     const squares = parseInt(step.match(/\d+/)[0]);
-    const direction = step.match(new RegExp(`[${directions}]`))[0];
+    const direction = step.match(new RegExp(`[${directionIcons}]`))[0];
 
     for (let i = 0; i < squares; i++) {
       switch (direction) {

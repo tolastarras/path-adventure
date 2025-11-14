@@ -1,7 +1,7 @@
 import { useCallback } from 'react';
 import { useImageLoader } from '.';
 
-import { CELL_SIZE } from '@/utils/constants';
+import { cellSize } from '@/utils/constants';
 
 import bicycleImage from '/bicycle-kid.webp';
 
@@ -13,7 +13,7 @@ export const useBicycleDraw = () => {
     
     // Reduce image size by 10% to create padding within grid cell
     const padding = 10;
-    const size = CELL_SIZE * (1 - padding / 100);
+    const size = cellSize * (1 - padding / 100);
     
     ctx.save();
     ctx.translate(x, y);

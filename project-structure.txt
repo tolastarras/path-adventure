@@ -36,6 +36,8 @@
 │   │   │   └── water.png
 │   │   └── react.svg
 │   ├── components
+│   │   ├── ControlsPanel.jsx
+│   │   ├── GameArea.jsx
 │   │   ├── GameCanvas.css
 │   │   ├── GameCanvas.jsx
 │   │   ├── GameControls.jsx
@@ -72,10 +74,16 @@
 │   │   ├── useGameAnimationDraw.js
 │   │   ├── useGameDraw.js
 │   │   ├── useGameElementsDraw.js
+│   │   ├── useGameState.js
 │   │   ├── useImageLoader.js
 │   │   ├── usePathDraw.js
 │   │   ├── usePathGenerator.js
-│   │   └── useTerrainImages.js
+│   │   ├── usePathManagement.js
+│   │   ├── usePlayerPathDraw.js
+│   │   ├── useSmoothPathAnimationDraw.js
+│   │   ├── useStepManagement.js
+│   │   ├── useTerrainImages.js
+│   │   └── useTextDraw.js
 │   ├── index.css
 │   ├── legacy
 │   │   ├── LegacyHome.jsx
@@ -107,12 +115,22 @@
 │   │       └── pathUtils.js
 │   ├── main.jsx
 │   └── utils
-│       ├── constants.js
-│       ├── gameLogic.js
+│       ├── constants
+│       │   ├── colorConstants.js
+│       │   ├── gameConstants.js
+│       │   ├── index.js
+│       │   └── scoreConstants.js
+│       ├── gameLogic
+│       │   ├── index.js
+│       │   ├── pathLogic.js
+│       │   └── scoreLogic.js
 │       ├── helpers
 │       │   ├── canvasHelper.js
+│       │   ├── gameHelper.js
+│       │   ├── index.js
+│       │   ├── pathHelper.js
 │       │   └── terrainDrawerHelper.js
 │       └── pathUtils.js
 └── vite.config.js
 
-17 directories, 99 files
+19 directories, 115 files
