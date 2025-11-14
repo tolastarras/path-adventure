@@ -1,5 +1,5 @@
 import { useCallback, useRef } from 'react';
-import { CELL_SIZE, CANVAS_PADDING, COLORS, PATH } from '@/utils/constants';
+import { cellSize, canvasPadding, colors, itinerary } from '@/utils/constants';
 
 export const usePlayerPathDraw = () => {
   const animationRef = useRef(null);
@@ -7,9 +7,9 @@ export const usePlayerPathDraw = () => {
   const drawPlayerPath = useCallback((ctx, playerMoves, path, options = {}) => {
     const {
       segmentDelay = 500,   // 500ms pause at each segment
-      color = COLORS.playerPathColor,
+      color = colors.playerPathColor,
       lineDash = [10, 10],    // Dashed line
-      lineWidth = PATH.lineWidth,
+      lineWidth = itinerary.lineWidth,
       onAnimationComplete,
     } = options;
 
@@ -20,9 +20,8 @@ export const usePlayerPathDraw = () => {
       cancelAnimationFrame(animationRef.current);
     }
 
-    const cellSize = CELL_SIZE;
-    const startX = CANVAS_PADDING;
-    const startY = CANVAS_PADDING;
+    const startX = canvasPadding;
+    const startY = canvasPadding;
 
     // Convert player moves to coordinates starting from path[0]
     const movesToCoordinates = (moves, correctPath) => {

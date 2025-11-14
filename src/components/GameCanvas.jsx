@@ -1,7 +1,7 @@
 import { useEffect, useRef } from 'react';
 import { useGameDraw, useTerrainImages } from '@/hooks';
 
-import { CANVAS } from '@/utils/constants';
+import { canvas } from '@/utils/constants';
 
 const GameCanvas = ({
   canvasRef,
@@ -12,7 +12,7 @@ const GameCanvas = ({
 }) => {
   const { allImagesLoaded } = useTerrainImages();
   const { draw } = useGameDraw(canvasRef, path, animationPosition, gameStatus, playerMoves);
-  const { width, height } = CANVAS;
+  const { width, height } = canvas;
 
   // Store draw in a ref to avoid dependency issues
   const drawRef = useRef();

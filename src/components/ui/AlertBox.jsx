@@ -1,7 +1,6 @@
 import HeaderTitle from './HeaderTitle';
 import CustomIcon from './CustomIcon';
-
-import { ICONS } from '@/utils/constants';
+import { icons } from '@/utils/constants';
 
 import './AlertBox.css';
 
@@ -20,7 +19,7 @@ const AlertBox = ({
 }) => {
   const baseClass = `alert-box alert-box--${variant}`;
   const hoverClasses = !disableHover && 'alert-box--hover';
-  const icon = ICONS[variant];
+  const icon = icons[variant];
 
   const effectClasses = [
     showGlare && 'alert-box--with-glare',
@@ -41,7 +40,7 @@ const AlertBox = ({
         <div className="alert-box__close-button">
           <button onClick={onClose}>
             <CustomIcon
-              icon={ICONS.close}
+              icon={icons.close}
               className={`alert-box__close-icon text-${variant}`}
             />
           </button>
@@ -51,8 +50,8 @@ const AlertBox = ({
             <CustomIcon icon={icon} className={`h-20 w-20 mr-8 mt-2 text-${variant}`} />
           </div>}
           <div className="flex-col">
-            <HeaderTitle size="lg">{title}</HeaderTitle>
-            <HeaderTitle size="md">{description}</HeaderTitle>
+            <HeaderTitle size="xl">{title}</HeaderTitle>
+            <HeaderTitle size="lg">{description}</HeaderTitle>
             <div className="alert-box__children">
               {children}
             </div>

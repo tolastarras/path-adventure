@@ -1,5 +1,5 @@
 import { useCallback } from 'react';
-import { drawCellText, getCellCenterPoint } from '@/utils/helpers/canvasHelper';
+import { drawCellText, getCellCenterPoint } from '@/utils/helpers';
 
 const useTextDraw = () => {
   const drawText = useCallback((ctx, text, path) => {

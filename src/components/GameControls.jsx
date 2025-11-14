@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { GlossyCard, GlossyButton,CustomIcon } from '@/components';
-import { ICONS, ROTATION_ANGLES } from '@/utils/constants';
+import { icons, rotationAngles } from '@/utils/constants';
 
 const GameControls = ({ onClick, directions, resetButtons }) => {
   const [selectedDirection, setSelectedDirection] = useState(null);
@@ -31,8 +31,8 @@ const GameControls = ({ onClick, directions, resetButtons }) => {
                 onClick={() => handleClick(id)}
               >
                 <CustomIcon
-                  icon={ICONS.arrow}
-                  className={`h-8 w-8 ${ROTATION_ANGLES[rotation]}`}
+                  icon={icons.arrow}
+                  className={`h-8 w-8 ${rotationAngles[rotation]}`}
                 />
               </GlossyButton>
             ))}

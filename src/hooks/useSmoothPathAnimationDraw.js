@@ -1,45 +1,15 @@
-// hooks/useSmoothPathAnimation.js
 import { useCallback, useRef } from 'react';
-import { CELL_SIZE, CANVAS_PADDING, COLORS } from '@/utils/constants';
+import { convertMovesToCoordinates } from '@/utils/gameLogic/pathLogic';
+import { cellSize, canvasPadding, colors } from '@/utils/constants';
 
 export const useSmoothPathAnimationDraw = () => {
   const animationRef = useRef(null);
 
-  // Helper function to convert moves to coordinates
-  const convertMovesToCoordinates = useCallback((moves, correctPath) => {
-    if (!correctPath || correctPath.length === 0) return [];
-    
-    const startCell = correctPath[0];
-    let x = startCell.x;
-    let y = startCell.y;
-    
-    const coordinates = [{ x, y }];
-
-    moves.forEach(move => {
-      const match = move.match(/(\d+)([→←↑↓])/);
-      if (!match) return;
-
-      const [, countStr, direction] = match;
-      const count = parseInt(countStr, 10);
-
-      for (let i = 0; i < count; i++) {
-        switch (direction) {
-          case '→': x += 1; break;
-          case '←': x -= 1; break;
-          case '↑': y -= 1; break;
-          case '↓': y += 1; break;
-        }
-        coordinates.push({ x, y });
-      }
-    });
-
-    return coordinates;
-  }, []);
-
   const startSmoothAnimation = useCallback((ctx, playerMoves, correctPath, options = {}) => {
     const {
-      duration = playerMoves.length * 1000, // Total animation duration
-      color = COLORS.playerPathColor,
+      // Total animation duration
+      duration = playerMoves.length * 1000,
+      color = colors.playerPathColor,
       lineDash = [10, 10],
       lineWidth = 3,
       onAnimationComplete,
@@ -54,9 +24,8 @@ export const useSmoothPathAnimationDraw = () => {
     }
 
     const startTime = performance.now();
-    const cellSize = CELL_SIZE;
-    const startX = CANVAS_PADDING;
-    const startY = CANVAS_PADDING;
+    const startX = canvasPadding;
+    const startY = canvasPadding;
 
     const playerCoordinates = convertMovesToCoordinates(playerMoves, correctPath);
 
@@ -132,7 +101,7 @@ export const useSmoothPathAnimationDraw = () => {
     };
 
     animationRef.current = requestAnimationFrame(animate);
-  }, [convertMovesToCoordinates]);
+  }, []);
 
   const stopAnimation = useCallback(() => {
     if (animationRef.current) {

@@ -1,16 +1,15 @@
 import {
-  CANVAS_PADDING,
-  CELL_SIZE,
-  MIN_FONT_SIZE,
-  PATH,
-  FONT_SCALE_FACTOR,
-  COLORS,
+  canvasPadding,
+  cellSize,
+  typography,
+  itinerary,
+  colors,
 } from '@/utils/constants';
 
 // Helper function to calculate center coordinates
 export const getCellCenterPoint = (cell = { x: 0, y: 0 }) => ({
-  x: CANVAS_PADDING + cell.x * CELL_SIZE + CELL_SIZE / 2,
-  y: CANVAS_PADDING + cell.y * CELL_SIZE + CELL_SIZE / 2,
+  x: canvasPadding + cell.x * cellSize + cellSize / 2,
+  y: canvasPadding + cell.y * cellSize + cellSize / 2,
 });
 
 // Helper to calculate path bounds for efficient clearing
@@ -28,7 +27,7 @@ export const calculatePathBounds = ((path) => {
   });
 
   // Add padding for line width and dots
-  const padding = Math.max(PATH.lineWidth, PATH.dotRadius) + 2;
+  const padding = Math.max(itinerary.lineWidth, itinerary.dotRadius) + 2;
 
   return {
     minX: minX - padding,
@@ -45,8 +44,8 @@ export const drawPartialPath = ((ctx, path, segmentsToShow) => {
   if (segmentsToShow < 0) return;
 
   // Draw path line up to current segment
-  ctx.strokeStyle = PATH.color;
-  ctx.lineWidth = PATH.lineWidth;
+  ctx.strokeStyle = itinerary.color;
+  ctx.lineWidth = itinerary.lineWidth;
   ctx.lineCap = 'round';
   ctx.lineJoin = 'round';
 
@@ -66,19 +65,19 @@ export const drawPartialPath = ((ctx, path, segmentsToShow) => {
   ctx.stroke();
 
   // Draw dots for completed points
-  ctx.fillStyle = PATH.dotColor;
+  ctx.fillStyle = itinerary.dotColor;
 
   for (let i = 0; i <= maxSegment; i++) {
     const point = getCellCenterPoint(path[i]);
     ctx.beginPath();
     ctx.ellipse(
-      point.x,          // x
-      point.y,          // y
-      PATH.dotRadius,   // radiusX
-      PATH.dotRadius,   // radiusY (same for perfect circle)
-      0,                // rotation
-      0,                // startAngle
-      Math.PI * 2,      // endAngle
+      point.x,              // x
+      point.y,              // y
+      itinerary.dotRadius,  // radiusX
+      itinerary.dotRadius,  // radiusY (same for perfect circle)
+      0,                    // rotation
+      0,                    // startAngle
+      Math.PI * 2,          // endAngle
     );
     ctx.fill();
   }
@@ -88,15 +87,15 @@ export const drawPartialPath = ((ctx, path, segmentsToShow) => {
 export const drawCellText = (ctx, text, options = {}) => {
   const {
     position = 'bottom', // 'bottom', 'top', 'center'
-    offset = CELL_SIZE * 0.15,
-    fontSize = Math.max(MIN_FONT_SIZE, CELL_SIZE / FONT_SCALE_FACTOR),
-    color = COLORS.cellTextColor,
-    fontFamily = 'Arial'
+    offset = cellSize * 0.15,
+    fontSize= typography.fontSize,
+    color = colors.cellTextColor,
+    fontFamily = typography.fontFamily
   } = options;
 
   const positions = {
-    bottom: CELL_SIZE / 2 - offset,
-    top: -CELL_SIZE / 2 + offset,
+    bottom: cellSize / 2 - offset,
+    top: -cellSize / 2 + offset,
     center: 0
   };
 

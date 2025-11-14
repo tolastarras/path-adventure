@@ -57,18 +57,19 @@
 }
 
 .alert-box--success {
-  @apply border-green-700/80 text-green-700/80;
-  @apply from-green-200 via-emerald-200 to-green-300;
-  @apply shadow-green-200/50 hover:shadow-green-300/60;
-  @apply hover:bg-linear-to-br hover:from-green-200 hover:via-emerald-100 hover:to-green-200;
+  @apply border-green-600/60;
+  @apply text-green-700;
+  @apply from-green-300/60 via-green-300/60 to-green-400/60;
+  @apply shadow-green-200/40;
+  @apply hover:from-green-300/80 hover:via-green-300/80 hover:to-green-400/80;
 }
 
 .alert-box--danger {
-  @apply border-red-600/80;
-  @apply text-red-600/80;
-  @apply from-red-200 via-red-200 to-red-300;
-  @apply shadow-red-200/50 hover:shadow-red-300/60;
-  @apply hover:bg-linear-to-br hover:from-red-200 hover:via-red-100 hover:to-red-200;
+  @apply border-red-600/60;
+  @apply text-red-700;
+  @apply from-red-300/60 via-red-300/60 to-red-400/60;
+  @apply shadow-red-200/40;
+  @apply hover:from-red-300/80 hover:via-red-300/80 hover:to-red-400/80;
 }
 
 .alert-box--warning {

@@ -1,10 +1,19 @@
 import { AlertBox } from '@/components';
-import { GAME_RESULTS } from '@/utils/constants';
+import { findCorrectSegments, calculateScore } from '@/utils/gameLogic';
+import { gameResults } from '@/utils/constants';
 
-const GameStatus = ({ gameStatus, playerMoves, onClose }) => {
+const GameStatus = ({ gameStatus, playerMoves, correctPath, onClose }) => {
   if (gameStatus === 'lost' || gameStatus === 'won') {
-    const gameResult = GAME_RESULTS[gameStatus];
-    const { title, description, variant } = gameResult;
+    const correctSegments = findCorrectSegments(playerMoves, correctPath);
+    const points = calculateScore(gameStatus, playerMoves, correctSegments);
+    console.log('Points:', points);
+
+    const gameResult = gameResults[gameStatus];
+    const { title, variant } = gameResult;
+
+    const description = gameStatus === 'won'
+      ? gameResults.won.description(playerMoves.length)
+      : gameResult.description(points);
 
     return (
       <AlertBox
@@ -13,11 +22,12 @@ const GameStatus = ({ gameStatus, playerMoves, onClose }) => {
         description={description}
         onClose={onClose}
       >
-
-        <span className="text-5xl font-bold text-center mt-2 animate-pulse">
-          +{Math.max(1, 15 - playerMoves.length)} points! ✨
-        </span>
-
+        {gameStatus === 'won' && (
+          <div className="text-5xl font-bold text-center mt-2 animate-pulse">
+            {/* +{Math.max(1, 15 - playerMoves.length)} points! ✨ */}
+            You earned +{points.total} point{points.total > 1 && 's'} ✨
+          </div>
+        )}
       </AlertBox>
     );
   }

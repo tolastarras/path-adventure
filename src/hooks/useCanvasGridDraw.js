@@ -1,6 +1,6 @@
 import { useCallback } from 'react';
 import { useCanvas } from '.';
-import { COLORS, GRID_SIZE, CELL_SIZE, CANVAS_PADDING } from '@/utils/constants';
+import { colors, gridSize, cellSize, canvasPadding } from '@/utils/constants';
 
 const useCanvasGridDraw = (canvasRef) => {
   const { drawOnCanvas } = useCanvas(canvasRef);
@@ -8,24 +8,24 @@ const useCanvasGridDraw = (canvasRef) => {
   const drawCanvasGrid = useCallback(() => {
     drawOnCanvas((ctx, canvas) => {
       // Draw grid background
-      ctx.fillStyle = COLORS.canvasBackground;
+      ctx.fillStyle = colors.canvasBackground;
       ctx.fillRect(0, 0, canvas.width, canvas.height);
 
       // Draw grid lines
-      ctx.strokeStyle = COLORS.canvasStroke;
+      ctx.strokeStyle = colors.canvasStroke;
       ctx.lineWidth = 1;
 
-      for (let i = 0; i <= GRID_SIZE; i++) {
+      for (let i = 0; i <= gridSize; i++) {
         // Vertical lines
         ctx.beginPath();
-        ctx.moveTo(CANVAS_PADDING + i * CELL_SIZE, CANVAS_PADDING);
-        ctx.lineTo(CANVAS_PADDING + i * CELL_SIZE, CANVAS_PADDING + GRID_SIZE * CELL_SIZE);
+        ctx.moveTo(canvasPadding + i * cellSize, canvasPadding);
+        ctx.lineTo(canvasPadding + i * cellSize, canvasPadding + gridSize * cellSize);
         ctx.stroke();
 
         // Horizontal lines
         ctx.beginPath();
-        ctx.moveTo(CANVAS_PADDING, CANVAS_PADDING + i * CELL_SIZE);
-        ctx.lineTo(CANVAS_PADDING + GRID_SIZE * CELL_SIZE, CANVAS_PADDING + i * CELL_SIZE);
+        ctx.moveTo(canvasPadding, canvasPadding + i * cellSize);
+        ctx.lineTo(canvasPadding + gridSize * cellSize, canvasPadding + i * cellSize);
         ctx.stroke();
       }
     });

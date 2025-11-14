@@ -1,6 +1,6 @@
 import { useCallback } from 'react';
 import { useBicycleDraw, useFlagDraw } from '.';
-import { getCellCenterPoint } from '@/utils/helpers/canvasHelper';
+import { getCellCenterPoint } from '@/utils/helpers';
 
 export const useGameElementsDraw = () => {
   const { drawBicycle, isBicycleImageLoaded } = useBicycleDraw();
