@@ -1,19 +1,16 @@
 ---
 name: "Feature Request"
-description: "Suggest an idea for this project"
+about: "Suggest an idea for this project"  # ← ADD THIS LINE
+description: "Suggest an idea for this project"  # ← Keep this if you want
 title: "Feature: "
 labels: ["enhancement"]
-assignees: []
 ---
 
-## Is your feature request related to a problem? Please describe.
-...
+## Description
+<!-- Describe the feature you'd like -->
 
-## Describe the solution you'd like
-...
+## Solution  
+<!-- What should happen? -->
 
-## Describe alternatives you've considered
-...
-
-## Additional context
-...
+## Alternatives
+<!-- Any alternative solutions? -->
