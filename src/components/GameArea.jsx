@@ -3,9 +3,9 @@ import {
   GlossyButton,
   TextInput,
   GameCanvas,
-  GameStats as GameStatsSection,
 } from '@/components';
-import { gameStats, canvas } from '@/utils/constants';
+
+import { canvas } from '@/utils/constants';
 
 const GameArea = ({
   mainCanvasRef,
@@ -22,8 +22,6 @@ const GameArea = ({
   onNewAdventure,
 }) => (
   <div className='w-full flex flex-col space-y-6'>
-    <GameStatsSection gameStats={gameStats} />
-    
     <GlossyCard showPadding={false}>
       <GameCanvas
         canvasRef={mainCanvasRef}

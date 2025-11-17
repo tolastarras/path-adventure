@@ -82,17 +82,20 @@ export const GAME_STATS = [
   {
     id: 1,
     title: 'Games Won',
-    percent: 50,
+    type: 'percent',
+    value: 45,
   },
   {
     id: 2,
     title: 'Total Points',
-    percent: 90,
+    type: 'number',
+    value: 20,
   },
   {
     id: 3,
     title: 'Leaderboard',
-    percent: 75,
+    type: 'percent',
+    value: 70,
   }
 ];
 

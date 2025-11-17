@@ -6,7 +6,7 @@ import {
   sandImage,
   grassImage,
   rockImage,
-} from '@/assets/landscape';
+} from '@/assets';
 
 const useTerrainImages = () => {
   const tree = useImageLoader(treeImage);

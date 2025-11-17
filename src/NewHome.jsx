@@ -6,6 +6,7 @@ import {
   ControlsPanel,
   GameArea,
   GameHeader as HeaderSection,
+  GameStats as GameStatsSection,
 } from '@/components';
 
 import {
@@ -24,6 +25,8 @@ import {
   calculateBicycleDirection,
   formatStep,
 } from '@/utils/helpers';
+
+import { gameStats } from '@/utils/constants';
 
 import './NewHome.css';
 
@@ -169,9 +172,11 @@ const NewHome = () => {
         />
       )}
       <GlossyCard>
-        <div className="p-2 lg:p-10 space-y-6">
-          <HeaderSection />
-          <div className="pt-6 space-x-0 lg:flex lg:space-x-6">
+        <div className="p-2 lg:p-10">
+          <HeaderSection className="mb-8" />
+          <GameStatsSection className="mb-8" gameStats={gameStats} />
+
+          <div className="pt-4 lg:flex lg:space-x-6">
             <ControlsPanel
               step={step}
               resetControlButtons={resetControlButtons}
