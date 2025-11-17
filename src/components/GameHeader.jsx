@@ -1,11 +1,11 @@
 import { HeaderTitle } from '@/components';
 import { DATA } from '@/utils/constants';
 
-const GameHeader = () => {
+const GameHeader = ({ className = '' }) => {
   const { title, description } = DATA;
   
   return (
-    <div className="flex justify-between">
+    <div className={`flex justify-between ${className}`}>
       <div>
         <HeaderTitle className="glossy-card__title">{title}</HeaderTitle>
         <p className="glossy-card__description">{description}</p>
