@@ -1,13 +1,16 @@
 @import "tailwindcss";
 
 .progress-bar-container {
-  @apply w-full h-12 border-2 overflow-hidden;
+  @apply w-full h-12 border overflow-hidden;
   @apply border-white/20 bg-gray-200 rounded-full;
 }
 
 .progress-bar {
   @apply flex items-center justify-center h-full p-0.5 leading-none rounded-full;
   @apply text-xl font-medium; 
+}
+
+.progress-bar--gradient {
   @apply bg-size-[1rem_1rem] bg-linear-to-r bg-[linear-gradient(45deg,rgba(255,255,255,0.15)_25%,transparent_25%,transparent_50%,rgba(255,255,255,0.15)_50%,rgba(255,255,255,0.15)_75%,transparent_75%,transparent)];
 }
 

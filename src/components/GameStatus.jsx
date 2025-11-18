@@ -6,7 +6,6 @@ const GameStatus = ({ gameStatus, playerMoves, correctPath, onClose }) => {
   if (gameStatus === 'lost' || gameStatus === 'won') {
     const correctSegments = findCorrectSegments(playerMoves, correctPath);
     const points = calculateScore(gameStatus, playerMoves, correctSegments);
-    console.log('Points:', points);
 
     const gameResult = gameResults[gameStatus];
     const { title, variant } = gameResult;

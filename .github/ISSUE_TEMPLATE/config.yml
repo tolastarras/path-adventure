@@ -1,0 +1,17 @@
+blank_issues_enabled: true
+contact_links:
+  - name: 📚 Documentation
+    url: https://your-docs.com
+    about: Check our documentation first
+  - name: 💬 Discussions
+    url: https://github.com/your/repo/discussions
+    about: Please ask questions here
+template:
+  - name: "🐛 Bug Report"
+    filename: bug-report.md
+  - name: "🚀 Feature Request"
+    filename: feature-request.md
+  - name: "📚 Documentation Update"
+    filename: documentation.md
+  - name: "🔧 Maintenance/Refactor"
+    filename: maintenance.md
