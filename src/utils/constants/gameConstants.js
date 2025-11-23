@@ -1,20 +1,37 @@
+import {
+  infoIcon,
+  questionIcon,
+  trophyIcon,
+  successIcon,
+  warningIcon,
+  dangerIcon,
+  closeIcon,
+} from '@/assets';
+
 import { colors } from '.';
 
 export const DATA = {
   title: 'Path Adventure',
-  description: 'Follow the path from 🚴‍♂️ to 🏁 with your moves!',
+  description: 'Follow the path from 🚴‍♂️ to 🏁',
 };
 
 export const ICONS = {
   bicycle: '🚴‍♂️',
   finish: '🏁',
-  arrow: '/icons/arrow.svg',
-  success: '/icons/success.svg',
-  close: '/icons/close.svg',
-  warning: '/icons/warning.svg',
-  danger: '/icons/danger.svg',
-  info: '/icons/info.svg',
+  success: successIcon,
+  warning: warningIcon,
+  danger: dangerIcon,
+  close: closeIcon,
+  leaderboard: trophyIcon,
+  info: infoIcon,
+  question: questionIcon,
 };
+
+export const MENU_ITEMS = [
+  { id: 'leaderboard', icon: ICONS.leaderboard },
+  { id: 'how-to-play', icon: ICONS.info },
+  { id: 'about', icon: ICONS.question },
+];
 
 // arrow button
 export const ROTATION_ANGLES = {
@@ -50,8 +67,6 @@ export const DIRECTIONS = [
   { id: 'down', label: 'Down', icon: '↓', rotation: 90 },
 ];
 
-export const DIRECTION_ICONS = DIRECTIONS.map(dir => dir.icon).join('');
-
 export const TERRAIN_TYPES = [
   'water',
   'tree',
@@ -61,9 +76,13 @@ export const TERRAIN_TYPES = [
   'rock',
 ];
 
-export const GRID_SIZE = 11;      // Make squares bigger by increasing CELL_SIZE
-export const CELL_SIZE = 70;      // Increased cell size
+export const GRID_SIZE = 10;      // Make squares bigger by increasing CELL_SIZE
+export const CELL_SIZE = 50;      // Increased cell size
 export const CANVAS_PADDING = 0;  // Increased padding to accommodate larger squares
+
+const screenWidth = window.innerWidth;
+const screenHeight = window.innerHeight;
+console.log(screenWidth, screenHeight);
 
 export const CANVAS = {
   width: GRID_SIZE * CELL_SIZE + 2 * CANVAS_PADDING,

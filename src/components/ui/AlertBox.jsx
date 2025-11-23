@@ -36,25 +36,24 @@ const AlertBox = ({
 
   return (
     <div className="alert-box-overlay">
-      <div className={`alert-box__container ${className}`}>
+      <div className={`alert-box__container max-w-[92%] flex ${className}`}>
         <div className="alert-box__close-button">
           <button onClick={onClose}>
             <CustomIcon
               icon={icons.close}
+              size="sm"
               className={`alert-box__close-icon text-${variant}`}
             />
           </button>
         </div>
         <div className={`flex ${combinedClasses}`}>
-          {icon && <div className="alert-box__icon">
-            <CustomIcon icon={icon} className={`h-20 w-20 mr-8 mt-2 text-${variant}`} />
+          {icon && <div className="alert-box__icon hidden md:block">
+            <CustomIcon icon={icon} size="xl" className={`mr-8 mt-2 text-${variant}`} />
           </div>}
-          <div className="flex-col">
+          <div className="flex-col w-full">
             <HeaderTitle size="xl">{title}</HeaderTitle>
             <HeaderTitle size="lg">{description}</HeaderTitle>
-            <div className="alert-box__children">
-              {children}
-            </div>
+            {children && <div className="alert-box__children">{children}</div>}
           </div>
         </div>
       </div>

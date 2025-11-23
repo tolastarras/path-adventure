@@ -1,6 +1,9 @@
 import { useState } from 'react';
 import { GlossyCard, GlossyButton,CustomIcon } from '@/components';
-import { icons, rotationAngles } from '@/utils/constants';
+import { rotationAngles } from '@/utils/constants';
+import { arrowIcon } from '@/assets/icons';
+
+import './GameControls.css';
 
 const GameControls = ({ onClick, directions, resetButtons }) => {
   const [selectedDirection, setSelectedDirection] = useState(null);
@@ -12,7 +15,7 @@ const GameControls = ({ onClick, directions, resetButtons }) => {
 
   return (
     <GlossyCard>
-      <div className="flex flex-col">
+      <div className="game-controls__container">
         {[
           [directions[0]],           // First item alone
           directions.slice(1, 3),    // Second and third items together
@@ -20,19 +23,20 @@ const GameControls = ({ onClick, directions, resetButtons }) => {
         ].map((row, rowIndex) => (
           <div 
             key={rowIndex} 
-            className={`flex ${row.length > 1 ? 'justify-between' : 'justify-center'}`}
+            className={`flex ${row.length > 1 ? 'middle-row' : 'justify-center'}`}
           >
             {row.map(({id, rotation}) => (
               <GlossyButton
                 key={id}
                 variant="primary"
-                className="w-20 h-20"
+                className={`w-15 h-15`}
                 isActive={id === selectedDirection && !resetButtons}
                 onClick={() => handleClick(id)}
               >
                 <CustomIcon
-                  icon={icons.arrow}
-                  className={`h-8 w-8 ${rotationAngles[rotation]}`}
+                  icon={arrowIcon}
+                  size="md"
+                  className={rotationAngles[rotation]}
                 />
               </GlossyButton>
             ))}

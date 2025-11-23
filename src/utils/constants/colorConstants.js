@@ -7,7 +7,7 @@ export const COLORS = {
   info: '#3b82f6',
   // canvas
   canvasBackground: '#cbd5e1',
-  canvasStroke: '#3b82f6',
+  canvasStroke: '#91b9fd',
   // terrain
   water: '#87ceeb',
   tree: '#00b050',

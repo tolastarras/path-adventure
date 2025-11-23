@@ -2,11 +2,14 @@
 export { default as GameHeader } from './GameHeader';
 export { default as GameControls } from './GameControls';
 export { default as GameStats } from './GameStats';
-export { default as HowToPlay } from './HowToPlay';
 export { default as GameCanvas } from './GameCanvas';
-export { default as GameStatus } from './GameStatus';
+export { default as GameStatusAlert } from './GameStatusAlert';
+export { default as HowToPlayAlert } from './HowToPlayAlert';
+export { default as AboutGamePathAlert } from './AboutGamePathAlert';
 export { default as ControlsPanel } from './ControlsPanel';
 export { default as GameArea } from './GameArea';
+export { default as IconMenu } from './IconMenu';
+export { default as LeaderboardAlert } from './LeaderboardAlert';
 
 // ui components
 export { default as HeaderTitle } from './ui/HeaderTitle';

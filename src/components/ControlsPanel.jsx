@@ -5,7 +5,6 @@ import {
   TextInput,
   HeaderTitle,
   GameControls as GameControlsSection,
-  HowToPlay as HowToPlaySection,
 } from '@/components';
 import { directionObjects } from '@/utils/constants';
 
@@ -20,10 +19,10 @@ const ControlsPanel = ({
   onAddStep,
   onUndoStep
 }) => (
-  <div className="flex flex-col space-y-6">
-    <div className="min-w-[300px]">
+  <div className="flex flex-col space-y-4 md:max-w-48 lg:max-w-80">
+    <div className="w-full">
       <GlossyCard>
-        <h1 className="mb-4">Squares</h1>
+        <HeaderTitle title="Squares" />
         <NumberInput
           resetInput={resetNumberInput}
           value={step.squares}
@@ -47,7 +46,7 @@ const ControlsPanel = ({
           {currentStep}
         </TextInput>
       </GlossyCard>
-      <div className="flex justify-between gap-4 my-6">
+      <div className="flex justify-between gap-4 my-4">
         <GlossyButton
           className="w-full"
           disabled={!step.direction}
@@ -65,8 +64,6 @@ const ControlsPanel = ({
         </GlossyButton>
       </div>
     </div>
-    
-    <HowToPlaySection />
   </div>
 );
 

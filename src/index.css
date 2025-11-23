@@ -7,7 +7,12 @@
 
 html, body {
   font-family: 'Righteous', cursive;
+  font-weight: 100;
   overscroll-behavior: none;
   height: 100%;
 }
 
+html:has(.alert-box-overlay),
+body:has(.alert-box-overlay) {
+  overflow: hidden;
+}

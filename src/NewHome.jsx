@@ -2,7 +2,11 @@ import { useMemo, useRef, useEffect } from 'react';
 
 import {
   GlossyCard,
-  GameStatus,
+  IconMenu,
+  GameStatusAlert,
+  HowToPlayAlert,
+  AboutGamePathAlert,
+  LeaderboardAlert,
   ControlsPanel,
   GameArea,
   GameHeader as HeaderSection,
@@ -18,6 +22,7 @@ import {
   useStepManagement,
   usePathManagement,
   useGameState,
+  useAlertBoxManager,
 } from '@/hooks';
 
 import {
@@ -58,14 +63,18 @@ const NewHome = () => {
 
   const {
     gameStatus,
-    showResultAlert,
     isJourneyStarted,
     isJourneyComplete,
     handleAnimationComplete,
-    closeAlert,
     startJourney,
     resetGame,
   } = useGameState();
+
+  const {
+    isAlertOpen,
+    openAlert,
+    closeAlert
+  } = useAlertBoxManager();
 
   // Game hooks
   const { isPlayerPathValid } = usePlayerPathDraw();
@@ -117,6 +126,7 @@ const NewHome = () => {
       onAnimationComplete: () => {
         const isCorrect = isPlayerPathValid(playerMoves, currentPath);
         handleAnimationComplete(isCorrect);
+        openAlert('game-result');
       }
     });
   };
@@ -135,8 +145,16 @@ const NewHome = () => {
     generateNewPath();
   }
 
+  const handleCloseGameStatusAlert = () => {
+    closeAlert();
+  };
+
   const handleCloseAlert = () => {
     closeAlert();
+  };
+
+  const handleIconClick = (id) => {
+    openAlert(id);
   };
 
   useEffect(() => {
@@ -162,21 +180,35 @@ const NewHome = () => {
   }, [currentPath, drawBicycle, clearCanvas]);
 
   return (
-    <div className="flex flex-col md:w-full lg:w-[1250px] mx-auto">
-      {showResultAlert && (
-        <GameStatus
+    <div className="top-container">
+      {isAlertOpen('game-result') && (
+        <GameStatusAlert
           gameStatus={gameStatus}
           playerMoves={playerMoves}
           correctPath={currentPath}
-          onClose={handleCloseAlert}
+          onClose={handleCloseGameStatusAlert}
         />
       )}
+      {isAlertOpen('how-to-play') && (
+        <HowToPlayAlert onClose={handleCloseAlert} />
+      )}
+      {isAlertOpen('about') && (
+        <AboutGamePathAlert onClose={handleCloseAlert} />
+      )}
+      {isAlertOpen('leaderboard') && (
+        <LeaderboardAlert onClose={handleCloseAlert} />
+      )}
       <GlossyCard>
-        <div className="p-2 lg:p-10">
-          <HeaderSection className="mb-8" />
-          <GameStatsSection className="mb-8" gameStats={gameStats} />
+        <div className="p-1 md:p-4">
+          <HeaderSection className="mb-4" />
+          <div className="relative mb-2">
+            <GameStatsSection className="mb-8" gameStats={gameStats} />
+            <div className="absolute top-2 right-2">
+              <IconMenu onClick={handleIconClick} onClose={closeAlert} />
+            </div>
+          </div>
 
-          <div className="pt-4 lg:flex lg:space-x-6">
+          <div className="md:flex sm:gap-2 md:gap-7">
             <ControlsPanel
               step={step}
               resetControlButtons={resetControlButtons}

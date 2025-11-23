@@ -1,44 +1,19 @@
 @import 'tailwindcss';
 
-.text-success {
-  @apply text-green-700;
-}
-
-.text-primary {
-  @apply text-blue-600;
-}
-
-.text-warning {
-  @apply text-amber-600;
-}
-
-.text-danger {
-  @apply text-red-700;
-}
-
 .alert-box-overlay {
   @apply fixed w-full bg-black/50 inset-0 flex justify-center items-center z-50;
 }
 
 .alert-box {
-  @apply relative w-5xl mx-auto h-full rounded-2xl py-12 px-16 overflow-hidden;
-  @apply border-8 transition-all duration-500 ease-out;
+  @apply relative w-2xl mx-auto h-full rounded-2xl p-5 md:p-10 overflow-hidden;
+  @apply border-2 md:border-6 transition-all duration-500 ease-out max-h-[90vh] overflow-y-scroll;
   @apply bg-linear-to-br shadow-lg backdrop-blur-sm;
   @apply transition-all duration-300 ease-in-out;
   @apply hover:shadow-xl;
-  position: relative;
-  overflow: hidden;
 }
 
 .alert-box::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
-  transition: left 0.5s ease-in-out;
+  @apply content-[''] absolute top-0 -left-full w-full h-full bg-linear-to-r from-transparent via-white/40 to-transparent transition-[left] duration-500 ease-in-out;
 }
 
 .alert-box:hover {
@@ -49,11 +24,20 @@
   left: 100%;
 }
 
+.alert-box--transparent {
+  @apply border-white/60;
+  @apply text-white;
+  @apply from-white/30 via-white/30 to-white/40;
+  @apply shadow-white/20;
+  @apply hover:from-white/40 hover:via-white/40 hover:to-white/50;
+}
+
 .alert-box--primary {
-  @apply border-blue-600/80 text-blue-600/80;
-  @apply from-blue-200 via-blue-200 to-blue-300;
-  @apply shadow-blue-200/50 hover:shadow-blue-300/60;
-  @apply hover:bg-linear-to-br hover:from-blue-200 hover:via-blue-100 hover:to-blue-200;
+  @apply border-blue-600/60;
+  @apply text-blue-700;
+  @apply from-blue-300/60 via-blue-300/60 to-blue-400/60;
+  @apply shadow-blue-200/40;
+  @apply hover:from-blue-300/80 hover:via-blue-300/80 hover:to-blue-400/80;
 }
 
 .alert-box--success {
@@ -130,19 +114,38 @@
   @apply opacity-100 h-1.5 blur-[1px];
 }
 
-.alert-box__children {
-  @apply my-4;
-}
-
 .alert-box__container {
   @apply relative;
 }
 
 .alert-box__close-button {
-  @apply text-5xl z-10 absolute top-2 right-6;
+  @apply flex z-10 absolute top-5 right-5 p-2 hover:cursor-pointer;
 }
 
 .alert-box__close-icon {
-  @apply h-5 w-5 cursor-pointer duration-200 ease-in-out;
-  @apply hover:scale-130 hover:transition-all;
+  @apply h-5 w-5 cursor-pointer duration-200 ease-in-out transition-transform;
+}
+
+.alert-box__close-button:hover .alert-box__close-icon {
+  @apply scale-120;
+}
+
+.text-success {
+  @apply text-green-700;
+}
+
+.text-transparent {
+  @apply text-white/80;
+}
+
+.text-primary {
+  @apply text-blue-600;
+}
+
+.text-warning {
+  @apply text-amber-600;
+}
+
+.text-danger {
+  @apply text-red-700;
 }

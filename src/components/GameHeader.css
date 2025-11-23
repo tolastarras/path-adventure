@@ -1,0 +1,6 @@
+@import "tailwindcss";
+ 
+ .game-header__container {
+    @apply flex flex-row justify-between items-start gap-4 flex-wrap;
+ }
+ 

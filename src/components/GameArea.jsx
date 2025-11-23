@@ -21,7 +21,7 @@ const GameArea = ({
   onClearRoute,
   onNewAdventure,
 }) => (
-  <div className='w-full flex flex-col space-y-6'>
+  <div className='w-full flex flex-col space-y-4'>
     <GlossyCard showPadding={false}>
       <GameCanvas
         canvasRef={mainCanvasRef}
@@ -43,11 +43,12 @@ const GameArea = ({
       </TextInput>
     </div>
     
-    <div className='flex gap-6 justify-between'>
-      <div className='flex gap-3'>
+    <div className='flex flex-wrap gap-6 w-full'>
+      <div className='flex flex-col md:flex-row gap-3 w-full'>
         {showNewAdventure ? (
           <GlossyButton
             variant="success"
+            className="w-full md:max-w-48"
             onClick={onNewAdventure}
           >
             New Adventure
@@ -55,6 +56,7 @@ const GameArea = ({
         ) : (
           <GlossyButton
             variant="primary"
+            className="w-full md:max-w-48"
             disabled={!canStartJourney}
             onClick={onStartJourney}
           >
@@ -64,6 +66,7 @@ const GameArea = ({
 
         <GlossyButton
           variant="danger"
+          className="w-full md:max-w-40"
           disabled={!canClearRoute || showNewAdventure}
           onClick={onClearRoute}
         >

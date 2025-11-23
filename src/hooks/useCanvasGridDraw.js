@@ -15,7 +15,7 @@ const useCanvasGridDraw = (canvasRef) => {
       ctx.strokeStyle = colors.canvasStroke;
       ctx.lineWidth = 1;
 
-      for (let i = 0; i <= gridSize; i++) {
+      for (let i = 1; i < gridSize; i++) {
         // Vertical lines
         ctx.beginPath();
         ctx.moveTo(canvasPadding + i * cellSize, canvasPadding);

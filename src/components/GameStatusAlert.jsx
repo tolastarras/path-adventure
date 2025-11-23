@@ -22,7 +22,7 @@ const GameStatus = ({ gameStatus, playerMoves, correctPath, onClose }) => {
         onClose={onClose}
       >
         {gameStatus === 'won' && (
-          <div className="text-5xl font-bold text-center mt-2 animate-pulse">
+          <div className="text-3xl font-bold text-center mt-2 animate-pulse">
             {/* +{Math.max(1, 15 - playerMoves.length)} points! ✨ */}
             You earned +{points.total} point{points.total > 1 && 's'} ✨
           </div>

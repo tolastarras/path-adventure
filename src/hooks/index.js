@@ -17,3 +17,4 @@ export { default as useTextDraw } from './useTextDraw';
 export { default as useStepManagement } from './useStepManagement';
 export { default as usePathManagement } from './usePathManagement';
 export { default as useGameState } from './useGameState';
+export { default as useAlertBoxManager } from './useAlertBoxManager';
