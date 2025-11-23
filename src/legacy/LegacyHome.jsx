@@ -6,7 +6,7 @@ import { GameControls, GameStats, GameStatus, Instructions } from './components'
 import { usePathGenerator } from './hooks/usePathGenerator';
 import { useGameAnimation } from './hooks/useGameAnimation';
 
-import { DATA } from '@/utils/constants';
+import { DATA } from './utils/constants';
 
 const LegacyHome = () => {
   const [playerMoves, setPlayerMoves] = useState([]);

@@ -12,3 +12,5 @@ export const formatStep = (step) => {
   const directionIcon = getDirectionIcon(direction);
   return `${squares}${directionIcon}`;
 };
+
+export const directionIcons = () => directionObjects.map(dir => dir.icon).join('');

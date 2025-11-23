@@ -13,11 +13,8 @@ const GameStats = ({gameStats}) => {
 
   return (
     <>
-      <button
-        onClick={toggleStats}
-        className="flex items-center gap-3 cursor-pointer group"
-      >
-        <div className={`game-stats__button ${isExpanded ? 'rotate-0' : 'rotate-720'}`}>
+      <button className="game-stats__button" onClick={toggleStats}>
+        <div className={`game-stats__button-content ${isExpanded ? 'rotate-0' : 'rotate-720'}`}>
           <img
             src={gameStatsImage}
             alt="Game Stats"
@@ -30,7 +27,7 @@ const GameStats = ({gameStats}) => {
       </button>
 
       <div className={`game-stats-cards ${isExpanded ? 'open' : 'close'}`} >
-        <div className="pt-4">
+        <div className="pt-2">
           <div className="game-stats__container">
             {gameStats.map(({ id, title, type, value }) => (
               <GlossyCard key={id} className="w-full lg:w-1/3">

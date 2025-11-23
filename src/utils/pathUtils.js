@@ -1,4 +1,5 @@
-import { gridSize, directionIcons } from './constants';
+import { gridSize } from './constants';
+import { directionIcons } from '@/utils/helpers';
 
 export const isValidPosition = (x, y) => 
   x >= 0 && x < gridSize && y >= 0 && y < gridSize;

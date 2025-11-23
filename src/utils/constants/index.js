@@ -12,13 +12,13 @@ export {
   TYPOGRAPHY as typography,
   MIN_FONT_SIZE,
   DIRECTIONS as directionObjects,
-  DIRECTION_ICONS as directionIcons,
   TERRAIN_TYPES as terrainTypes,
   GRID_SIZE as gridSize,
   CELL_SIZE as cellSize,
   CANVAS_PADDING as canvasPadding,
   CANVAS as canvas,
-  DATA,
+  DATA as generalInfo,
+  MENU_ITEMS as menuItems,
   ITINERARY as itinerary,
 } from './gameConstants';
 
@@ -26,3 +26,15 @@ export {
   BASE_WIN_POINTS as baseWinPoints,
   BASE_LOSE_POINTS as baseLosePoints
 } from './scoreConstants';
+
+export {
+  ABOUT as about,
+} from './aboutConstants';
+
+export {
+  HOW_TO_PLAY as howToPlay,
+} from './howToPlayConstants';
+
+export {
+  LEADERBOARD as leaderboard,
+} from './leaderboardConstants';

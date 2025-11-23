@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 .text-input__field {
-  @apply flex items-center justify-between p-1 border-2 border-white/50 rounded-lg h-18 text-3xl font-medium px-4 w-full outline-transparent;
+  @apply flex items-center justify-between p-1 border-2 border-white/50 rounded-lg h-12 text-xl font-medium px-4 w-full outline-transparent;
   @apply transition-all duration-200 ease-in-out;
 }
 

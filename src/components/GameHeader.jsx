@@ -1,16 +1,16 @@
 import { HeaderTitle } from '@/components';
-import { DATA } from '@/utils/constants';
+import { generalInfo } from '@/utils/constants';
 
 const GameHeader = ({ className = '' }) => {
-  const { title, description } = DATA;
+  const { title, description } = generalInfo;
   
   return (
-    <div className={`flex justify-between ${className}`}>
-      <div>
+    <div className={`game-header__container ${className}`}>
+      <div className="flex-1 min-w-[200px]">
         <HeaderTitle className="glossy-card__title">{title}</HeaderTitle>
         <p className="glossy-card__description">{description}</p>
       </div>
-      <picture>
+      <picture className="absolute top-2 right-2">
         <source
           srcSet="/logo.webp"
           type="image/webp"
@@ -20,7 +20,7 @@ const GameHeader = ({ className = '' }) => {
           type="image/png"
         />
         <img
-          className="object-contain pl-4 min-w-[140px] w-40"
+          className="object-contain w-20 pl-4 md:w-35"
           src="/logo.png"
           alt="logo"
           loading="lazy"

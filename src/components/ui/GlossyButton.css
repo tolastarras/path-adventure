@@ -14,7 +14,7 @@
 }
 
 .glossy-button--active {
-  @apply ring-4 ring-white/40 scale-105 brightness-80 contrast-150;
+  @apply ring-3 ring-white/40 scale-105 brightness-80 contrast-150;
 }
 
 .glossy-button--pill,
@@ -33,17 +33,14 @@
 }
 
 .glossy-button--sm {
-  /* @apply px-6 py-3 min-w-32 max-w-48 m-2; */
   @apply px-6 py-3;
 }
 
 .glossy-button--md {
-  /* @apply px-8 py-4 min-w-48 max-w-72 m-3; */
-  @apply px-8 py-4;
+  @apply px-6 py-2;
 }
 
 .glossy-button--lg {
-  /* @apply px-10 py-5 min-w-56 max-w-80 m-4; */
   @apply px-8 py-7;
 }
 
@@ -143,19 +140,19 @@
 
 /* Content styles */
 .glossy-button__content {
-  @apply drop-shadow-lg font-medium;
+  @apply flex drop-shadow-lg;
 }
 
 .glossy-button__content.sm {
-  @apply text-xl;
+  @apply text-lg;
 }
 
 .glossy-button__content.md {
-  @apply text-2xl;
+  @apply text-lg;
 }
 
 .glossy-button__content.lg {
-  @apply text-3xl;
+  @apply text-xl;
 }
 
 .glossy-button:hover .glossy-button__content {

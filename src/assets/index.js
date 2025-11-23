@@ -9,3 +9,15 @@ export {
   mudImage,
   waterImage
 } from './landscape';
+
+// icons
+export {
+  infoIcon,
+  arrowIcon,
+  questionIcon,
+  trophyIcon,
+  successIcon,
+  closeIcon,
+  warningIcon,
+  dangerIcon,
+} from './icons';

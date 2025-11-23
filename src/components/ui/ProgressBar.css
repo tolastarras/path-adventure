@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 .progress-bar-container {
-  @apply w-full h-12 border overflow-hidden;
+  @apply w-full h-9 border overflow-hidden;
   @apply border-white/20 bg-gray-200 rounded-full;
 }
 

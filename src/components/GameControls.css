@@ -1,0 +1,10 @@
+@import "tailwindcss";
+
+.game-controls__container {
+  @apply flex flex-wrap justify-between lg:flex-col;
+}
+
+.middle-row {
+  /* 60px button width * 2 */
+  @apply w-[calc(100%-120px)] justify-evenly md:gap-4 md:justify-between md:w-auto;
+}

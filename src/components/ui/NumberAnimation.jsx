@@ -42,7 +42,7 @@ const NumberAnimation = ({ value, isVisible = false }) => {
 
   return (
     <div className="transition-all duration-2000 ease-out">
-      <p className="text-5xl text-center">{animatedValue}</p>
+      <p className="text-4xl text-center">{animatedValue}</p>
     </div>
   );
 };

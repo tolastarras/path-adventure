@@ -1,6 +1,6 @@
 export const DATA = {
   title: 'Path Adventure',
-  description: 'Follow the path from 🚴‍♂️ to 🏁 with your moves!',
+  description: 'Follow the path from 🚴‍♂️ to 🏁',
 };
 
 export const ICONS = {

@@ -17,4 +17,13 @@ export {
   drawSand,
 } from './terrainDrawerHelper';
 
-export { formatStep } from './gameHelper';
+export { formatStep, directionIcons } from './gameHelper';
+
+export {
+  totalPlayers,
+  highestScore,
+  highestGamesWon,
+  getTopPlayers,
+  getRankColor,
+  getRankIcon,
+} from './leaderboardHelper';

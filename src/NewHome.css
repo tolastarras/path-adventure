@@ -1,8 +1,5 @@
 @import 'tailwindcss';
 
-.new-app {
-  @apply flex flex-col min-h-screen mx-auto gap-8 w-full p-4 lg:p-10 space-y-5;
-  @apply bg-linear-to-br from-blue-700 via-blue-500 to-blue-400;
-  @apply grow;
-  @apply text-4xl text-white/90;
+.top-container {
+  @apply flex flex-col sm:w-full md:max-w-200 mx-auto;
 }
