@@ -5,7 +5,7 @@ import { arrowIcon } from '@/assets/icons';
 
 import './GameControls.css';
 
-const GameControls = ({ onClick, directions, resetButtons }) => {
+const GameControls = ({ onClick, directions, resetButtons, gameStatus }) => {
   const [selectedDirection, setSelectedDirection] = useState(null);
 
   const handleClick = (direction) => {
@@ -29,9 +29,10 @@ const GameControls = ({ onClick, directions, resetButtons }) => {
               <GlossyButton
                 key={id}
                 variant="primary"
-                className={`w-15 h-15`}
+                className="w-15 h-15"
                 isActive={id === selectedDirection && !resetButtons}
                 onClick={() => handleClick(id)}
+                disabled={gameStatus !== 'playing'}
               >
                 <CustomIcon
                   icon={arrowIcon}

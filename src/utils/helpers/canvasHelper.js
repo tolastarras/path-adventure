@@ -108,35 +108,6 @@ export const drawCellText = (ctx, text, options = {}) => {
   ctx.fillText(text, 0, textY);
 };
 
-export const convertMovesToCoordinates = (moves, path) => {
-  const startCell = path[0];
-
-  let x = startCell.x;
-  let y = startCell.y;
-
-  const coordinates = [{ x, y }]; // Start from correct position
-
-  moves.forEach(move => {
-    const match = move.match(/(\d+)([→←↑↓])/);
-    if (!match) return;
-
-    const [, countStr, direction] = match;
-    const count = parseInt(countStr, 10);
-
-    for (let i = 0; i < count; i++) {
-      switch (direction) {
-        case '→': x += 1; break;
-        case '←': x -= 1; break;
-        case '↑': y -= 1; break;
-        case '↓': y += 1; break;
-      }
-      coordinates.push({ x, y });
-    }
-  });
-
-  return coordinates;
-};
-
 // Helper function to determine bicycle direction
 export const calculateBicycleDirection = (currentX, lastXPosition, lastDirection = 'right') => {
   let direction = lastDirection;

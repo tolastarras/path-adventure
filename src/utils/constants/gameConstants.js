@@ -42,20 +42,27 @@ export const ROTATION_ANGLES = {
 };
 
 export const GAME_RESULTS = {
-  won: {
+  100: {
     title: 'Congratulations!',
-    subtitle: 'You found the correct path.',
-    description: (moves) => `You reached the destination in ${moves} moves.`,
+    subtitle: 'Expert Navigation! You found the correct path.',
+    variant: 'info',
+  },
+  80: {
+    title: 'Expert Navigation!',
+    subtitle: 'You are a Master Navigator!',
     variant: 'success',
   },
-  lost: {
-    title: "Learning experience!",
-    description: (points) => points > 0 
-      ? `You earned ${points} points. Practice makes perfect!`
-      : "Don't give up! Every explorer gets lost sometimes.",
+  50: {
+    title: 'Good Job!',
+    subtitle: 'You\'re getting there.',
+    variant: 'warning',
+  },
+  0: {
+    title: 'Learning Experience!',
+    subtitle: "Don't give up! Every explorer gets lost sometimes.",
     variant: 'danger',
-  }
-}
+  },
+};
 
 export const FONT_SCALE_FACTOR = 6;
 export const MIN_FONT_SIZE = 10;
@@ -82,7 +89,7 @@ export const CANVAS_PADDING = 0;  // Increased padding to accommodate larger squ
 
 const screenWidth = window.innerWidth;
 const screenHeight = window.innerHeight;
-console.log(screenWidth, screenHeight);
+console.log('Screen size:', screenWidth, screenHeight);
 
 export const CANVAS = {
   width: GRID_SIZE * CELL_SIZE + 2 * CANVAS_PADDING,
@@ -97,25 +104,22 @@ export const ITINERARY = {
   dotColor: colors.dotColor,
 }
 
-export const GAME_STATS = [
-  {
-    id: 1,
-    title: 'Games Won',
-    type: 'percent',
-    value: 45,
-  },
+export const GAME_STATS_CARDS = [
   {
     id: 2,
     title: 'Total Points',
     type: 'number',
-    value: 20,
   },
   {
     id: 3,
-    title: 'Leaderboard',
+    title: 'Best Score',
+    type: 'number',
+  },
+  {
+    id: 1,
+    title: 'Games Won',
     type: 'percent',
-    value: 70,
-  }
+  },
 ];
 
 export const TYPOGRAPHY = {

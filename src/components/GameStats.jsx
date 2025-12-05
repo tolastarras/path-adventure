@@ -1,15 +1,28 @@
-import { useState } from 'react';
+import { useState, useMemo } from 'react';
 import { GlossyCard, HeaderTitle, ProgressBar, NumberAnimation } from '.';
+import { getScoreStats } from '@/utils/storage';
+import { buildGameStatsCards } from '@/utils/helpers';
 import { gameStatsImage } from '@/assets';
 
 import './GameStats.css';
 
-const GameStats = ({gameStats}) => {
+const GameStats = () => {
   const [isExpanded, setIsExpanded] = useState(false);
 
   const toggleStats = () => {
     setIsExpanded(!isExpanded);
   };
+
+  // Only calculate stats when expanded or when stats change
+  const statsCards = useMemo(() => {
+    if (!isExpanded) return [];
+
+    const { user } = getScoreStats();
+    const username = 'TOLAS';
+    const userStats = user[username];
+
+    return buildGameStatsCards(userStats);
+  }, [isExpanded]);
 
   return (
     <>
@@ -20,7 +33,7 @@ const GameStats = ({gameStats}) => {
             alt="Game Stats"
             className="game-stats__image"
           />
-          <span className={`game-stats__text`}>
+          <span className="game-stats__text">
             {isExpanded ? 'Hide Stats' : 'Show Stats'}
           </span>
         </div>
@@ -29,7 +42,7 @@ const GameStats = ({gameStats}) => {
       <div className={`game-stats-cards ${isExpanded ? 'open' : 'close'}`} >
         <div className="pt-2">
           <div className="game-stats__container">
-            {gameStats.map(({ id, title, type, value }) => (
+            {statsCards.map(({ id, title, type, value }) => (
               <GlossyCard key={id} className="w-full lg:w-1/3">
                 <HeaderTitle title={title} />
                 {type === 'percent' &&

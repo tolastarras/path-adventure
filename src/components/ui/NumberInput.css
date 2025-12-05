@@ -1,15 +1,24 @@
 @import "tailwindcss";
 
-.number-input-container {
-  @apply flex items-center justify-between p-1 border border-gray-300 rounded-lg;
+.number-input__container {
+  @apply flex items-center justify-between p-1 border-2 border-gray-300 rounded-lg;
   @apply hover:scale-105;
   @apply transition-all duration-200;
 }
 
+.number-input__container.disabled {
+  @apply border-blue-300/80 pointer-events-none;
+}
+
+.number-input__container.disabled > .number-input__button,
+.number-input__container.disabled > .number-input__field {
+  @apply text-blue-300;
+}
+
 .number-input__field {
-  @apply text-center focus:outline-none focus:ring-2 focus:ring-transparent focus:border-transparent;
+  @apply text-2xl font-black text-center pointer-events-none;
+  @apply focus:outline-none focus:ring-2 focus:ring-transparent focus:border-transparent;
   @apply [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none;
-  @apply text-2xl font-black pointer-events-none;
 }
 
 .number-input__button {

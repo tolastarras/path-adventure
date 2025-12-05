@@ -13,8 +13,6 @@ const LeaderboardAlert = ({ onClose }) => {
   const topPlayers = getTopPlayers();
   const { noPlayersText, playMoreText } = leaderboard;
 
-  console.log({totalPlayers: totalPlayers, highestScore: highestScore});
-
   return (
     <AlertBox
       title="Leaderboard"
@@ -48,7 +46,6 @@ const LeaderboardAlert = ({ onClose }) => {
                       : 'bg-white/10 border-white/20'
                   }`}
                 >
-                  {/* Rank */}
                   <div className="flex items-center space-x-3">
                     <div className={`w-10 h-10 rounded-full flex items-center justify-center bg-linear-to-br ${getRankColor(index + 1)}`}>
                       <span className="font-bold text-white text-sm">
@@ -57,18 +54,15 @@ const LeaderboardAlert = ({ onClose }) => {
                     </div>
                   </div>
                   
-                  {/* Player Name */}
                   <span className="text-left font-medium text-white/90 truncate">
                     <span className="mr-2">{player}</span>
                     <span className="text-2xl">{getRankIcon(index + 1)}</span>
                   </span>
                   
-                  {/* Score */}
                   <span className="text-center font-mono font-bold text-lg bg-linear-to-r from-green-400 to-emerald-500 bg-clip-text text-transparent">
                     {score}
                   </span>
                   
-                  {/* Games Won */}
                   <span className="text-right font-mono font-bold text-white/80">
                     {gamesWon}
                     <span className="text-yellow-400 ml-1">⭐</span>
@@ -77,9 +71,7 @@ const LeaderboardAlert = ({ onClose }) => {
               ))}
             </div>
 
-            {/* Stats Summary */}
             <div className="mt-6 grid grid-cols-2 gap-4">
-              {/* Total Players */}
               <div className="p-4 bg-white/5 rounded-xl border border-white/20 text-center">
                 <div className="text-2xl font-bold text-cyan-400">
                   {totalPlayers}
@@ -87,7 +79,6 @@ const LeaderboardAlert = ({ onClose }) => {
                 <div className="text-sm text-white/70">Total Players</div>
               </div>
               
-              {/* Top Score */}
               <div className="p-4 bg-white/5 rounded-xl border border-white/20 text-center">
                 <div className="text-2xl font-bold text-green-400">
                   {highestScore}

@@ -1,4 +1,8 @@
-# React + Vite
+# Generate project structure tree
+
+tree -I 'node_modules|dist|build|.git|.vscode' > project-structure.txt
+
+## React + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 

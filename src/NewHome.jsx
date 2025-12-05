@@ -31,8 +31,6 @@ import {
   formatStep,
 } from '@/utils/helpers';
 
-import { gameStats } from '@/utils/constants';
-
 import './NewHome.css';
 
 const NewHome = () => {
@@ -185,7 +183,7 @@ const NewHome = () => {
         <GameStatusAlert
           gameStatus={gameStatus}
           playerMoves={playerMoves}
-          correctPath={currentPath}
+          currentPath={currentPath}
           onClose={handleCloseGameStatusAlert}
         />
       )}
@@ -202,7 +200,7 @@ const NewHome = () => {
         <div className="p-1 md:p-4">
           <HeaderSection className="mb-4" />
           <div className="relative mb-2">
-            <GameStatsSection className="mb-8" gameStats={gameStats} />
+            <GameStatsSection className="mb-8" />
             <div className="absolute top-2 right-2">
               <IconMenu onClick={handleIconClick} onClose={closeAlert} />
             </div>
@@ -211,6 +209,7 @@ const NewHome = () => {
           <div className="md:flex sm:gap-2 md:gap-7">
             <ControlsPanel
               step={step}
+              gameStatus={gameStatus}
               resetControlButtons={resetControlButtons}
               resetNumberInput={resetNumberInput}
               currentStep={currentStep}

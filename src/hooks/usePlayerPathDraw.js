@@ -1,5 +1,6 @@
 import { useCallback, useRef } from 'react';
 import { cellSize, canvasPadding, colors, itinerary } from '@/utils/constants';
+import { convertArrowMovesToCoordinates, convertCoordinatesToArrowMoves } from '@/utils/helpers';
 
 export const usePlayerPathDraw = () => {
   const animationRef = useRef(null);
@@ -20,39 +21,7 @@ export const usePlayerPathDraw = () => {
       cancelAnimationFrame(animationRef.current);
     }
 
-    const startX = canvasPadding;
-    const startY = canvasPadding;
-
-    // Convert player moves to coordinates starting from path[0]
-    const movesToCoordinates = (moves, correctPath) => {
-      const startCell = correctPath[0];
-      let x = startCell.x;
-      let y = startCell.y;
-      
-      const coordinates = [{ x, y }]; // Start from correct position
-
-      moves.forEach(move => {
-        const match = move.match(/(\d+)([→←↑↓])/);
-        if (!match) return;
-
-        const [, countStr, direction] = match;
-        const count = parseInt(countStr, 10);
-
-        for (let i = 0; i < count; i++) {
-          switch (direction) {
-            case '→': x += 1; break;
-            case '←': x -= 1; break;
-            case '↑': y -= 1; break;
-            case '↓': y += 1; break;
-          }
-          coordinates.push({ x, y });
-        }
-      });
-
-      return coordinates;
-    };
-
-    const playerCoordinates = movesToCoordinates(playerMoves, path);
+    const playerPath = convertArrowMovesToCoordinates(playerMoves, path[0]);
 
     let currentSegment = 0;
     let segmentStartTime = performance.now();
@@ -71,27 +40,27 @@ export const usePlayerPathDraw = () => {
       ctx.beginPath();
       
       // Always start from the very first coordinate
-      const firstCoord = playerCoordinates[0];
+      const firstCoord = playerPath[0];
       ctx.moveTo(
-        startX + firstCoord.x * cellSize + cellSize / 2,
-        startY + firstCoord.y * cellSize + cellSize / 2
+        canvasPadding + firstCoord.x * cellSize + cellSize / 2,
+        canvasPadding + firstCoord.y * cellSize + cellSize / 2
       );
-      
+
       // Draw up to the current endpoint (currentSegment + 1 because we include the start)
       for (let i = 1; i <= currentSegment + 1; i++) {
-        const coord = playerCoordinates[i];
+        const coord = playerPath[i];
         if (!coord) break;
 
         ctx.lineTo(
-          startX + coord.x * cellSize + cellSize / 2,
-          startY + coord.y * cellSize + cellSize / 2
+          canvasPadding + coord.x * cellSize + cellSize / 2,
+          canvasPadding + coord.y * cellSize + cellSize / 2
         );
       }
       ctx.stroke();
 
       // Check if we should move to next segment
       if (segmentElapsed >= segmentDelay) {
-        if (currentSegment < playerCoordinates.length - 2) {
+        if (currentSegment < playerPath.length - 2) {
           currentSegment++;
           segmentStartTime = currentTime;
         } else {
@@ -118,34 +87,15 @@ export const usePlayerPathDraw = () => {
     }
   }, []);
 
-  // Check if player path matches the correct path
-  const isPlayerPathValid = useCallback((playerMoves, correctPath) => {
-    if (!playerMoves || !correctPath || correctPath.length === 0) return false;
+  // Check if player path matches the path
+  const isPlayerPathValid = useCallback((playerMoves, currentPath) => {
+    if (!playerMoves?.length || !currentPath?.length) return false;
 
-    // Convert player moves starting from correct starting position
-    const startCell = correctPath[0];
-    let x = startCell.x;
-    let y = startCell.y;
+    // Convert current path coordinates to arrow steps
+    const currentMoves = convertCoordinatesToArrowMoves(currentPath);
 
-    playerMoves.forEach(move => {
-      const match = move.match(/(\d+)([→←↑↓])/);
-      if (!match) return;
-
-      const [, countStr, direction] = match;
-      const count = parseInt(countStr, 10);
-
-      for (let i = 0; i < count; i++) {
-        switch (direction) {
-          case '→': x += 1; break;
-          case '←': x -= 1; break;
-          case '↑': y -= 1; break;
-          case '↓': y += 1; break;
-        }
-      }
-    });
-
-    const correctEnd = correctPath[correctPath.length - 1];
-    return x === correctEnd.x && y === correctEnd.y;
+    return playerMoves.length === currentMoves.length &&
+      playerMoves.every((move, index) => move === currentMoves[index]);
   }, []);
 
   return {

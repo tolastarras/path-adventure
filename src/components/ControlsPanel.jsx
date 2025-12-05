@@ -17,7 +17,8 @@ const ControlsPanel = ({
   onSquaresChange,
   onDirectionChange,
   onAddStep,
-  onUndoStep
+  onUndoStep,
+  gameStatus,
 }) => (
   <div className="flex flex-col space-y-4 md:max-w-48 lg:max-w-80">
     <div className="w-full">
@@ -27,12 +28,14 @@ const ControlsPanel = ({
           resetInput={resetNumberInput}
           value={step.squares}
           onChange={onSquaresChange}
+          gameStatus={gameStatus}
         />
       </GlossyCard>
     </div>
     
     <div>
       <GameControlsSection
+        gameStatus={gameStatus}
         resetButtons={resetControlButtons}
         directions={directionObjects}
         onClick={onDirectionChange}
