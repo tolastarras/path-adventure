@@ -1,5 +1,5 @@
 import { useCallback, useRef } from 'react';
-import { convertMovesToCoordinates } from '@/utils/gameLogic/pathLogic';
+import { convertArrowMovesToCoordinates } from '@/utils/helpers';
 import { cellSize, canvasPadding, colors } from '@/utils/constants';
 
 export const useSmoothPathAnimationDraw = () => {
@@ -27,7 +27,7 @@ export const useSmoothPathAnimationDraw = () => {
     const startX = canvasPadding;
     const startY = canvasPadding;
 
-    const playerCoordinates = convertMovesToCoordinates(playerMoves, correctPath);
+    const playerCoordinates = convertArrowMovesToCoordinates(playerMoves, correctPath[0]);
 
     const animate = (currentTime) => {
       const elapsed = currentTime - startTime;

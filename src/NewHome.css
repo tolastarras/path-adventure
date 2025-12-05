@@ -1,5 +1,5 @@
 @import 'tailwindcss';
 
 .top-container {
-  @apply flex flex-col sm:w-full md:max-w-200 mx-auto;
+  @apply flex flex-col sm:w-full md:max-w-200 mx-auto relative;
 }

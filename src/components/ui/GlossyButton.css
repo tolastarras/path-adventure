@@ -66,9 +66,10 @@
 }
 
 .glossy-button--disabled {
-  @apply disabled:cursor-not-allowed text-gray-300/80 border-gray-300/30;
+  @apply text-gray-300/80 border-gray-300/30;
   @apply before:bg-linear-to-b before:from-gray-300 before:via-gray-400 before:to-gray-300 before:to-90% before:via-60%;
   @apply after:bg-linear-to-b after:from-gray-400 after:to-gray-500;
+  @apply pointer-events-none;
 }
 
 .glossy-button--purple {

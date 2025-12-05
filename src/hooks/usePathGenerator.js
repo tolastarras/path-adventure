@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback } from 'react';
-import { generateRandomPath } from '@/utils/pathUtils';
+import { generateRandomPath } from '@/utils/helpers';
 
 const usePathGenerator = () => {
   const [path, setPath] = useState([]);

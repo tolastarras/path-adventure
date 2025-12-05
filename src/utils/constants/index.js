@@ -1,13 +1,13 @@
 export {
   COLORS as colors,
-  TERRAIN_COLORS as terrainColors
+  TERRAIN_COLORS as terrainColors,
 } from './colorConstants';
 
 export {
   ICONS as icons,
   ROTATION_ANGLES as rotationAngles,
   GAME_RESULTS as gameResults,
-  GAME_STATS as gameStats,
+  GAME_STATS_CARDS as gameStatsCards,
   FONT_SCALE_FACTOR,
   TYPOGRAPHY as typography,
   MIN_FONT_SIZE,
@@ -23,8 +23,11 @@ export {
 } from './gameConstants';
 
 export {
+  SCORE_STORAGE_KEY as storeKey,
   BASE_WIN_POINTS as baseWinPoints,
-  BASE_LOSE_POINTS as baseLosePoints
+  PARTICIPATION_POINTS as participationPoints,
+  CORRECT_SEGMENT_POINTS as correctSegmentPoints,
+  PARTIAL_WIN_ACCURACY_MULTIPLIER as partialWinAccuracyMultiplier,
 } from './scoreConstants';
 
 export {
@@ -38,3 +41,4 @@ export {
 export {
   LEADERBOARD as leaderboard,
 } from './leaderboardConstants';
+

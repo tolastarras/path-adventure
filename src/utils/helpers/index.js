@@ -1,7 +1,4 @@
-export { isSegmentInPath } from './pathHelper';
-
 export {
-  convertMovesToCoordinates,
   calculateBicycleDirection,
   getCellCenterPoint,
   drawCellText,
@@ -17,8 +14,6 @@ export {
   drawSand,
 } from './terrainDrawerHelper';
 
-export { formatStep, directionIcons } from './gameHelper';
-
 export {
   totalPlayers,
   highestScore,
@@ -27,3 +22,22 @@ export {
   getRankColor,
   getRankIcon,
 } from './leaderboardHelper';
+
+export {
+  isValidPosition,
+  isValidEndPosition,
+  isOnEdge,
+  isSegmentInPath,
+  convertArrowMovesToCoordinates,
+  convertCoordinatesToArrowMoves,
+  generateRandomPath,
+} from './path';
+
+export { storage } from './storeHelper';
+
+export {
+  formatStep,
+  directionIcons,
+  gameResultsHeading,
+  buildGameStatsCards,
+} from './gameHelper';

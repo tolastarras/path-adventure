@@ -1,4 +1,3 @@
-import { isSegmentInPath } from '@/utils/helpers';
 import { gridSize } from '@/utils/constants';
 
 export const reconstructPlayerPath = (playerMoves, path) => {
@@ -32,52 +31,53 @@ export const reconstructPlayerPath = (playerMoves, path) => {
   return reconstructedPath;
 };
 
-export const findCorrectSegments = (playerMoves, correctPath) => {
-  if (!playerMoves || !correctPath) return 0;
-  
-  // Convert player moves to coordinates
-  const playerCoords = convertMovesToCoordinates(playerMoves, correctPath);
-  let correctSegments = 0;
-  
-  // Compare each segment of player's path with correct path
-  for (let i = 0; i < playerCoords.length - 1; i++) {
-    const playerSegment = [playerCoords[i], playerCoords[i + 1]];
+export const countMatchingSegments = (playerPath, originalPath) => {
+  if (!playerPath?.length || !originalPath?.length) {
+    return 0;
+  }
+
+  const minLength = Math.min(playerPath.length, originalPath.length);
+  let matchCount = 0;
+
+  for (let i = 0; i < minLength; i++) {
+    const playerPoint = playerPath[i];
+    const originalPoint = originalPath[i];
     
-    // Check if this segment exists in the correct path
-    if (isSegmentInPath(playerSegment, correctPath)) {
-      correctSegments++;
+    const isMatch = playerPoint.x === originalPoint.x && playerPoint.y === originalPoint.y;
+
+    if (isMatch) {
+      matchCount++;
     }
   }
-  
-  return correctSegments;
+
+  return matchCount;
 };
 
-export const convertMovesToCoordinates = (moves, correctPath) => {
-  if (!correctPath || correctPath.length === 0) return [];
-  
-  const startCell = correctPath[0];
-  let x = startCell.x;
-  let y = startCell.y;
-  
-  const coordinates = [{ x, y }];
+export const getPathMatchingStats = (playerPath, originalPath) => {
+  if (!playerPath?.length || !originalPath?.length) {
+    return { matches: 0, total: 0, percentage: 0 };
+  }
 
-  moves.forEach(move => {
-    const match = move.match(/(\d+)([→←↑↓])/);
-    if (!match) return;
+  const minLength = Math.min(playerPath.length, originalPath.length);
+  const totalSegments = originalPath.length;
 
-    const [, countStr, direction] = match;
-    const count = parseInt(countStr, 10);
+  let matchCount = 0;
 
-    for (let i = 0; i < count; i++) {
-      switch (direction) {
-        case '→': x += 1; break;
-        case '←': x -= 1; break;
-        case '↑': y -= 1; break;
-        case '↓': y += 1; break;
-      }
-      coordinates.push({ x, y });
+  for (let i = 0; i < minLength; i++) {
+    const playerPoint = playerPath[i];
+    const originalPoint = originalPath[i];
+
+    const isMatch = playerPoint.x === originalPoint.x && playerPoint.y === originalPoint.y;
+
+    // Matching segments
+    if (isMatch) {
+      matchCount++;
     }
-  });
+  }
 
-  return coordinates;
+  return {
+    matches: matchCount,
+    total: totalSegments,
+    percentage: Math.round((matchCount / totalSegments) * 100),
+  };
 };
