@@ -27,7 +27,6 @@ const GameStatus = ({ gameStatus, playerMoves, currentPath, onClose }) => {
         accuracy: stats.percentage,
         status: gameStatus
       }
-      console.log('Game result:', storageResult);
 
       updateScoreStats(storageResult);
 

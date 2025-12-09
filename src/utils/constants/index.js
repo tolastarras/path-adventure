@@ -20,6 +20,7 @@ export {
   DATA as generalInfo,
   MENU_ITEMS as menuItems,
   ITINERARY as itinerary,
+  USERNAME as username,
 } from './gameConstants';
 
 export {
