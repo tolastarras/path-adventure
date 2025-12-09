@@ -6,6 +6,7 @@ const GlossyCard = ({
   title,
   description,
   children,
+  showOverflow = false,
   showGlare = false,
   showGlow = false,
   showShine = true,
@@ -14,9 +15,10 @@ const GlossyCard = ({
   disableHover = true,
   className = ''
 }) => {
-  const baseClass = `glossy-card--transparent ${showPadding && 'glossy-card--padding'}`;
   const hoverClasses = !disableHover && 'glossy-card--hover';
-  
+  const baseClass = `glossy-card--transparent ${showPadding && 'glossy-card--padding'}
+    overflow-${showOverflow ? 'visible' : 'hidden'}`;
+
   const effectClasses = [
     showGlare && 'glossy-card--with-glare',
     showGlow && 'glossy-card--with-glow-soft',

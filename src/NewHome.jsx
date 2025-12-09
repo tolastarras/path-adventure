@@ -9,6 +9,7 @@ import {
   LeaderboardAlert,
   ControlsPanel,
   GameArea,
+  BubbleDialog,
   GameHeader as HeaderSection,
   GameStats as GameStatsSection,
 } from '@/components';
@@ -196,7 +197,7 @@ const NewHome = () => {
       {isAlertOpen('leaderboard') && (
         <LeaderboardAlert onClose={handleCloseAlert} />
       )}
-      <GlossyCard>
+      <GlossyCard showOverflow>
         <div className="p-1 md:p-4">
           <HeaderSection className="mb-4" />
           <div className="relative mb-2">
