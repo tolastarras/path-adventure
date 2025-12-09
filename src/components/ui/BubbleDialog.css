@@ -1,0 +1,24 @@
+@import "tailwindcss";
+
+.bubble-dialog__container {
+  @apply hidden md:block absolute -top-8 right-7;
+  @apply transition-all duration-300 ease-out origin-center;
+}
+
+.bubble-dialog__container.show {
+  @apply opacity-100 scale-100;
+}
+
+.bubble-dialog__container.hide {
+  @apply opacity-0 scale-75;
+}
+
+.bubble-dialog {
+  @apply bg-white border-2 border-amber-300 rounded-3xl shadow-lg;
+  @apply py-2 px-4 text-gray-800 text-sm;
+}
+
+.bubble-tail {
+  @apply w-full h-full bg-white border-b-2 border-r-2 border-amber-300 rotate-45 rounded-xs;
+  @apply absolute -bottom-[7px] right-8 w-4 h-4;
+}

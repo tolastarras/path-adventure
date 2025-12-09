@@ -12,8 +12,13 @@ import { colors } from '.';
 
 export const DATA = {
   title: 'Path Adventure',
-  description: 'Follow the path from 🚴‍♂️ to 🏁',
+  description: {
+    mobile: 'Follow the path',
+    desktop: 'Follow the path from 🚴‍♂️ to 🏁',
+  },
 };
+
+export const USERNAME = 'TOLAS';
 
 export const ICONS = {
   bicycle: '🚴‍♂️',

@@ -63,6 +63,8 @@
 │   │       ├── AlertBox.css
 │   │       ├── AlertBox.jsx
 │   │       ├── AnimatedBorder.jsx
+│   │       ├── BubbleDialog.css
+│   │       ├── BubbleDialog.jsx
 │   │       ├── CustomIcon.css
 │   │       ├── CustomIcon.jsx
 │   │       ├── GlossyButton.css
@@ -161,4 +163,4 @@
 │           └── scoreStorage.js
 └── vite.config.js
 
-21 directories, 141 files
+21 directories, 143 files

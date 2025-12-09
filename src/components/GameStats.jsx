@@ -3,6 +3,7 @@ import { GlossyCard, HeaderTitle, ProgressBar, NumberAnimation } from '.';
 import { getScoreStats } from '@/utils/storage';
 import { buildGameStatsCards } from '@/utils/helpers';
 import { gameStatsImage } from '@/assets';
+import { username } from '@/utils/constants';
 
 import './GameStats.css';
 
@@ -18,7 +19,6 @@ const GameStats = () => {
     if (!isExpanded) return [];
 
     const { user } = getScoreStats();
-    const username = 'TOLAS';
     const userStats = user[username];
 
     return buildGameStatsCards(userStats);
