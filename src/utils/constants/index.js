@@ -24,12 +24,17 @@ export {
 } from './gameConstants';
 
 export {
-  SCORE_STORAGE_KEY as storeKey,
   BASE_WIN_POINTS as baseWinPoints,
   PARTICIPATION_POINTS as participationPoints,
   CORRECT_SEGMENT_POINTS as correctSegmentPoints,
   PARTIAL_WIN_ACCURACY_MULTIPLIER as partialWinAccuracyMultiplier,
 } from './scoreConstants';
+
+export {
+  GAME_STATS_STORAGE_KEY as storeKey,
+  DEFAULT_STORE as defaultStore,
+  SESSION_HISTORY_LIMIT as sessionHistoryLimit,
+} from './storeConstants';
 
 export {
   ABOUT as about,

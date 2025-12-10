@@ -5,6 +5,11 @@
   @apply transition-transform duration-200;
 }
 
+.custom-icon__default {
+  @apply transition-all duration-300 border-2 rounded-full p-1 text-blue-200;
+  @apply hover:scale-110 hover:text-white/90;
+}
+
 .custom-icon--scale {
   @apply hover:scale-125;
 }

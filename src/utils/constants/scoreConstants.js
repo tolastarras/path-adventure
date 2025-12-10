@@ -1,5 +1,3 @@
-export const SCORE_STORAGE_KEY = 'pathAdventure_stats';
-
 // Perfect path replication points
 export const BASE_WIN_POINTS = 100;
 

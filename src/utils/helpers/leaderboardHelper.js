@@ -1,21 +1,14 @@
-import { leaderboard } from '@/utils/constants';
+import { initializeScoreStorage } from '@/utils/storage';
+import { sessionHistoryLimit } from '@/utils/constants';
 
-export const getTopPlayers = (players = 10) => {
-  const { sample } = leaderboard;
+export const getScoreStats = () => initializeScoreStorage();
 
-  if (!Array.isArray(sample) || sample.length === 0) {
-    return [];
-  }
-
-  let newSample = [...sample];
-  if (sample.length <= players) {
-    return newSample;
-  }
-
-  const topPlayers = newSample.sort((a, b) => {
+export const getTopPlayers = (maxPlayers = 10) => {
+  const { users } = getScoreStats();
+  return users.sort((a, b) => {
     // First sort by score (descending)
-    if (b.score !== a.score) {
-      return b.score - a.score;
+    if (b.totalScore !== a.totalScore) {
+      return b.totalScore - a.totalScore;
     }
     // If scores are equal, sort by gamesWon (descending)
     if (b.gamesWon !== a.gamesWon) {
@@ -23,9 +16,7 @@ export const getTopPlayers = (players = 10) => {
     }
     // If both are equal, maintain original order (first one wins)
     return 0;
-  }).slice(0, players); // Take first 10
-
-  return topPlayers.length > 0 ? topPlayers : [];
+  }).slice(0, maxPlayers) || []; // Take first 10
 };
 
 export const getRankColor = (rank) => {
@@ -33,7 +24,7 @@ export const getRankColor = (rank) => {
     case 1: return 'from-yellow-400 to-amber-500';
     case 2: return 'from-gray-400 to-gray-300';
     case 3: return 'from-amber-700 to-amber-600';
-    default: return 'from-blue-400 to-cyan-500';
+    default: return 'from-cyan-500 to-blue-500';
   }
 };
 
@@ -46,20 +37,33 @@ export const getRankIcon = (rank) => {
   }
 };
 
-export const totalPlayers = leaderboard.sample.length;
+export const totalPlayers = () => {
+  return getScoreStats().users.length;
+};
 
-export const highestScore = (() => {
-  const { sample } = leaderboard;
-  if (!Array.isArray(sample) || sample.length === 0) {
-    return 0;
-  }
-  return Math.max(...sample.map(player => player.score));
-})();
+export const highestScore = () => {
+  return getScoreStats().bestScore;
+};
 
-export const highestGamesWon = () => {
-  const { sample } = leaderboard;
-  if (!Array.isArray(sample) || sample.length === 0) {
-    return 0;
+export const getUserStats = (userId) => {
+  const stored = initializeScoreStorage();
+  return stored.users.find((u) => u.id === userId) || null;
+};
+
+export const getSessionHistory = (limit = sessionHistoryLimit) => {
+  const stored = initializeScoreStorage();
+  return stored.sessionScores.slice(0, limit);
+};
+
+export const getTopSingleGamePlayer = () => {
+  const stored = initializeScoreStorage();
+
+  if (stored.users.length === 0) {
+    return null;
   }
-  return Math.max(...sample.map(player => player.gamesWon));
+
+  // Returns user with the highest score for a single game
+  return stored.users.reduce((best, current) =>
+    current.bestScore > best.bestScore ? current : best
+  );
 };

@@ -5,7 +5,6 @@ import {
   IconMenu,
   GameStatusAlert,
   HowToPlayAlert,
-  AboutGamePathAlert,
   LeaderboardAlert,
   ControlsPanel,
   GameArea,
@@ -188,11 +187,8 @@ const NewHome = () => {
           onClose={handleCloseGameStatusAlert}
         />
       )}
-      {isAlertOpen('how-to-play') && (
+      {isAlertOpen('about-game') && (
         <HowToPlayAlert onClose={handleCloseAlert} />
-      )}
-      {isAlertOpen('about') && (
-        <AboutGamePathAlert onClose={handleCloseAlert} />
       )}
       {isAlertOpen('leaderboard') && (
         <LeaderboardAlert onClose={handleCloseAlert} />
@@ -202,7 +198,7 @@ const NewHome = () => {
           <HeaderSection className="mb-4" />
           <div className="relative mb-2">
             <GameStatsSection className="mb-8" />
-            <div className="absolute top-2 right-2">
+            <div className="absolute top-1 right-2">
               <IconMenu onClick={handleIconClick} onClose={closeAlert} />
             </div>
           </div>

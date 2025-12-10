@@ -5,3 +5,15 @@
   @apply bg-linear-to-br from-blue-700 via-blue-500 to-blue-400;
   @apply text-xl text-white/90;
 }
+
+.success-text {
+  @apply bg-linear-to-r from-green-400 to-emerald-300 bg-clip-text text-transparent;
+}
+
+.info-text {
+  @apply bg-linear-to-r from-cyan-400 to-sky-400 bg-clip-text text-transparent;
+}
+
+.simple-text {
+  @apply font-bold bg-linear-to-r from-green-200 to-emerald-200 bg-clip-text text-transparent;
+}

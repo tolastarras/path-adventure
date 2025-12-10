@@ -17,7 +17,8 @@ export {
 export {
   totalPlayers,
   highestScore,
-  highestGamesWon,
+  getTopSingleGamePlayer,
+  getScoreStats,
   getTopPlayers,
   getRankColor,
   getRankIcon,
@@ -33,11 +34,14 @@ export {
   generateRandomPath,
 } from './path';
 
-export { storage } from './storeHelper';
+export {
+  getStorage,
+  setStorage,
+  clearStorage,
+} from './storeHelper';
 
 export {
   formatStep,
-  directionIcons,
   gameResultsHeading,
   buildGameStatsCards,
 } from './gameHelper';

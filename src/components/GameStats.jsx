@@ -1,6 +1,6 @@
 import { useState, useMemo } from 'react';
 import { GlossyCard, HeaderTitle, ProgressBar, NumberAnimation } from '.';
-import { getScoreStats } from '@/utils/storage';
+import { getScoreStats } from '@/utils/helpers';
 import { buildGameStatsCards } from '@/utils/helpers';
 import { gameStatsImage } from '@/assets';
 import { username } from '@/utils/constants';
@@ -18,10 +18,10 @@ const GameStats = () => {
   const statsCards = useMemo(() => {
     if (!isExpanded) return [];
 
-    const { user } = getScoreStats();
-    const userStats = user[username];
+    const stats = getScoreStats();
+    const user = stats.users.find((u) => u.id === username);
 
-    return buildGameStatsCards(userStats);
+    return buildGameStatsCards(user);
   }, [isExpanded]);
 
   return (
