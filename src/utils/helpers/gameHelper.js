@@ -5,8 +5,6 @@ const getDirectionIcon = (direction) => {
   return directionObjects.find(item => item.id === direction)?.icon;
 };
 
-export const directionIcons = directionObjects.map(dir => dir.icon).join('');
-
 export const formatStep = (step) => {
   const { squares, direction } = step;
   if (!squares || !direction) return '';
@@ -35,13 +33,12 @@ export const gameResultsHeading = (stats) => {
 }
 
 export const buildGameStatsCards = (stats) => {
-  const { bestScore, totalScore, attempts, wins } = stats;
+  const { bestScore, totalScore, attempts, gamesWon } = stats;
 
   return gameStatsCards.map((card) => {
-    console.log(card);
     switch (card.id) {
       case 1:
-        card.value = Math.floor(wins / attempts * 100);
+        card.value = Math.floor(gamesWon / attempts * 100);
         break;
       case 2:
         card.value = totalScore;

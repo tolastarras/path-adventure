@@ -5,7 +5,14 @@
   @apply drop-shadow-[0_0_10px_#00ffff,0_0_20px_#00ffff,0_0_30px_#00ffff];
 }
 
+.alert-title {
+  @apply mb-4 bg-linear-to-r from-blue-300 to-emerald-200 bg-clip-text text-transparent;
+}
+
+.alert-description {
+  @apply text-lg md:text-xl leading-relaxed;
+}
+
 .cool-text {
-  /* @apply [-webkit-text-stroke:1px_gray] [text-stroke:1px_gray]; */
   @apply font-bold;
 }

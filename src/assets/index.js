@@ -14,10 +14,11 @@ export {
 export {
   infoIcon,
   arrowIcon,
-  questionIcon,
   trophyIcon,
   successIcon,
   closeIcon,
   warningIcon,
   dangerIcon,
+  userIcon,
+  helpIcon,
 } from './icons';

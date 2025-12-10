@@ -1,1 +1,5 @@
-export { getScoreStats, updateScoreStats } from './scoreStorage';
+export {
+  initializeScoreStorage,
+  resetScoreStorage,
+  updateScoreStats,
+} from './leaderboardStorage';

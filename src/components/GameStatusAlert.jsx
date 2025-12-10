@@ -3,6 +3,7 @@ import { AlertBox } from '@/components';
 import { calculateScore } from '@/utils/gameLogic';
 import { gameResultsHeading } from '@/utils/helpers';
 import { updateScoreStats } from '@/utils/storage';
+import { username } from '@/utils/constants';
 
 const GameStatus = ({ gameStatus, playerMoves, currentPath, onClose }) => {
   const hasStoredResult = useRef(false);
@@ -20,7 +21,7 @@ const GameStatus = ({ gameStatus, playerMoves, currentPath, onClose }) => {
       const { points, stats } = gameResult;
 
       const storageResult = {
-        userId: 'TOLAS',
+        userId: username,
         score: points.total,
         moves: playerMoves.length,
         correctPathLength: currentPath.length,

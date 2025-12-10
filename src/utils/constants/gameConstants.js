@@ -1,11 +1,11 @@
 import {
   infoIcon,
-  questionIcon,
   trophyIcon,
   successIcon,
   warningIcon,
   dangerIcon,
   closeIcon,
+  helpIcon,
 } from '@/assets';
 
 import { colors } from '.';
@@ -18,7 +18,7 @@ export const DATA = {
   },
 };
 
-export const USERNAME = 'TOLAS';
+export const USERNAME = 'BikeNinja';
 
 export const ICONS = {
   bicycle: '🚴‍♂️',
@@ -29,13 +29,12 @@ export const ICONS = {
   close: closeIcon,
   leaderboard: trophyIcon,
   info: infoIcon,
-  question: questionIcon,
+  helpIcon,
 };
 
 export const MENU_ITEMS = [
   { id: 'leaderboard', icon: ICONS.leaderboard },
-  { id: 'how-to-play', icon: ICONS.info },
-  { id: 'about', icon: ICONS.question },
+  { id: 'about-game', icon: ICONS.helpIcon },
 ];
 
 // arrow button

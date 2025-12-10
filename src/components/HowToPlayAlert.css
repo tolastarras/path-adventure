@@ -1,0 +1,43 @@
+@import "tailwindcss";
+
+.how-to-step {
+  @apply flex items-start space-x-4 p-4 bg-white/5 rounded-xl border border-white/5;
+  @apply hover:border-white/10 transition-all duration-300 hover:scale-[1.02];
+}
+
+.about-cards__container {
+  @apply grid md:grid-cols-2 gap-4 md:gap-8;
+}
+
+.about-card {
+  @apply bg-transparent backdrop-blur-sm rounded-2xl p-6 border border-white/10;
+  @apply hover:border-white/20 transition-all duration-300 hover:scale-[1.02];
+}
+
+.about-card-header {
+  @apply mb-6 bg-linear-to-r bg-clip-text text-transparent;
+}
+
+.features {
+  @apply from-cyan-200 to-blue-100;
+}
+
+.pro-tip__container {
+  @apply mt-6 p-4 bg-yellow-500/10 border border-yellow-500/20 rounded-xl;
+}
+
+.pro-tip--title {
+  @apply flex items-center space-x-2 text-yellow-400 mb-2;
+}
+
+.tips {
+  @apply from-green-200 to-emerald-100;
+}
+
+.dev--section {
+  @apply bg-linear-to-br from-purple-500/10 to-pink-500/10 rounded-2xl p-8 border border-purple-500/10;
+}
+
+.footer {
+  @apply text-center text-white/70 text-sm;
+}

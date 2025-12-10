@@ -1,0 +1,5 @@
+@import "tailwindcss";
+
+.round-button {
+  @apply shrink-0 bg-linear-to-br rounded-full flex items-center justify-center text-white font-bold;
+}
