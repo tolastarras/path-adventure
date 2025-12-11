@@ -1,18 +1,33 @@
-import { baseWinPoints, baseLosePoints } from '@/utils/constants';
+import {
+  baseWinPoints,
+  participationPoints,
+  correctSegmentPoints,
+  partialWinAccuracyMultiplier,
+} from '@/utils/constants';
 
-export const calculateScore = (gameStatus, playerMoves, optimalMoves, correctSegments) => {
+import { countMatchingSegments, getPathMatchingStats } from '@/utils/gameLogic';
+import { convertArrowMovesToCoordinates } from '@/utils/helpers';
+
+export const calculateScore = (gameStatus, playerMoves, currentPath) => {
+  // Convert player moves to coordinates
+  const playerPath = convertArrowMovesToCoordinates(playerMoves, currentPath[0]);
+  const correctSegments = countMatchingSegments(playerPath, currentPath);
+  const stats = getPathMatchingStats(playerPath, currentPath);
+
+  let correctMovesPoints = correctSegments * partialWinAccuracyMultiplier;
+  let basePoints = participationPoints;
+
   if (gameStatus === 'won') {
-    return {
-      base: baseWinPoints,
-      efficiency: Math.max(0, 50 - (playerMoves.length * 5)),
-      perfect: playerMoves.length === optimalMoves ? 50 : 0,
-      total: 100 + Math.max(0, 50 - (playerMoves.length * 5)) + (playerMoves.length === optimalMoves ? 50 : 0)
-    };
+    basePoints = baseWinPoints;
+    correctMovesPoints = correctSegments * correctSegmentPoints;
   }
-
   return {
-    base: baseLosePoints,
-    progress: correctSegments * 2,
-    total: Math.min(30, 10 + (correctSegments * 2))
+    points: {
+      base: basePoints,
+      correctMoves: correctMovesPoints,
+      total: basePoints + correctMovesPoints,
+    },
+    correctSegments,
+    stats,
   };
 };

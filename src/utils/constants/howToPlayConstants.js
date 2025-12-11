@@ -1,6 +1,6 @@
 export const HOW_TO_PLAY = {
-  title: 'Plan Your Route',
-  description:'Follow the steps below to play',
+  title: 'How to Play',
+  description:'Plan Your Route: Follow the steps below to play',
   proTip: 'Take your time planning each move carefully. The undo feature is your best friend for correcting mistakes!',
   steps: [
     'Select the number of squares to move',

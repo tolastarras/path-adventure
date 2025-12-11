@@ -1,5 +1,5 @@
 import { useState, useRef, useCallback } from 'react';
-import { reconstructPlayerPath } from '@/utils/gameLogic/pathLogic';
+import { reconstructPlayerPath } from '@/utils/gameLogic';
 
 const useGameAnimationDraw = (path, playerMoves, gameStatus, setGameStatus) => {
   const animationRef = useRef(null);

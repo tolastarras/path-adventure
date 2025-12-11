@@ -1,23 +1,11 @@
-// Base points for winning
+// Perfect path replication points
 export const BASE_WIN_POINTS = 100;
 
-// Losing - partial credit system
-export const BASE_LOSE_POINTS = 10;
+// Tried but didn't finish
+export const PARTICIPATION_POINTS = 20;
 
-// export const CORRECT_SEGMENTS_BONUS = correctSegmentsCount * 2;
-// export const losePoints = Math.min(30, BASE_LOSE_POINTS + CORRECT_SEGMENTS_BONUS);
+// Points for each correctly followed segment
+export const CORRECT_SEGMENT_POINTS = 10;
 
-
-// Efficiency bonus (fewer moves = more points)
-// export const EFFICIENCY_BONUS = Math.max(0, 50 - (playerMoves.length * 5));
-
-// // Perfect path bonus (exact minimum moves)
-// export const PERFECT_BONUS = playerMoves.length === optimalMoves ? 50 : 0;
-
-// Total score for win
-// export const totalPoints = BASE_WIN_POINTS + EFFICIENCY_BONUS + PERFECT_BONUS;
-
-// Losing - partial credit system
-// export const BASE_LOSE_POINTS = 10;
-// export const CORRECT_SEGMENTS_BONUS = correctSegmentsCount * 2;
-// export const losePoints = Math.min(30, BASE_LOSE_POINTS + CORRECT_SEGMENTS_BONUS);
+// Multiplier for progress when player doesn't reach destination
+export const PARTIAL_WIN_ACCURACY_MULTIPLIER = 5;

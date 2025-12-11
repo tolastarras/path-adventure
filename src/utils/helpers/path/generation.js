@@ -1,11 +1,5 @@
-import { gridSize } from './constants';
-import { directionIcons } from '@/utils/helpers';
-
-export const isValidPosition = (x, y) => 
-  x >= 0 && x < gridSize && y >= 0 && y < gridSize;
-
-export const isOnEdge = (x, y) => 
-  x === 0 || x === gridSize - 1 || y === 0 || y === gridSize - 1;
+import { gridSize } from '@/utils/constants';
+import { isValidPosition, isOnEdge, isValidEndPosition } from '@/utils/helpers';
 
 export const generateRandomPath = () => {
   let newPath = [];
@@ -25,7 +19,8 @@ export const generateRandomPath = () => {
     let steps = 0;
     const maxSteps = 15;
     
-    while (!(isOnEdge(currentX, currentY) && !isStartPosition(currentX, currentY)) || steps < 6) {
+    while (!(isOnEdge(currentX, currentY) &&
+      !isStartPosition(currentX, currentY)) || steps < 6) {
       if (steps >= maxSteps) break;
       
       const directions = [
@@ -104,58 +99,4 @@ export const generateRandomPath = () => {
   }
 
   return newPath;
-};
-
-const isValidEndPosition = (path) => {
-  if (path.length < 2) return false;
-  
-  const start = path[0];
-  const end = path[path.length - 1];
-  const isStartPosition = (x, y) => 
-    x === start.x && y === start.y;
-  
-  return isOnEdge(end.x, end.y) && !isStartPosition(end.x, end.y);
-};
-
-export const comparePathWithPlannedRoute = (originalPath, plannedRoute) => {
-  if (!originalPath.length || !plannedRoute.length) {
-    return false;
-  }
-
-  // Convert planned route (e.g., ['1→', '2↓']) to coordinates
-  const plannedPath = convertPlannedRouteToPath(plannedRoute);
-
-  // Compare the two paths
-  if (originalPath.length !== plannedPath.length) {
-    return false;
-  }
-
-  return originalPath.every((point, index) =>
-    point.x === plannedPath[index].x &&
-    point.y === plannedPath[index].y
-  );
-};
-
-// Helper to convert planned route to coordinates
-export const convertPlannedRouteToPath = (plannedRoute) => {
-  let currentX = 0;
-  let currentY = 0;
-  const path = [{ x: currentX, y: currentY }];
-
-  plannedRoute.forEach(step => {
-    const squares = parseInt(step.match(/\d+/)[0]);
-    const direction = step.match(new RegExp(`[${directionIcons}]`))[0];
-
-    for (let i = 0; i < squares; i++) {
-      switch (direction) {
-        case '→': currentX++; break;
-        case '←': currentX--; break;
-        case '↑': currentY--; break;
-        case '↓': currentY++; break;
-      }
-      path.push({ x: currentX, y: currentY });
-    }
-  });
-
-  return path;
 };

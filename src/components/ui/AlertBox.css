@@ -6,7 +6,7 @@
 
 .alert-box {
   @apply relative w-2xl mx-auto h-full rounded-2xl p-5 md:p-10 overflow-hidden;
-  @apply border-2 md:border-6 transition-all duration-500 ease-out max-h-[90vh] overflow-y-scroll;
+  @apply border-2 md:border-4 transition-all duration-500 ease-out max-h-[90vh] overflow-y-scroll;
   @apply bg-linear-to-br shadow-lg backdrop-blur-sm;
   @apply transition-all duration-300 ease-in-out;
   @apply hover:shadow-xl;
@@ -32,6 +32,7 @@
   @apply hover:from-white/40 hover:via-white/40 hover:to-white/50;
 }
 
+.alert-box--info,
 .alert-box--primary {
   @apply border-blue-600/60;
   @apply text-blue-700;
@@ -57,10 +58,11 @@
 }
 
 .alert-box--warning {
-  @apply border-amber-600/80 text-amber-600/80;
-  @apply from-amber-200 via-amber-200 to-amber-300;
-  @apply shadow-amber-200/50 hover:shadow-amber-300/60;
-  @apply hover:bg-linear-to-br hover:from-amber-200 hover:via-amber-100 hover:to-amber-200;
+  @apply border-amber-600/60;
+  @apply text-amber-700;
+  @apply from-amber-300/60 via-amber-300/60 to-amber-400/60;
+  @apply shadow-amber-200/40;
+  @apply hover:from-amber-300/80 hover:via-amber-300/80 hover:to-amber-400/80;
 }
 
 /* Optional asymmetric glare */
@@ -138,12 +140,13 @@
   @apply text-white/80;
 }
 
+.text-info,
 .text-primary {
-  @apply text-blue-600;
+  @apply text-blue-700;
 }
 
 .text-warning {
-  @apply text-amber-600;
+  @apply text-amber-700;
 }
 
 .text-danger {

@@ -5,10 +5,10 @@ import {
   IconMenu,
   GameStatusAlert,
   HowToPlayAlert,
-  AboutGamePathAlert,
   LeaderboardAlert,
   ControlsPanel,
   GameArea,
+  BubbleDialog,
   GameHeader as HeaderSection,
   GameStats as GameStatsSection,
 } from '@/components';
@@ -30,8 +30,6 @@ import {
   calculateBicycleDirection,
   formatStep,
 } from '@/utils/helpers';
-
-import { gameStats } from '@/utils/constants';
 
 import './NewHome.css';
 
@@ -185,25 +183,22 @@ const NewHome = () => {
         <GameStatusAlert
           gameStatus={gameStatus}
           playerMoves={playerMoves}
-          correctPath={currentPath}
+          currentPath={currentPath}
           onClose={handleCloseGameStatusAlert}
         />
       )}
-      {isAlertOpen('how-to-play') && (
+      {isAlertOpen('about-game') && (
         <HowToPlayAlert onClose={handleCloseAlert} />
-      )}
-      {isAlertOpen('about') && (
-        <AboutGamePathAlert onClose={handleCloseAlert} />
       )}
       {isAlertOpen('leaderboard') && (
         <LeaderboardAlert onClose={handleCloseAlert} />
       )}
-      <GlossyCard>
+      <GlossyCard showOverflow>
         <div className="p-1 md:p-4">
           <HeaderSection className="mb-4" />
           <div className="relative mb-2">
-            <GameStatsSection className="mb-8" gameStats={gameStats} />
-            <div className="absolute top-2 right-2">
+            <GameStatsSection className="mb-8" />
+            <div className="absolute top-1 right-2">
               <IconMenu onClick={handleIconClick} onClose={closeAlert} />
             </div>
           </div>
@@ -211,6 +206,7 @@ const NewHome = () => {
           <div className="md:flex sm:gap-2 md:gap-7">
             <ControlsPanel
               step={step}
+              gameStatus={gameStatus}
               resetControlButtons={resetControlButtons}
               resetNumberInput={resetNumberInput}
               currentStep={currentStep}

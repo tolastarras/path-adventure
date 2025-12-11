@@ -46,13 +46,17 @@ const AlertBox = ({
             />
           </button>
         </div>
-        <div className={`flex ${combinedClasses}`}>
-          {icon && <div className="alert-box__icon hidden md:block">
-            <CustomIcon icon={icon} size="xl" className={`mr-8 mt-2 text-${variant}`} />
-          </div>}
-          <div className="flex-col w-full">
-            <HeaderTitle size="xl">{title}</HeaderTitle>
-            <HeaderTitle size="lg">{description}</HeaderTitle>
+        <div className={`flex-col ${combinedClasses}`}>
+          <div className="flex">
+            {icon && <div className="alert-box__icon hidden md:block">
+              <CustomIcon icon={icon} size="xl" className={`mr-8 mt-2 text-${variant}`} />
+            </div>}
+            <div className="flex-col w-full">
+              <HeaderTitle size="xl">{title}</HeaderTitle>
+              <HeaderTitle size="lg">{description}</HeaderTitle>
+            </div>
+          </div>
+          <div className="flex-col">
             {children && <div className="alert-box__children">{children}</div>}
           </div>
         </div>

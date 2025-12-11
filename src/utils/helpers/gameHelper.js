@@ -1,4 +1,4 @@
-import { directionObjects } from '@/utils/constants';
+import { directionObjects, gameResults, gameStatsCards } from '@/utils/constants';
 
 const getDirectionIcon = (direction) => {
   if (!direction) return '';
@@ -13,4 +13,43 @@ export const formatStep = (step) => {
   return `${squares}${directionIcon}`;
 };
 
-export const directionIcons = () => directionObjects.map(dir => dir.icon).join('');
+export const gameResultsHeading = (stats) => {
+  const { matches, percentage, total } = stats;
+  const threshold = percentage === 100 ? 100 : percentage >= 80 ? 80 : percentage >= 50 ? 50 : 0;
+  const { title, subtitle, variant } = gameResults[threshold];
+
+  const description = (matches, total) => {
+    if (threshold >= 50 && threshold < 100) {
+      return `${subtitle} You got ${matches} of ${total} segments correct.`;
+    }
+    return `${subtitle}`;
+  }
+
+  return {
+    title,
+    description: description(matches, total),
+    variant
+  };
+}
+
+export const buildGameStatsCards = (stats) => {
+  const { bestScore, totalScore, attempts, gamesWon } = stats;
+
+  return gameStatsCards.map((card) => {
+    switch (card.id) {
+      case 1:
+        card.value = Math.floor(gamesWon / attempts * 100);
+        break;
+      case 2:
+        card.value = totalScore;
+        break;
+      case 3:
+        card.value = bestScore
+        break;
+      default:
+        break;
+    }
+
+    return card;
+  });
+}

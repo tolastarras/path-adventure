@@ -1,8 +1,8 @@
-import { CustomIcon } from '@/components';
+import { CustomIcon, UserAccountMenu } from '@/components';
 import { menuItems } from '@/utils/constants';
 
 const IconMenu = ({ onClick, onClose }) => {
-  const size = 'lg';
+  const size = 'md';
 
   return (
     <div className="flex space-x-1.5">
@@ -10,7 +10,7 @@ const IconMenu = ({ onClick, onClose }) => {
         <div key={id} className="relative" onClick={() => onClick(id)}>
           <div className="flex ">
             <CustomIcon
-              className="transition-transform duration-300 hover:scale-125"
+              className="custom-icon__default"
               size={size}
               icon={icon}
               onClose={onClose}
@@ -18,6 +18,7 @@ const IconMenu = ({ onClick, onClose }) => {
           </div>
         </div>
       ))}
+      <UserAccountMenu />
     </div>
   );
 }
