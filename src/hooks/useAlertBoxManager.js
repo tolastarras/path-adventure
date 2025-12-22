@@ -1,26 +1,12 @@
-import { useState, useCallback } from 'react';
+import { useContext } from 'react';
+import { AlertBoxContext } from '@/context/AlertBoxContext';
 
 const useAlertBoxManager = () => {
-  const [openAlertId, setOpenAlertId] = useState(null);
-
-  const openAlert = useCallback((alertId) => {
-    setOpenAlertId(alertId);
-  }, []);
-
-  const closeAlert = useCallback(() => {
-    setOpenAlertId(null);
-  }, []);
-
-  const isAlertOpen = useCallback((alertId) => {
-    return openAlertId === alertId;
-  }, [openAlertId]);
-
-  return {
-    openAlertId,
-    isAlertOpen,
-    openAlert,
-    closeAlert,
-  };
-};
+  const context = useContext(AlertBoxContext);
+  if (!context) {
+    throw new Error('useAlertBoxManager must be used within a AlertBoxProvider');
+  }
+  return context;
+}
 
 export default useAlertBoxManager;

@@ -58,7 +58,7 @@ const ControlsPanel = ({
           Add
         </GlossyButton>
         <GlossyButton
-          variant="danger"
+          variant="warning"
           className="w-full"
           disabled={!canStartJourney}
           onClick={onUndoStep}

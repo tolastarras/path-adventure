@@ -1,8 +1,9 @@
-import { CustomIcon, UserAccountMenu } from '@/components';
+import { useAuthManager } from '@/hooks';
+import { CustomIcon, UserDropdownMenu } from '@/components';
 import { menuItems } from '@/utils/constants';
 
-const IconMenu = ({ onClick, onClose }) => {
-  const size = 'md';
+const IconMenu = ({ onClick, onClose, onResetGame, size='md' }) => {
+  const { isAuthenticated } = useAuthManager();
 
   return (
     <div className="flex space-x-1.5">
@@ -18,7 +19,10 @@ const IconMenu = ({ onClick, onClose }) => {
           </div>
         </div>
       ))}
-      <UserAccountMenu />
+      <UserDropdownMenu
+        key={`user-menu-${isAuthenticated ? 'auth' : 'guest'}`}
+        onResetGame={onResetGame}
+      />
     </div>
   );
 }

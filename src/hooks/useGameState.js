@@ -16,7 +16,7 @@ const useGameState = () => {
     setIsJourneyComplete(false);
   }, []);
 
-  const resetGame = useCallback(() => {
+  const resetGameStatus = useCallback(() => {
     setGameStatus('playing');
     setIsJourneyStarted(false);
     setIsJourneyComplete(false);
@@ -28,7 +28,7 @@ const useGameState = () => {
     isJourneyComplete,
     handleAnimationComplete,
     startJourney,
-    resetGame,
+    resetGameStatus,
   };
 };
 

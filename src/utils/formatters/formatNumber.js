@@ -1,4 +1,4 @@
-export const formatNumber = (number, options = {}) => {
+const formatNumber = (number, options = {}) => {
   const { decimals = 0, locale = 'en-US' } = options;
   
   return number.toLocaleString(locale, {
@@ -6,3 +6,5 @@ export const formatNumber = (number, options = {}) => {
     maximumFractionDigits: decimals
   });
 };
+
+export default formatNumber;

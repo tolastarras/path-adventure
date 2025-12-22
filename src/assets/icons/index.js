@@ -7,3 +7,5 @@ export { default as dangerIcon } from './danger.svg';
 export { default as trophyIcon } from './trophy.svg';
 export { default as userIcon } from './user.svg';
 export { default as helpIcon } from './help.svg';
+export { default as loginIcon } from './login.svg';
+export { default as cogIcon } from './cog.svg';
