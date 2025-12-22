@@ -1,14 +1,15 @@
 import { useState, useMemo } from 'react';
-import { GlossyCard, HeaderTitle, ProgressBar, NumberAnimation } from '.';
-import { getScoreStats } from '@/utils/helpers';
-import { buildGameStatsCards } from '@/utils/helpers';
+import { GlossyCard, HeaderTitle, ProgressBar, NumberAnimation } from '@/components';
+import { buildGameStatsCards, getStorage } from '@/utils/helpers';
 import { gameStatsImage } from '@/assets';
-import { username } from '@/utils/constants';
+import { useAuthManager } from '@/hooks';
+import { gameMessages } from '@/utils/constants';
 
 import './GameStats.css';
 
 const GameStats = () => {
   const [isExpanded, setIsExpanded] = useState(false);
+  const { user } = useAuthManager();
 
   const toggleStats = () => {
     setIsExpanded(!isExpanded);
@@ -18,11 +19,20 @@ const GameStats = () => {
   const statsCards = useMemo(() => {
     if (!isExpanded) return [];
 
-    const stats = getScoreStats();
-    const user = stats.users.find((u) => u.id === username);
+    const store = getStorage();
+    const playerStats = store?.users.find((u) => u.id === user?.id);
 
-    return buildGameStatsCards(user);
-  }, [isExpanded]);
+    if (!playerStats || playerStats.totalScore === 0) {
+      const { title, description } = gameMessages.stats;
+      return [{
+        id: 'no-stats',
+        title,
+        description,
+      }];
+    }
+
+    return buildGameStatsCards(playerStats);
+  }, [isExpanded, user]);
 
   return (
     <>
@@ -42,13 +52,14 @@ const GameStats = () => {
       <div className={`game-stats-cards ${isExpanded ? 'open' : 'close'}`} >
         <div className="pt-2">
           <div className="game-stats__container">
-            {statsCards.map(({ id, title, type, value }) => (
-              <GlossyCard key={id} className="w-full lg:w-1/3">
+            {statsCards.map(({ id, title, description, type, value }) => (
+              <GlossyCard key={id} className={`w-full ${type && 'lg:w-1/3'}`}>
                 <HeaderTitle title={title} />
                 {type === 'percent' &&
                   <ProgressBar percentage={value} isVisible={isExpanded} />}
                 {type === 'number' &&
                   <NumberAnimation value={value} isVisible={isExpanded} />}
+                {description && <div className="text-sm">{description}</div>}
               </GlossyCard>
             ))}
           </div>

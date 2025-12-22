@@ -1,4 +1,4 @@
-import { AlertBox, HeaderTitle, RoundButton } from '.';
+import { AlertBox, HeaderTitle, RoundButton } from '@/components';
 import { howToPlay, about } from '@/utils/constants';
 
 import './HowToPlayAlert.css';

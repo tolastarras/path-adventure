@@ -3,7 +3,7 @@ import './RoundButton.css';
 
 const RoundButton = ({ value, color=getRankColor(-1) }) => {
   return (
-    <div className={`round-button w-8 h-8 text-sm ${color}`}>
+    <div className={`round-button w-6 h-6 text-sm border ${color}`}>
       {value}
     </div>
   )

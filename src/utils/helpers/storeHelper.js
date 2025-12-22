@@ -1,5 +1,5 @@
 
-import { storeKey } from '@/utils/constants';
+import { storeKey, currentPlayerKey, defaultStore } from '@/utils/constants';
 
 const storage = {
   get: (key) => {
@@ -16,15 +16,15 @@ const storage = {
       return null;
     }
   },
-  
+
   set: (key, value) => {
     localStorage.setItem(key, JSON.stringify(value));
   },
-  
+
   remove: (key) => {
     localStorage.removeItem(key);
   },
-  
+
   clear: () => {
     localStorage.clear();
   },
@@ -34,8 +34,37 @@ const storage = {
   },
 };
 
-export const getStorage = () => storage.get(storeKey);
+export const getStorage = () => {
+  const store = storage.get(storeKey);
 
-export const setStorage = (data) => storage.set(storeKey, data);
+  if (!store) {
+    storage.set(storeKey, defaultStore);
+    return defaultStore;
+  }
 
-export const clearStorage = () => storage.remove(storeKey);
+  const mergedStore = { ...defaultStore, ...store };
+
+  return mergedStore;
+}
+
+export const setStorage = (data) => {
+  const mergedData = { ...defaultStore, ...data };
+  storage.set(storeKey, mergedData);
+}
+
+export const clearStorage = () => {
+  return storage.remove(storeKey);
+}
+
+// Current player
+export const getCurrentPlayer = () => {
+  return storage.get(currentPlayerKey) || null;
+}
+
+export const setCurrentPlayer = (data) => {
+  return storage.set(currentPlayerKey, data);
+}
+
+export const removeCurrentPlayer = () => {
+  return storage.remove(currentPlayerKey);
+}

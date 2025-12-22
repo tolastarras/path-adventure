@@ -65,7 +65,7 @@ const GameArea = ({
         )}
 
         <GlossyButton
-          variant="danger"
+          variant="warning"
           className="w-full md:max-w-40"
           disabled={!canClearRoute || showNewAdventure}
           onClick={onClearRoute}

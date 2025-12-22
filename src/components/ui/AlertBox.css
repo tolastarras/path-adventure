@@ -5,7 +5,7 @@
 }
 
 .alert-box {
-  @apply relative w-2xl mx-auto h-full rounded-2xl p-5 md:p-10 overflow-hidden;
+  @apply relative w-2xl mx-auto rounded-2xl p-5 md:p-10 overflow-hidden;
   @apply border-2 md:border-4 transition-all duration-500 ease-out max-h-[90vh] overflow-y-scroll;
   @apply bg-linear-to-br shadow-lg backdrop-blur-sm;
   @apply transition-all duration-300 ease-in-out;

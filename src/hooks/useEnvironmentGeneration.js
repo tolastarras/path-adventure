@@ -28,10 +28,10 @@ const useEnvironmentGeneration = () => {
       ];
 
       for (let i = 1; i < groupSize && positions.length < groupSize; i++) {
-        let attempts = 0;
+        let gamesPlayed = 0;
         let foundPosition = false;
 
-        while (attempts < 20 && !foundPosition) {
+        while (gamesPlayed < 20 && !foundPosition) {
           const basePos = positions[Math.floor(Math.random() * positions.length)];
           const dir = directions[Math.floor(Math.random() * directions.length)];
           const newX = basePos.x + dir[0];
@@ -42,7 +42,7 @@ const useEnvironmentGeneration = () => {
             usedCells.add(`${newX},${newY}`);
             foundPosition = true;
           }
-          attempts++;
+          gamesPlayed++;
         }
       }
 
@@ -55,14 +55,14 @@ const useEnvironmentGeneration = () => {
       const groupSize = Math.floor(Math.random() * 3) + 1;
 
       let startPos;
-      let attempts = 0;
+      let gamesPlayed = 0;
 
       do {
         startPos = getRandomPosition();
-        attempts++;
-      } while (!isCellAvailable(startPos.x, startPos.y) && attempts < 100);
+        gamesPlayed++;
+      } while (!isCellAvailable(startPos.x, startPos.y) && gamesPlayed < 100);
 
-      if (attempts >= 100) continue;
+      if (gamesPlayed >= 100) continue;
 
       const positions = getGroupPositions(startPos.x, startPos.y, groupSize);
       if (positions.length > 0) {

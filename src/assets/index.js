@@ -21,4 +21,6 @@ export {
   dangerIcon,
   userIcon,
   helpIcon,
+  loginIcon,
+  cogIcon,
 } from './icons';

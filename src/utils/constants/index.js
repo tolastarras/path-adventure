@@ -20,7 +20,9 @@ export {
   DATA as generalInfo,
   MENU_ITEMS as menuItems,
   ITINERARY as itinerary,
-  USERNAME as username,
+  AVATAR_OPTIONS as avatarOptions,
+  MEDALS as medals,
+  GAME_MESSAGES as gameMessages,
 } from './gameConstants';
 
 export {
@@ -31,8 +33,10 @@ export {
 } from './scoreConstants';
 
 export {
-  GAME_STATS_STORAGE_KEY as storeKey,
   DEFAULT_STORE as defaultStore,
+  DEFAULT_USER_STATS as defaultUserStats,
+  GAME_STATS_STORAGE_KEY as storeKey,
+  CURRENT_PLAYER_STORAGE_KEY as currentPlayerKey,
   SESSION_HISTORY_LIMIT as sessionHistoryLimit,
 } from './storeConstants';
 

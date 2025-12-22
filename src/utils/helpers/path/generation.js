@@ -3,9 +3,9 @@ import { isValidPosition, isOnEdge, isValidEndPosition } from '@/utils/helpers';
 
 export const generateRandomPath = () => {
   let newPath = [];
-  let attempts = 0;
+  let gamesPlayed = 0;
   
-  while ((newPath.length < 7 || !isValidEndPosition(newPath)) && attempts < 100) {
+  while ((newPath.length < 7 || !isValidEndPosition(newPath)) && gamesPlayed < 100) {
     newPath = [];
     let currentX = Math.floor(Math.random() * gridSize);
     let currentY = gridSize - 1; // Start from bottom
@@ -66,7 +66,7 @@ export const generateRandomPath = () => {
         }
       }
     }
-    attempts++;
+    gamesPlayed++;
   }
 
   // Final check: if we didn't end on an edge, force it

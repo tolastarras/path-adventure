@@ -1,0 +1,21 @@
+@import 'tailwindcss';
+
+.user-menu__container {
+  @apply bg-white rounded-lg shadow-lg;
+}
+
+.user-menu__header {
+  @apply px-4 py-3 border-b border-gray-200 bg-linear-to-r from-blue-300 to-blue-400;
+}
+
+.user-menu__item {
+  @apply flex items-center px-4 py-3 text-sm transition-colors duration-150;
+  @apply text-gray-500 hover:bg-blue-50 hover:text-blue-600;
+}
+
+.user-menu__footer {
+  @apply border-t border-gray-100 py-1 bg-blue-50 hover:bg-blue-100;
+}
+.user-menu__footer-button {
+  @apply cursor-pointer w-full flex items-center justify-between px-4 py-3 text-sm text-blue-600 transition-colors duration-150;
+}
