@@ -15,10 +15,9 @@ export {
 } from './terrainDrawerHelper';
 
 export {
-  totalPlayers,
+  getTotalPlayers,
   highestScore,
   getTopSingleGamePlayer,
-  getScoreStats,
   getTopPlayers,
   getRankColor,
   getRankIcon,
@@ -38,10 +37,19 @@ export {
   getStorage,
   setStorage,
   clearStorage,
+  setCurrentPlayer,
+  getCurrentPlayer,
+  removeCurrentPlayer,
 } from './storeHelper';
 
 export {
   formatStep,
   gameResultsHeading,
   buildGameStatsCards,
+  getPlayer,
+  playerExists,
 } from './gameHelper';
+
+export {
+  loadUserWithDefaults,
+} from './userHelper';

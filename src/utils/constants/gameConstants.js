@@ -18,7 +18,15 @@ export const DATA = {
   },
 };
 
-export const USERNAME = 'BikeNinja';
+export const GAME_MESSAGES = {
+  defaultLoginError: 'Login failed. Please try again.',
+  invalidLoginError: 'Invalid username or password.',
+  guestAccountMessage: '⚠️ Guest scores don\'t appear on leaderboards. Create an account to track stats and compete!',
+  stats: {
+    title: '🔓 Unlock Your Stats!',
+    description: 'Sign in to track your progress, see your personal stats, and compete on the leaderboard with other players. Guest accounts can play but don\'t save progress or appear in rankings.',
+  },
+};
 
 export const ICONS = {
   bicycle: '🚴‍♂️',
@@ -31,6 +39,10 @@ export const ICONS = {
   info: infoIcon,
   helpIcon,
 };
+
+export const AVATAR_OPTIONS = ['👤', '🧙‍♂️', '🦸', '👩‍💼', '👨‍🔬', '👩‍🔬', '👨‍✈️', '👩‍✈️', '👨‍🎨', '👨‍🚀', '🎮', '🚴‍♂️', '👨‍⚕️', '👩‍⚕️', '🛡️', '🦊', '🐉', '👑', '🦁', '🦄', '⚔️'];
+
+export const MEDALS = ['🥇', '🥈', '🥉'];
 
 export const MENU_ITEMS = [
   { id: 'leaderboard', icon: ICONS.leaderboard },

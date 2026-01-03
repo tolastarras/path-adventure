@@ -3,7 +3,7 @@
 /* Base glossy button styles using Tailwind classes */
 .glossy-button {
   @apply cursor-pointer relative flex justify-center items-center z-10;
-  @apply border-2 border-white/20 transition-all duration-500 ease-out;
+  @apply border-2 border-white/10 transition-all duration-500 ease-out;
   @apply transition-all duration-100;
 }
 
@@ -41,10 +41,11 @@
 }
 
 .glossy-button--lg {
-  @apply px-8 py-7;
+  @apply px-0 py-3;
 }
 
 .glossy-button--transparent {
+  @apply text-gray-600;
   @apply before:bg-linear-to-br before:from-white/30 before:via-white/15 before:to-white/5 before:to-90% before:via-60%;
   @apply after:bg-linear-to-br after:from-white/15 after:to-white/25;
 }
@@ -65,11 +66,16 @@
   @apply after:bg-linear-to-b after:from-red-500 after:to-red-600;
 }
 
+.glossy-button--warning {
+  @apply before:bg-linear-to-b before:from-amber-700 before:via-amber-500 before:to-amber-200 before:to-90% before:via-60%;
+  @apply after:bg-linear-to-b after:from-amber-500 after:to-amber-600;
+}
+
+
 .glossy-button--disabled {
-  @apply text-gray-300/80 border-gray-300/30;
-  @apply before:bg-linear-to-b before:from-gray-300 before:via-gray-400 before:to-gray-300 before:to-90% before:via-60%;
-  @apply after:bg-linear-to-b after:from-gray-400 after:to-gray-500;
-  @apply pointer-events-none;
+  @apply text-blue-500/60 pointer-events-none;
+  @apply before:bg-linear-to-br before:from-white/30 before:via-white/15 before:to-white/5 before:to-90% before:via-60%;
+  @apply after:bg-linear-to-br after:from-white/15 after:to-white/25;
 }
 
 .glossy-button--purple {
@@ -136,7 +142,7 @@
 }
 
 .glossy-button__with-glare.regular {
-  @apply w-[88%] h-[30%] rounded-xl;
+  @apply w-[94%] h-[30%] rounded-2xl;
 }
 
 /* Content styles */

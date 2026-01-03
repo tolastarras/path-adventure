@@ -1,5 +1,6 @@
 export {
-  initializeScoreStorage,
-  resetScoreStorage,
   updateScoreStats,
+  createNewUser,
+  updateUsersList,
+  saveUser,
 } from './leaderboardStorage';

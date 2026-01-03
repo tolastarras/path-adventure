@@ -23,13 +23,15 @@
 │   │   ├── icons
 │   │   │   ├── arrow.svg
 │   │   │   ├── close.svg
+│   │   │   ├── cog.svg
 │   │   │   ├── danger.svg
+│   │   │   ├── help.svg
 │   │   │   ├── index.js
 │   │   │   ├── info.svg
-│   │   │   ├── question.svg
+│   │   │   ├── login.svg
 │   │   │   ├── success.svg
 │   │   │   ├── trophy.svg
-│   │   │   ├── trophyb.svg
+│   │   │   ├── user.svg
 │   │   │   └── warning.svg
 │   │   ├── index.js
 │   │   ├── landscape
@@ -42,8 +44,8 @@
 │   │   │   └── water.png
 │   │   └── react.svg
 │   ├── components
-│   │   ├── AboutGamePathAlert.css
-│   │   ├── AboutGamePathAlert.jsx
+│   │   ├── AvatarSelector.css
+│   │   ├── AvatarSelector.jsx
 │   │   ├── ControlsPanel.jsx
 │   │   ├── GameArea.jsx
 │   │   ├── GameCanvas.css
@@ -54,10 +56,26 @@
 │   │   ├── GameHeader.jsx
 │   │   ├── GameStats.css
 │   │   ├── GameStats.jsx
-│   │   ├── GameStatusAlert.jsx
-│   │   ├── HowToPlayAlert.jsx
 │   │   ├── IconMenu.jsx
-│   │   ├── LeaderboardAlert.jsx
+│   │   ├── LeaderboardContainer.css
+│   │   ├── LeaderboardContainer.jsx
+│   │   ├── alerts
+│   │   │   ├── AlertRegistry.jsx
+│   │   │   ├── auth
+│   │   │   │   ├── CreateAccountDialog.jsx
+│   │   │   │   └── UserLoginDialog.jsx
+│   │   │   └── game
+│   │   │       ├── GameStatusAlert.jsx
+│   │   │       ├── HowToPlayAlert.css
+│   │   │       ├── HowToPlayAlert.jsx
+│   │   │       └── LeaderboardAlert.jsx
+│   │   ├── auth
+│   │   │   ├── AuthLink.jsx
+│   │   │   ├── GuestMenu.jsx
+│   │   │   ├── UserDropdownMenu.css
+│   │   │   ├── UserDropdownMenu.jsx
+│   │   │   ├── UserMenu.css
+│   │   │   └── UserMenu.jsx
 │   │   ├── index.js
 │   │   └── ui
 │   │       ├── AlertBox.css
@@ -78,11 +96,20 @@
 │   │       ├── NumberInput.jsx
 │   │       ├── ProgressBar.css
 │   │       ├── ProgressBar.jsx
+│   │       ├── RoundButton.css
+│   │       ├── RoundButton.jsx
 │   │       ├── TextInput.css
 │   │       └── TextInput.jsx
+│   ├── context
+│   │   ├── AlertBoxContext.js
+│   │   ├── AlertBoxProvider.jsx
+│   │   ├── AuthContext.jsx
+│   │   ├── AuthProvider.jsx
+│   │   └── index.js
 │   ├── hooks
 │   │   ├── index.js
 │   │   ├── useAlertBoxManager.js
+│   │   ├── useAuthManager.js
 │   │   ├── useBicycleDraw.js
 │   │   ├── useCanvas.js
 │   │   ├── useCanvasGridDraw.js
@@ -140,8 +167,11 @@
 │       │   ├── howToPlayConstants.js
 │       │   ├── index.js
 │       │   ├── leaderboardConstants.js
-│       │   └── scoreConstants.js
-│       ├── formatters.js
+│       │   ├── scoreConstants.js
+│       │   └── storeConstants.js
+│       ├── formatters
+│       │   ├── formatNumber.js
+│       │   └── index.js
 │       ├── gameLogic
 │       │   ├── index.js
 │       │   ├── pathLogic.js
@@ -157,10 +187,15 @@
 │       │   │   ├── index.js
 │       │   │   └── validation.js
 │       │   ├── storeHelper.js
-│       │   └── terrainDrawerHelper.js
-│       └── storage
+│       │   ├── terrainDrawerHelper.js
+│       │   └── userHelper.js
+│       ├── storage
+│       │   ├── index.js
+│       │   └── leaderboardStorage.js
+│       └── validation
+│           ├── general.js
 │           ├── index.js
-│           └── scoreStorage.js
+│           └── user.js
 └── vite.config.js
 
-21 directories, 143 files
+28 directories, 171 files

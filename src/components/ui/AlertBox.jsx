@@ -16,10 +16,23 @@ const AlertBox = ({
   disableHover = true,
   className = '',
   onClose,
+  closeOnClickOutside = true,
 }) => {
   const baseClass = `alert-box alert-box--${variant}`;
   const hoverClasses = !disableHover && 'alert-box--hover';
   const icon = icons[variant];
+
+  const handleClose = (e) => {
+    e.stopPropagation();
+    onClose?.();
+  };
+
+  const handleClickOutside = (e) => {
+    e.stopPropagation();
+    if (closeOnClickOutside && e.target == e.currentTarget) {
+      onClose?.();
+    }
+  };
 
   const effectClasses = [
     showGlare && 'alert-box--with-glare',
@@ -35,10 +48,12 @@ const AlertBox = ({
   ].filter(Boolean).join(' ');
 
   return (
-    <div className="alert-box-overlay">
+    <div className="alert-box-overlay"
+      onClick={handleClickOutside}
+    >
       <div className={`alert-box__container max-w-[92%] flex ${className}`}>
         <div className="alert-box__close-button">
-          <button onClick={onClose}>
+          <button onClick={handleClose}>
             <CustomIcon
               icon={icons.close}
               size="sm"

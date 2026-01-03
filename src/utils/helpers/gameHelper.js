@@ -1,3 +1,4 @@
+import { getStorage } from '@/utils/helpers';
 import { directionObjects, gameResults, gameStatsCards } from '@/utils/constants';
 
 const getDirectionIcon = (direction) => {
@@ -33,12 +34,12 @@ export const gameResultsHeading = (stats) => {
 }
 
 export const buildGameStatsCards = (stats) => {
-  const { bestScore, totalScore, attempts, gamesWon } = stats;
+  const { bestScore, totalScore, gamesPlayed, gamesWon } = stats;
 
-  return gameStatsCards.map((card) => {
+  return gameStatsCards?.map((card) => {
     switch (card.id) {
       case 1:
-        card.value = Math.floor(gamesWon / attempts * 100);
+        card.value = Math.floor(gamesWon / gamesPlayed * 100);
         break;
       case 2:
         card.value = totalScore;
@@ -52,4 +53,12 @@ export const buildGameStatsCards = (stats) => {
 
     return card;
   });
+}
+
+export const getPlayer = (userId) => {
+  return getStorage().users?.find((u) => u.id?.toLowerCase() === userId.toLowerCase()) || null;
+}
+
+export const playerExists = (userId) => {
+  return getStorage().users.some((u) => u.id.toLowerCase() === userId.toLowerCase());
 }

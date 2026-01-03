@@ -33,12 +33,14 @@ import {
 
 import './NewHome.css';
 
-const NewHome = () => {
+const NewHome = ({ onGameComplete }) => {
   const mainCanvasRef = useRef(null);
   const animationCanvasRef = useRef(null);
 
   // Use the animation canvas for the player path
   const animationCtx = animationCanvasRef.current?.getContext('2d');
+
+  const { openAlert, closeAlert } = useAlertBoxManager();
 
   // Custom hooks
   const {
@@ -65,14 +67,8 @@ const NewHome = () => {
     isJourneyComplete,
     handleAnimationComplete,
     startJourney,
-    resetGame,
+    resetGameStatus,
   } = useGameState();
-
-  const {
-    isAlertOpen,
-    openAlert,
-    closeAlert
-  } = useAlertBoxManager();
 
   // Game hooks
   const { isPlayerPathValid } = usePlayerPathDraw();
@@ -123,7 +119,13 @@ const NewHome = () => {
       },
       onAnimationComplete: () => {
         const isCorrect = isPlayerPathValid(playerMoves, currentPath);
+        const gameData = {
+          gameStatus: isCorrect ? 'won' : 'lost',
+          playerMoves,
+          currentPath,
+        };
         handleAnimationComplete(isCorrect);
+        onGameComplete(gameData);
         openAlert('game-result');
       }
     });
@@ -134,7 +136,8 @@ const NewHome = () => {
   }
 
   const handleNewAdventure = () => {
-    resetGame();
+    // Reset game status to playing
+    resetGameStatus();
 
     // Clear current moves
     clearPath();
@@ -143,16 +146,8 @@ const NewHome = () => {
     generateNewPath();
   }
 
-  const handleCloseGameStatusAlert = () => {
-    closeAlert();
-  };
-
-  const handleCloseAlert = () => {
-    closeAlert();
-  };
-
-  const handleIconClick = (id) => {
-    openAlert(id);
+  const handleIconClick = (alertId) => {
+    openAlert(alertId);
   };
 
   useEffect(() => {
@@ -179,27 +174,17 @@ const NewHome = () => {
 
   return (
     <div className="top-container">
-      {isAlertOpen('game-result') && (
-        <GameStatusAlert
-          gameStatus={gameStatus}
-          playerMoves={playerMoves}
-          currentPath={currentPath}
-          onClose={handleCloseGameStatusAlert}
-        />
-      )}
-      {isAlertOpen('about-game') && (
-        <HowToPlayAlert onClose={handleCloseAlert} />
-      )}
-      {isAlertOpen('leaderboard') && (
-        <LeaderboardAlert onClose={handleCloseAlert} />
-      )}
       <GlossyCard showOverflow>
         <div className="p-1 md:p-4">
           <HeaderSection className="mb-4" />
           <div className="relative mb-2">
             <GameStatsSection className="mb-8" />
             <div className="absolute top-1 right-2">
-              <IconMenu onClick={handleIconClick} onClose={closeAlert} />
+              <IconMenu
+                onClick={handleIconClick}
+                onClose={closeAlert}
+                onResetGame={handleNewAdventure}
+              />
             </div>
           </div>
 

@@ -3,13 +3,25 @@ export { default as GameHeader } from './GameHeader';
 export { default as GameControls } from './GameControls';
 export { default as GameStats } from './GameStats';
 export { default as GameCanvas } from './GameCanvas';
-export { default as GameStatusAlert } from './GameStatusAlert';
-export { default as HowToPlayAlert } from './HowToPlayAlert';
 export { default as ControlsPanel } from './ControlsPanel';
 export { default as GameArea } from './GameArea';
 export { default as IconMenu } from './IconMenu';
-export { default as LeaderboardAlert } from './LeaderboardAlert';
-export { default as UserAccountMenu } from './UserAccountMenu';
+export { default as AvatarSelector } from './AvatarSelector';
+export { default as LeaderboardContainer } from './LeaderboardContainer';
+
+// auth components
+export { default as AuthLink } from './auth/AuthLink';
+export { default as UserDropdownMenu } from './auth/UserDropdownMenu';
+export { default as GuestMenu } from './auth/GuestMenu';
+export { default as UserMenu } from './auth/UserMenu';
+
+// alerts
+export { default as AlertRegistry } from './alerts/AlertRegistry';
+export { default as GameStatusAlert } from './alerts/game/GameStatusAlert';
+export { default as HowToPlayAlert } from './alerts/game/HowToPlayAlert';
+export { default as LeaderboardAlert } from './alerts/game/LeaderboardAlert';
+export { default as CreateAccountDialog } from './alerts/auth/CreateAccountDialog';
+export { default as UserLoginDialog } from './alerts/auth/UserLoginDialog';
 
 // ui components
 export { default as HeaderTitle } from './ui/HeaderTitle';
