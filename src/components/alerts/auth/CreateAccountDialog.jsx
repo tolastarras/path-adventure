@@ -3,7 +3,7 @@ import { useAuthManager, useAlertBoxManager } from '@/hooks';
 import { saveUser } from '@/utils/storage';
 import { validateUsername, validatePassword } from '@/utils/validation';
 import { getStorage } from '@/utils/helpers';
-import { gameMessages } from '@/utils/constants';
+import { gameMessages, avatarOptions } from '@/utils/constants';
 import {
   AlertBox,
   HeaderTitle,
@@ -17,7 +17,7 @@ const CreateAccountDialog = ({ onClose }) => {
   const { createAccount } = useAuthManager();
   const { openAlert } = useAlertBoxManager();
 
-  const [selectedAvatar, setSelectedAvatar] = useState('👤');
+  const [selectedAvatar, setSelectedAvatar] = useState(avatarOptions[0]);
 
   const [form, setForm] = useState({
     username: '',
@@ -32,6 +32,8 @@ const CreateAccountDialog = ({ onClose }) => {
     const { name, value } = e.target;
     setForm(prev => ({ ...prev, [name]: value }));
   };
+
+  const hasEmptyFields = !form?.username || !form?.password || !form?.confirmPassword;
   
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -141,11 +143,12 @@ const CreateAccountDialog = ({ onClose }) => {
             />
           </div>
 
-          <div className="space-y-3">
+        <div className="space-y-3">
             <GlossyButton
               className="w-full"
               size="lg"
               variant="primary"
+              disabled={hasEmptyFields}
               onClick={handleSubmit}
             >
               Create Account

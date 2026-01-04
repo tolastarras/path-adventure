@@ -1,35 +1,6 @@
-import { useMemo, useRef, useEffect } from 'react';
-
-import {
-  GlossyCard,
-  IconMenu,
-  GameStatusAlert,
-  HowToPlayAlert,
-  LeaderboardAlert,
-  ControlsPanel,
-  GameArea,
-  BubbleDialog,
-  GameHeader as HeaderSection,
-  GameStats as GameStatsSection,
-} from '@/components';
-
-import {
-  usePathGenerator,
-  usePlayerPathDraw,
-  useCanvas,
-  useBicycleDraw,
-  useSmoothPathAnimationDraw,
-  useStepManagement,
-  usePathManagement,
-  useGameState,
-  useAlertBoxManager,
-} from '@/hooks';
-
-import {
-  getCellCenterPoint,
-  calculateBicycleDirection,
-  formatStep,
-} from '@/utils/helpers';
+import { useRef, useEffect } from 'react';
+import { GlossyCard, ControlsPanel, GameArea, GameHeader } from '@/components';
+import { useCanvasLogic, useGameLogic } from '@/hooks';
 
 import './NewHome.css';
 
@@ -37,158 +8,77 @@ const NewHome = ({ onGameComplete }) => {
   const mainCanvasRef = useRef(null);
   const animationCanvasRef = useRef(null);
 
-  // Use the animation canvas for the player path
-  const animationCtx = animationCanvasRef.current?.getContext('2d');
-
-  const { openAlert, closeAlert } = useAlertBoxManager();
-
-  // Custom hooks
   const {
+    // State
+    gameStatus,
+    isJourneyStarted,
     playerMoves,
-    addMove,
-    undoMove,
-    clearPath,
-  } = usePathManagement();
-
-  const {
+    currentPath,
     step,
     resetControlButtons,
     resetNumberInput,
+    currentStep,
+
+    // Derived states
+    canStartJourney,
+    canClearRoute,
+    showNewAdventure,
+
+    // Handlers
+    handleAddStepToPath,
+    handleStartJourney,
+    handleClearRoute,
+    handleNewAdventure,
+    handleIconClick,
     handleSquares,
     handleDirection,
+    undoMove,
     resetStep,
-    setResetControlButtons,
-    setResetNumberInput,
-  } = useStepManagement();
+    closeAlert,
 
-  const {
-    gameStatus,
-    isJourneyStarted,
-    isJourneyComplete,
-    handleAnimationComplete,
-    startJourney,
-    resetGameStatus,
-  } = useGameState();
+    // Hooks
+    drawBicycle,
+  } = useGameLogic({ onGameComplete });
 
-  // Game hooks
-  const { isPlayerPathValid } = usePlayerPathDraw();
-  const { currentPath, generateNewPath } = usePathGenerator();
-  const { startSmoothAnimation } = useSmoothPathAnimationDraw();
-  const { drawBicycle } = useBicycleDraw();
-  const { clearCanvas } = useCanvas(animationCanvasRef);
+  const { setupAnimationCanvas } = useCanvasLogic(
+    animationCanvasRef,
+    currentPath,
+    drawBicycle
+  );
 
-  // Button states
-  const canStartJourney = playerMoves.length > 0 && !isJourneyStarted && !isJourneyComplete;
-  const canClearRoute = playerMoves.length > 0 && !isJourneyStarted;
-  const showNewAdventure = isJourneyComplete;
+  // Effects
+  useEffect(() => {
+    const cleanup = setupAnimationCanvas(animationCanvasRef);
+    return cleanup;
+  }, [setupAnimationCanvas]);
 
-  const currentStep = useMemo(() => {
-    const newStep = formatStep(step);
-    return newStep;
-  }, [step]);
-
-  // Event handlers
-  const handleAddStepToPath = () => {
-    const { squares, direction } = step;
-
-    if (direction && squares) {
-      const newStep = formatStep(step);
-      addMove(newStep);
-
-      // reset direction buttons
-      setResetControlButtons(true);
-      setResetNumberInput(true);
+  // Reset step when control buttons or number input are reset
+  useEffect(() => {
+    if (resetControlButtons && resetNumberInput) {
       resetStep();
     }
-  };
+  }, [resetControlButtons, resetNumberInput, resetStep]);
 
-  const handleStartJourney = () => {
-    if (playerMoves.length === 0 || !animationCtx) return;
-
-    startJourney();
-
-    let lastXPosition = null;
-    let lastDirection = 'right';
-
-    startSmoothAnimation(animationCtx, playerMoves, currentPath, {
-      drawBicycle: (ctx, x, y) => {
-        const direction = calculateBicycleDirection(x, lastXPosition, lastDirection);
-        lastXPosition = x;
-        lastDirection = direction;
-        drawBicycle(ctx, x, y, direction, false);
-      },
-      onAnimationComplete: () => {
-        const isCorrect = isPlayerPathValid(playerMoves, currentPath);
-        const gameData = {
-          gameStatus: isCorrect ? 'won' : 'lost',
-          playerMoves,
-          currentPath,
-        };
-        handleAnimationComplete(isCorrect);
-        onGameComplete(gameData);
-        openAlert('game-result');
-      }
-    });
-  };
-
-  const handleClearRoute = () => {
-    clearPath();
+  const handleStartJourneyWithContext = () => {
+    const canvas = animationCanvasRef.current;
+    if (!canvas) return;
+    const animationCtx = canvas.getContext('2d');
+    handleStartJourney(animationCtx);
   }
-
-  const handleNewAdventure = () => {
-    // Reset game status to playing
-    resetGameStatus();
-
-    // Clear current moves
-    clearPath();
-
-    // Generate new path
-    generateNewPath();
-  }
-
-  const handleIconClick = (alertId) => {
-    openAlert(alertId);
-  };
-
-  useEffect(() => {
-    const animationCtx = animationCanvasRef.current?.getContext('2d');
-    const mainCtx = mainCanvasRef.current?.getContext('2d');
-
-    if (animationCtx && mainCtx && currentPath.length > 0) {
-      // Wait a brief moment for the main canvas to render
-      const timer = setTimeout(() => {
-        // Clear any existing content from animation canvas
-        clearCanvas(animationCtx);
-        animationCtx.clearRect(0, 0, animationCtx.canvas.width, animationCtx.canvas.height);
-
-        // Draw bicycle at starting position
-        const startCell = currentPath[0];
-        const { x, y } = getCellCenterPoint(startCell);
-
-        drawBicycle(animationCtx, x, y);
-      }, 100);
-
-      return () => clearTimeout(timer);
-    }
-  }, [currentPath, drawBicycle, clearCanvas]);
 
   return (
     <div className="top-container">
       <GlossyCard showOverflow>
-        <div className="p-1 md:p-4">
-          <HeaderSection className="mb-4" />
-          <div className="relative mb-2">
-            <GameStatsSection className="mb-8" />
-            <div className="absolute top-1 right-2">
-              <IconMenu
-                onClick={handleIconClick}
-                onClose={closeAlert}
-                onResetGame={handleNewAdventure}
-              />
-            </div>
-          </div>
+        <div className="card-content__container">
+          <GameHeader
+            onIconClick={handleIconClick}
+            onNewAdventure={handleNewAdventure}
+            showNewAdventure={showNewAdventure}
+            onResetGame={handleNewAdventure}
+            onCloseAlert={closeAlert}
+          />
 
-          <div className="md:flex sm:gap-2 md:gap-7">
+          <div className="controls-panel__container">
             <ControlsPanel
               step={step}
               gameStatus={gameStatus}
@@ -212,7 +102,7 @@ const NewHome = ({ onGameComplete }) => {
               canClearRoute={canClearRoute}
               showNewAdventure={showNewAdventure}
               isJourneyStarted={isJourneyStarted}
-              onStartJourney={handleStartJourney}
+              onStartJourney={handleStartJourneyWithContext}
               onClearRoute={handleClearRoute}
               onNewAdventure={handleNewAdventure}
             />

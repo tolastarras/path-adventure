@@ -4,7 +4,7 @@ import {
   NumberInput,
   TextInput,
   HeaderTitle,
-  GameControls as GameControlsSection,
+  GameControls,
 } from '@/components';
 import { directionObjects } from '@/utils/constants';
 
@@ -34,7 +34,7 @@ const ControlsPanel = ({
     </div>
     
     <div>
-      <GameControlsSection
+      <GameControls
         gameStatus={gameStatus}
         resetButtons={resetControlButtons}
         directions={directionObjects}

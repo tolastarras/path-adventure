@@ -8,7 +8,9 @@ export const getTopPlayers = (maxPlayers = 10) => {
     return [];
   }
 
-  return store.users.sort((a, b) => {
+  return store.users
+  .filter(user => user.totalScore > 0)
+  .sort((a, b) => {
     // First sort by score (descending)
     if (b.totalScore !== a.totalScore) {
       return b.totalScore - a.totalScore;

@@ -1,0 +1,5 @@
+@import 'tailwindcss';
+
+.not-authenticated-message {
+  @apply text-xs mt-6 p-2 px-2 border-2 rounded-md bg-white/20 border-yellow-300/40 text-yellow-300/80
+}

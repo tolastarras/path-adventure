@@ -6,6 +6,8 @@ import { gameResultsHeading } from '@/utils/helpers';
 import { updateScoreStats } from '@/utils/storage';
 import { gameMessages } from '@/utils/constants';
 
+import './GameStatusAlert.css';
+
 const GameStatus = ({ gameStatus, playerMoves, currentPath, onClose }) => {
   const hasStoredResult = useRef(false);
   const { isAuthenticated, user } = useAuthManager();
@@ -65,7 +67,7 @@ const GameStatus = ({ gameStatus, playerMoves, currentPath, onClose }) => {
         You earned +{points.total} point{points.total > 1 && 's'}
         <span className="ml-3 animate-pulse duration-1000">✨</span>
         {!isAuthenticated &&
-          <p className="text-xs mt-6 p-2 px-2 border-2 rounded-md bg-white/20">
+          <p className="not-authenticated-message">
             {gameMessages.guestAccountMessage}
           </p>
         }

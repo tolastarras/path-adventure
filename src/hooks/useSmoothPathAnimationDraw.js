@@ -6,6 +6,16 @@ export const useSmoothPathAnimationDraw = () => {
   const animationRef = useRef(null);
 
   const startSmoothAnimation = useCallback((ctx, playerMoves, correctPath, options = {}) => {
+    if (!ctx || !ctx.canvas) {
+      console.error('Canvas context is invalid or undefined:', ctx);
+      return;
+    }
+
+    if (!playerMoves || playerMoves.length === 0 || !correctPath) {
+      console.error('Invalid animation data:', { playerMoves, correctPath });
+      return;
+    }
+
     const {
       // Total animation duration
       duration = playerMoves.length * 1000,
@@ -15,8 +25,6 @@ export const useSmoothPathAnimationDraw = () => {
       onAnimationComplete,
       drawBicycle
     } = options;
-
-    if (!ctx || !playerMoves || playerMoves.length === 0 || !correctPath) return;
 
     // Cancel any existing animation
     if (animationRef.current) {
@@ -28,6 +36,12 @@ export const useSmoothPathAnimationDraw = () => {
     const startY = canvasPadding;
 
     const playerCoordinates = convertArrowMovesToCoordinates(playerMoves, correctPath[0]);
+
+    // Validate coordinates
+    if (!playerCoordinates || playerCoordinates.length === 0) {
+      console.error('Converted player coordinates are invalid:', playerCoordinates);
+      return;
+    }
 
     const animate = (currentTime) => {
       const elapsed = currentTime - startTime;
@@ -52,7 +66,7 @@ export const useSmoothPathAnimationDraw = () => {
 
       // Draw path with smooth progression
       const pointsToDraw = progress * (playerCoordinates.length - 1);
-      
+
       for (let i = 1; i <= pointsToDraw; i++) {
         const coord = playerCoordinates[i];
         ctx.lineTo(

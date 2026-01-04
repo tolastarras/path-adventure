@@ -4,7 +4,6 @@ import {
   HeaderTitle,
   TextInput,
   GlossyButton,
-  AvatarSelector,
   AuthLink,
 } from '@/components';
 import { useAlertBoxManager, useAuthManager } from '@/hooks';
@@ -32,6 +31,8 @@ const UserLoginDialog = ({ onClose }) => {
     });
   };
 
+  const hasEmptyFields = !loginState?.username || !loginState?.password;
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoginState({
@@ -50,7 +51,6 @@ const UserLoginDialog = ({ onClose }) => {
       await login(player, loginState?.password);
       onClose();
     } catch (error) {
-      console.error('Login error:', error);
       setLoginState({
         ...loginState,
         isSubmitting: false,
@@ -91,7 +91,7 @@ const UserLoginDialog = ({ onClose }) => {
             />
           </div>
 
-          <div className="mb-5">
+          <div className="mb-3">
             <TextInput
               label="Password"
               name="password"
@@ -99,6 +99,7 @@ const UserLoginDialog = ({ onClose }) => {
               value={loginState?.password}
               disabled={loginState?.isSubmitting}
               onChange={handleChange}
+              hasErrorHandler
               error={loginState?.error}
             />
           </div>
@@ -109,6 +110,7 @@ const UserLoginDialog = ({ onClose }) => {
               size="lg"
               variant="primary"
               onClick={handleSubmit}
+              disabled={hasEmptyFields}
             >
               Sign In
             </GlossyButton>

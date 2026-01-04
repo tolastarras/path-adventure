@@ -56,6 +56,7 @@ const UserDropdownMenu = ({ onResetGame}) => {
         onClick={handleToggle}
         aria-label="Account menu"
         aria-expanded={isDropdownOpen}
+        className="outline-none"
       >
         {user?.avatar ? (
           <div className="custom-icon__default relative">
