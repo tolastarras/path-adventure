@@ -3,3 +3,11 @@
 .top-container {
   @apply flex flex-col sm:w-full md:max-w-200 mx-auto relative;
 }
+
+.card-content__container {
+  @apply p-1 md:p-4;
+}
+
+.controls-panel__container {
+  @apply md:flex sm:gap-2 md:gap-7
+}

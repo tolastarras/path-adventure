@@ -65,6 +65,7 @@
 │   │   │   │   ├── CreateAccountDialog.jsx
 │   │   │   │   └── UserLoginDialog.jsx
 │   │   │   └── game
+│   │   │       ├── GameStatusAlert.css
 │   │   │       ├── GameStatusAlert.jsx
 │   │   │       ├── HowToPlayAlert.css
 │   │   │       ├── HowToPlayAlert.jsx
@@ -113,12 +114,14 @@
 │   │   ├── useBicycleDraw.js
 │   │   ├── useCanvas.js
 │   │   ├── useCanvasGridDraw.js
+│   │   ├── useCanvasLogic.js
 │   │   ├── useEnvironmentDraw.js
 │   │   ├── useEnvironmentGeneration.js
 │   │   ├── useFlagDraw.js
 │   │   ├── useGameAnimationDraw.js
 │   │   ├── useGameDraw.js
 │   │   ├── useGameElementsDraw.js
+│   │   ├── useGameLogic.js
 │   │   ├── useGameState.js
 │   │   ├── useImageLoader.js
 │   │   ├── usePathDraw.js
@@ -198,4 +201,4 @@
 │           └── user.js
 └── vite.config.js
 
-28 directories, 171 files
+28 directories, 174 files
