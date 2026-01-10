@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from 'react';
-import { gridSize } from '@/utils/constants';
+import { gridRows } from '@/utils/constants';
 
 import './NumberInput.css';
 
@@ -54,7 +54,7 @@ const NumberInput = ({ onChange, gameStatus, resetInput = false }) => {
         readOnly
         className="number-input__field"
         min="1"
-        max={gridSize - 1}
+        max={gridRows - 1}  // Min validation to prevent exceeding grid size
         aria-label="Counter value"
         tabIndex={-1} 
       />

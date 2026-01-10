@@ -25,14 +25,14 @@ const UserMenu = ({ user, onClickLogout }) => {
       {/* Menu Items */}
       <div className="py-1">
         <a
-          href="/profile"
+          href="/"
           className="user-menu__item"
         >
           <CustomIcon className="mr-2 text-gray-600" size="sm" icon={loginIcon} />
           My Profile
         </a>
         <a
-          href="/settings"
+          href="/"
           className="user-menu__item"
         >
           <CustomIcon className="mr-2 text-gray-600" size="sm" icon={cogIcon} />
