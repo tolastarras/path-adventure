@@ -20,7 +20,7 @@ const ControlsPanel = ({
   onUndoStep,
   gameStatus,
 }) => (
-  <div className="flex flex-col space-y-4 md:max-w-48 lg:max-w-80">
+  <div className="flex flex-col space-y-4 lg:max-w-80">
     <div className="w-full">
       <GlossyCard>
         <HeaderTitle title="Squares" />

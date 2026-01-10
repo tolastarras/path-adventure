@@ -1,14 +1,21 @@
-import { gridSize } from '@/utils/constants';
+import { gridCols, gridRows, directionsMap } from '@/utils/constants';
 import { isValidPosition, isOnEdge, isValidEndPosition } from '@/utils/helpers';
 
 export const generateRandomPath = () => {
+  const minSegmentPoints = 7;
+  const maxNumberOfAttempts = 100;
+
   let newPath = [];
   let gamesPlayed = 0;
   
-  while ((newPath.length < 7 || !isValidEndPosition(newPath)) && gamesPlayed < 100) {
+  // Convert directionsMap to array of direction objects for easy iteration
+  const directionsArray = Object.values(directionsMap);
+  const isPathInvalid = newPath.length < minSegmentPoints || !isValidEndPosition(newPath);
+
+  while (isPathInvalid && gamesPlayed < maxNumberOfAttempts) {
     newPath = [];
-    let currentX = Math.floor(Math.random() * gridSize);
-    let currentY = gridSize - 1; // Start from bottom
+    let currentX = Math.floor(Math.random() * gridCols);
+    let currentY = gridRows - 1; // Start from bottom row
     
     const startPos = { x: currentX, y: currentY };
     newPath.push(startPos);
@@ -17,18 +24,14 @@ export const generateRandomPath = () => {
       x === startPos.x && y === startPos.y;
 
     let steps = 0;
-    const maxSteps = 15;
+    const maxSteps = 25;
     
     while (!(isOnEdge(currentX, currentY) &&
       !isStartPosition(currentX, currentY)) || steps < 6) {
       if (steps >= maxSteps) break;
       
-      const directions = [
-        { dx: 0, dy: -1 }, // up
-        { dx: 1, dy: 0 },  // right
-        { dx: -1, dy: 0 }, // left
-        { dx: 0, dy: 1 }   // down
-      ].filter(dir => {
+      // Filter available directions
+      const directions = directionsArray.filter(dir => {
         const newX = currentX + dir.dx;
         const newY = currentY + dir.dy;
         return isValidPosition(newX, newY) && !newPath.some(step => step.x === newX && step.y === newY);
@@ -76,12 +79,7 @@ export const generateRandomPath = () => {
     x === startPos.x && y === startPos.y;
 
   if (!isOnEdge(lastPos.x, lastPos.y) || isStartPosition(lastPos.x, lastPos.y)) {
-    const directions = [
-      { dx: 0, dy: -1 }, // up
-      { dx: 1, dy: 0 },  // right
-      { dx: -1, dy: 0 }, // left
-      { dx: 0, dy: 1 }   // down
-    ].filter(dir => {
+    const directions = directionsArray.filter(dir => {
       const newX = lastPos.x + dir.dx;
       const newY = lastPos.y + dir.dy;
       return isValidPosition(newX, newY) &&

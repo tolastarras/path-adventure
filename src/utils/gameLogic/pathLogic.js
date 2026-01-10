@@ -1,4 +1,4 @@
-import { gridSize } from '@/utils/constants';
+import { gridCols, gridRows, directionsMap } from '@/utils/constants';
 
 export const reconstructPlayerPath = (playerMoves, path) => {
   let reconstructedPath = [{ x: path[0].x, y: path[0].y }];
@@ -8,21 +8,13 @@ export const reconstructPlayerPath = (playerMoves, path) => {
   playerMoves.forEach(move => {
     const count = parseInt(move.match(/\d+/)[0]);
     const direction = move.match(/[↑→←↓]/)[0];
-    
-    const directionMap = {
-      '↑': { dx: 0, dy: -1 },
-      '→': { dx: 1, dy: 0 },
-      '←': { dx: -1, dy: 0 },
-      '↓': { dx: 0, dy: 1 }
-    };
-
-    const { dx, dy } = directionMap[direction];
+    const { dx, dy } = directionsMap[direction];
     
     for (let i = 0; i < count; i++) {
       currentX += dx;
       currentY += dy;
-      // Check bounds
-      if (currentX >= 0 && currentX < gridSize && currentY >= 0 && currentY < gridSize) {
+      // Check bounds with separate grid dimensions
+      if (currentX >= 0 && currentX < gridCols && currentY >= 0 && currentY < gridRows) {
         reconstructedPath.push({ x: currentX, y: currentY });
       }
     }

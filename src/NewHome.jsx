@@ -43,10 +43,9 @@ const NewHome = ({ onGameComplete }) => {
   const { setupAnimationCanvas } = useCanvasLogic(
     animationCanvasRef,
     currentPath,
-    drawBicycle
+    drawBicycle,
   );
 
-  // Effects
   useEffect(() => {
     const cleanup = setupAnimationCanvas(animationCanvasRef);
     return cleanup;

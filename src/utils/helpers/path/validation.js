@@ -1,10 +1,12 @@
-import { gridSize } from '@/utils/constants';
+import { gridCols, gridRows } from '@/utils/constants';
 
-export const isValidPosition = (x, y) =>
-  x >= 0 && x < gridSize && y >= 0 && y < gridSize;
+export const isValidPosition = (x, y) => {
+  return x >= 0 && x < gridCols && y >= 0 && y < gridRows;
+}
 
-export const isOnEdge = (x, y) => 
-  x === 0 || x === gridSize - 1 || y === 0 || y === gridSize - 1;
+export const isOnEdge = (x, y) => {
+  return x === 0 || x === gridCols - 1 || y === 0 || y === gridRows - 1;
+}
 
 export const isSegmentInPath = (segment, correctPath) => {
   for (let i = 0; i < correctPath.length - 1; i++) {
@@ -33,4 +35,3 @@ export const isValidEndPosition = (path) => {
   
   return isOnEdge(end.x, end.y) && !isStartPosition(end.x, end.y);
 };
-

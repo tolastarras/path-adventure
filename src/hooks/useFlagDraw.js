@@ -1,7 +1,6 @@
 import { useCallback } from 'react';
 import { useImageLoader } from '.';
 import { drawCellText } from '@/utils/helpers';
-
 import { cellSize } from '@/utils/constants';
 
 import flagImage from '/finish-flag.webp';
