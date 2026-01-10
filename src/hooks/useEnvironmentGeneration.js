@@ -1,5 +1,5 @@
 import { useCallback } from 'react';
-import { gridSize, terrainTypes } from '@/utils/constants';
+import { gridCols, gridRows, terrainTypes } from '@/utils/constants';
 
 const useEnvironmentGeneration = () => {
   const generateEnvironmentGroups = useCallback((currentPath = [], groupCount = 15) => {
@@ -8,14 +8,14 @@ const useEnvironmentGeneration = () => {
     const groups = [];
 
     const getRandomPosition = () => ({
-      x: Math.floor(Math.random() * gridSize),
-      y: Math.floor(Math.random() * gridSize)
+      x: Math.floor(Math.random() * gridCols), // Use gridCols for x range
+      y: Math.floor(Math.random() * gridRows)  // Use gridRows for y range
     });
 
     const isCellAvailable = (x, y) => {
       return !usedCells.has(`${x},${y}`) && 
-        x >= 0 && x < gridSize &&
-        y >= 0 && y < gridSize;
+        x >= 0 && x < gridCols &&  // Check against gridCols
+        y >= 0 && y < gridRows;    // Check against gridRows
     };
 
     const getGroupPositions = (startX, startY, groupSize) => {
@@ -28,10 +28,10 @@ const useEnvironmentGeneration = () => {
       ];
 
       for (let i = 1; i < groupSize && positions.length < groupSize; i++) {
-        let gamesPlayed = 0;
+        let attempts = 0;
         let foundPosition = false;
 
-        while (gamesPlayed < 20 && !foundPosition) {
+        while (attempts < 20 && !foundPosition) {
           const basePos = positions[Math.floor(Math.random() * positions.length)];
           const dir = directions[Math.floor(Math.random() * directions.length)];
           const newX = basePos.x + dir[0];
@@ -42,7 +42,7 @@ const useEnvironmentGeneration = () => {
             usedCells.add(`${newX},${newY}`);
             foundPosition = true;
           }
-          gamesPlayed++;
+          attempts++;
         }
       }
 
@@ -55,14 +55,14 @@ const useEnvironmentGeneration = () => {
       const groupSize = Math.floor(Math.random() * 3) + 1;
 
       let startPos;
-      let gamesPlayed = 0;
+      let attempts = 0;
 
       do {
         startPos = getRandomPosition();
-        gamesPlayed++;
-      } while (!isCellAvailable(startPos.x, startPos.y) && gamesPlayed < 100);
+        attempts++;
+      } while (!isCellAvailable(startPos.x, startPos.y) && attempts < 100);
 
-      if (gamesPlayed >= 100) continue;
+      if (attempts >= 100) continue;
 
       const positions = getGroupPositions(startPos.x, startPos.y, groupSize);
       if (positions.length > 0) {

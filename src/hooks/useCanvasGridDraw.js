@@ -1,6 +1,6 @@
 import { useCallback } from 'react';
-import { useCanvas } from '.';
-import { colors, gridSize, cellSize, canvasPadding } from '@/utils/constants';
+import { useCanvas } from '@/hooks';
+import { colors, gridCols, gridRows, cellSize, canvasPadding } from '@/utils/constants';
 
 const useCanvasGridDraw = (canvasRef) => {
   const { drawOnCanvas } = useCanvas(canvasRef);
@@ -15,17 +15,25 @@ const useCanvasGridDraw = (canvasRef) => {
       ctx.strokeStyle = colors.canvasStroke;
       ctx.lineWidth = 1;
 
-      for (let i = 1; i < gridSize; i++) {
-        // Vertical lines
+      // Draw vertical lines (use dynamic grid cols)
+      for (let col = 1; col < gridCols; col++) {
         ctx.beginPath();
-        ctx.moveTo(canvasPadding + i * cellSize, canvasPadding);
-        ctx.lineTo(canvasPadding + i * cellSize, canvasPadding + gridSize * cellSize);
+        ctx.moveTo(canvasPadding + col * cellSize, canvasPadding);
+        ctx.lineTo(
+          canvasPadding + col * cellSize,
+          canvasPadding + gridRows * cellSize
+        );
         ctx.stroke();
+      }
 
-        // Horizontal lines
+      // Draw horizontal lines (rows always 10)
+      for (let row = 1; row < gridRows; row++) {
         ctx.beginPath();
-        ctx.moveTo(canvasPadding, canvasPadding + i * cellSize);
-        ctx.lineTo(canvasPadding + gridSize * cellSize, canvasPadding + i * cellSize);
+        ctx.moveTo(canvasPadding, canvasPadding + row * cellSize);
+        ctx.lineTo(
+          canvasPadding + gridCols * cellSize,
+          canvasPadding + row * cellSize
+        );
         ctx.stroke();
       }
     });

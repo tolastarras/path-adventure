@@ -27,8 +27,6 @@ export const useGameDraw = (
       // Draw START text here and bicycle on top canvas
       drawText(ctx, 'START', path);
   
-      // Draw path (over the bicycle)
-
       drawAnimatedPath(ctx, path, {
         duration: path.length * 300,
         onAnimationComplete: () => {

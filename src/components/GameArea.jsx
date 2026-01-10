@@ -1,11 +1,4 @@
-import {
-  GlossyCard,
-  GlossyButton,
-  TextInput,
-  GameCanvas,
-} from '@/components';
-
-import { canvas } from '@/utils/constants';
+import { GlossyButton, TextInput, GameCanvasCard } from '@/components';
 
 const GameArea = ({
   mainCanvasRef,
@@ -22,20 +15,13 @@ const GameArea = ({
   onNewAdventure,
 }) => (
   <div className='w-full flex flex-col space-y-4'>
-    <GlossyCard showPadding={false}>
-      <GameCanvas
-        canvasRef={mainCanvasRef}
-        path={currentPath}
-        gameStatus={gameStatus}
-        playerMoves={playerMoves}
-      />
-      <canvas 
-        ref={animationCanvasRef}
-        className="absolute top-0 left-0 pointer-events-none z-10"
-        width={canvas.width}
-        height={canvas.height}
-      />
-    </GlossyCard>
+    <GameCanvasCard
+      mainCanvasRef={mainCanvasRef}
+      animationCanvasRef={animationCanvasRef}
+      currentPath={currentPath}
+      gameStatus={gameStatus}
+      playerMoves={playerMoves}
+    />
     
     <div>
       <TextInput disabled placeholder='Your Planned Route'>

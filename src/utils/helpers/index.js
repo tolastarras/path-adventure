@@ -3,6 +3,8 @@ export {
   getCellCenterPoint,
   drawCellText,
   drawPartialPath,
+  getResponsiveGridConstants,
+  getGameAreaSize,
 } from './canvasHelper';
 
 export {

@@ -22,6 +22,7 @@ export { default as HowToPlayAlert } from './alerts/game/HowToPlayAlert';
 export { default as LeaderboardAlert } from './alerts/game/LeaderboardAlert';
 export { default as CreateAccountDialog } from './alerts/auth/CreateAccountDialog';
 export { default as UserLoginDialog } from './alerts/auth/UserLoginDialog';
+export { default as GameCanvasCard } from './GameCanvasCard';
 
 // ui components
 export { default as HeaderTitle } from './ui/HeaderTitle';

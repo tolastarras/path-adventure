@@ -20,7 +20,7 @@ export const useBicycleDraw = () => {
     if (direction === 'left') {
       ctx.scale(-1, 1);
     }
-    ctx.drawImage(imageRef.current, -size/2, -size/2, size, size);
+    ctx.drawImage(imageRef.current, -size / 2, -size / 2, size, size);
     ctx.restore();
   }, [imageRef]);
 

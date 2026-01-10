@@ -1,10 +1,33 @@
-import {
-  canvasPadding,
-  cellSize,
-  typography,
-  itinerary,
-  colors,
-} from '@/utils/constants';
+import { canvasPadding, typography, itinerary, colors, cellSize } from '@/utils/constants';
+
+/**
+ * Helper function to get responsive grid constants, based on window width.
+ * TODO: Update to use actual grid canvas size instead of window width.
+ * TODO: Calculate columns and cell size dynamically instead of using hardcoded constants.
+ */
+export const getResponsiveGridConstants = () => {
+  const width = window.innerWidth;
+
+  if (width <= 400) return { rows: 10, cols: 6, cellSize: 55 };
+  else if (width <= 430) return { rows: 10, cols: 7, cellSize: 53.2 };
+  else if (width <= 635) return { rows: 10, cols: 8, cellSize: 47 };
+  else if (width <= 686) return { rows: 10, cols: 13, cellSize: 48.5 };
+  else if (width <= 725) return { rows: 10, cols: 13, cellSize: 52 };
+  else if (width <= 738) return { rows: 10, cols: 14, cellSize: 49 };
+  else if (width <= 756) return { rows: 10, cols: 14, cellSize: 50 };
+  else if (width <= 767) return { rows: 10, cols: 14, cellSize: 51 };
+  else if (width <= 775) return { rows: 10, cols: 9, cellSize: 52 };
+  else if (width <= 788) return { rows: 10, cols: 9, cellSize: 54 };
+  return { rows: 10, cols: 10, cellSize: 50 };
+};
+
+export const getGameAreaSize = () => {
+  const { rows, cols, cellSize } = getResponsiveGridConstants();
+  return {
+    width: cols * cellSize + 2 * canvasPadding,
+    height: rows * cellSize + 2 * canvasPadding,
+  };
+}
 
 // Helper function to calculate center coordinates
 export const getCellCenterPoint = (cell = { x: 0, y: 0 }) => ({
@@ -83,7 +106,7 @@ export const drawPartialPath = ((ctx, path, segmentsToShow) => {
   }
 });
 
-// Draw text in the center of the cell
+// Helper function to draw START/FINISH text in a given cell
 export const drawCellText = (ctx, text, options = {}) => {
   const {
     position = 'bottom', // 'bottom', 'top', 'center'

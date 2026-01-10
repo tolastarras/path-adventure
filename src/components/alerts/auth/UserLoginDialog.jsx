@@ -14,7 +14,10 @@ const UserLoginDialog = ({ onClose }) => {
   const usernameRef = useRef(null);
   const { login } = useAuthManager();
   const { openAlert } = useAlertBoxManager();
-  const [loginState, setLoginState] = useState(null);
+  const [loginState, setLoginState] = useState({
+    username: '',
+    password: '',
+  });
 
   useEffect(() => {
     if (usernameRef.current) {

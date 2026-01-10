@@ -50,6 +50,7 @@
 │   │   ├── GameArea.jsx
 │   │   ├── GameCanvas.css
 │   │   ├── GameCanvas.jsx
+│   │   ├── GameCanvasCard.jsx
 │   │   ├── GameControls.css
 │   │   ├── GameControls.jsx
 │   │   ├── GameHeader.css
@@ -165,6 +166,7 @@
 │   └── utils
 │       ├── constants
 │       │   ├── aboutConstants.js
+│       │   ├── canvasConstants.js
 │       │   ├── colorConstants.js
 │       │   ├── gameConstants.js
 │       │   ├── howToPlayConstants.js
@@ -201,4 +203,4 @@
 │           └── user.js
 └── vite.config.js
 
-28 directories, 174 files
+28 directories, 176 files

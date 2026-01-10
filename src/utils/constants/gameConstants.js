@@ -80,15 +80,19 @@ export const GAME_RESULTS = {
   },
 };
 
-export const FONT_SCALE_FACTOR = 6;
-export const MIN_FONT_SIZE = 10;
-
 export const DIRECTIONS = [
   { id: 'up', label: 'Up', icon: '↑', rotation: 270 },
   { id: 'left', label: 'Left', icon: '←', rotation: 180 },
   { id: 'right', label: 'Right', icon: '→', rotation: 0 },
   { id: 'down', label: 'Down', icon: '↓', rotation: 90 },
 ];
+
+export const DIRECTIONS_MAP = {
+  '↑': { dx: 0, dy: -1 },
+  '→': { dx: 1, dy: 0 },
+  '←': { dx: -1, dy: 0 },
+  '↓': { dx: 0, dy: 1 }
+};
 
 export const TERRAIN_TYPES = [
   'water',
@@ -98,20 +102,6 @@ export const TERRAIN_TYPES = [
   'grass',
   'rock',
 ];
-
-export const GRID_SIZE = 10;      // Make squares bigger by increasing CELL_SIZE
-export const CELL_SIZE = 50;      // Increased cell size
-export const CANVAS_PADDING = 0;  // Increased padding to accommodate larger squares
-
-const screenWidth = window.innerWidth;
-const screenHeight = window.innerHeight;
-console.log('Screen size:', screenWidth, screenHeight);
-
-export const CANVAS = {
-  width: GRID_SIZE * CELL_SIZE + 2 * CANVAS_PADDING,
-  height: GRID_SIZE * CELL_SIZE + 2 * CANVAS_PADDING,
-  stroke: colors.canvasStroke,
-};
 
 export const ITINERARY = {
   lineWidth: 4,
@@ -137,8 +127,3 @@ export const GAME_STATS_CARDS = [
     type: 'percent',
   },
 ];
-
-export const TYPOGRAPHY = {
-  fontSize: Math.max(MIN_FONT_SIZE, CELL_SIZE / FONT_SCALE_FACTOR),
-  fontFamily: 'Arial'
-}
