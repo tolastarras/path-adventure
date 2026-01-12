@@ -1,0 +1,19 @@
+blank_template: |
+  ## Description
+  Please include a summary of the change.
+
+  ## Type of Change
+  - [ ] Bug fix
+  - [ ] New feature
+  - [ ] Documentation update
+  - [ ] Refactoring
+
+templates:
+  - name: "🐛 Bug Fix"
+    filename: bug-fix.md
+    about: Template for bug fix pull requests
+    title: "fix: "
+  - name: "🚀 Feature"
+    filename: feature.md
+    about: Template for new feature pull requests
+    title: "feat: "

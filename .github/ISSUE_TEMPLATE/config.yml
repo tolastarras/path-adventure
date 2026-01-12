@@ -4,14 +4,18 @@ contact_links:
     url: https://your-docs.com
     about: Check our documentation first
   - name: 💬 Discussions
-    url: https://github.com/your/repo/discussions
-    about: Please ask questions here
+    url: https://github.com/your-org/your-repo/discussions
+    about: Please ask questions and discuss ideas here
 template:
   - name: "🐛 Bug Report"
     filename: bug-report.md
+    about: Report a bug or unexpected behavior
   - name: "🚀 Feature Request"
     filename: feature-request.md
+    about: Suggest a new feature or enhancement
   - name: "📚 Documentation Update"
     filename: documentation.md
+    about: Suggest documentation improvements
   - name: "🔧 Maintenance/Refactor"
     filename: maintenance.md
+    about: Technical debt, refactoring, or maintenance tasks
