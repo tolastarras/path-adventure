@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { GlossyCard, GlossyButton,CustomIcon } from '@/components';
+import { GlossyCard, GlossyButton, CustomIcon } from '@/components';
 import { rotationAngles } from '@/utils/constants';
 import { arrowIcon } from '@/assets/icons';
 
@@ -16,20 +16,39 @@ const GameControls = ({ onClick, directions, resetButtons, gameStatus }) => {
   return (
     <GlossyCard>
       <div className="game-controls__container">
-        {[
-          [directions[0]],           // First item alone
-          directions.slice(1, 3),    // Second and third items together
-          [directions[3]]            // Fourth item alone
-        ].map((row, rowIndex) => (
-          <div 
-            key={rowIndex} 
-            className={`flex ${row.length > 1 ? 'middle-row' : 'justify-center'}`}
-          >
-            {row.map(({id, rotation}) => (
+        <div className="game-controls-small">
+          {directions.map(({id, rotation}) => (
+            <GlossyButton
+              key={id}
+              variant="primary"
+              className="w-full h-15"
+              isActive={id === selectedDirection && !resetButtons}
+              onClick={() => handleClick(id)}
+              disabled={gameStatus !== 'playing'}
+            >
+              <CustomIcon
+                icon={arrowIcon}
+                size="md"
+                className={rotationAngles[rotation]}
+              />
+            </GlossyButton>
+          ))}
+        </div>
+
+        <div className="game-controls-medium">
+          {directions.map(({id, rotation}, index) => (
+            <div
+              key={id}
+              className={`flex justify-center
+                ${index === 0 ? 'order-1' : ''}  /* top-left */
+                ${index === 1 ? 'order-3' : ''}  /* top-right */
+                ${index === 2 ? 'order-2' : ''}  /* bottom-left */
+                ${index === 3 ? 'order-4' : ''}  /* bottom-right */
+              `}
+            >
               <GlossyButton
-                key={id}
                 variant="primary"
-                className="w-15 h-15"
+                className="w-19 h-15"
                 isActive={id === selectedDirection && !resetButtons}
                 onClick={() => handleClick(id)}
                 disabled={gameStatus !== 'playing'}
@@ -40,12 +59,42 @@ const GameControls = ({ onClick, directions, resetButtons, gameStatus }) => {
                   className={rotationAngles[rotation]}
                 />
               </GlossyButton>
-            ))}
-          </div>
-        ))}
+            </div>
+          ))}
+        </div>
+
+        <div className="game-controls-large">
+          {[
+            [directions[0]],           // First item alone (top)
+            directions.slice(1, 3),    // Second and third items together (left, right)
+            [directions[3]]            // Fourth item alone (bottom)
+          ].map((row, rowIndex) => (
+            <div
+              key={rowIndex}
+              className={`flex ${row.length > 1 ? 'middle-row' : 'justify-center'}`}
+            >
+              {row.map(({id, rotation}) => (
+                <GlossyButton
+                  key={id}
+                  variant="primary"
+                  className="w-15 h-15"
+                  isActive={id === selectedDirection && !resetButtons}
+                  onClick={() => handleClick(id)}
+                  disabled={gameStatus !== 'playing'}
+                >
+                  <CustomIcon
+                    icon={arrowIcon}
+                    size="md"
+                    className={rotationAngles[rotation]}
+                  />
+                </GlossyButton>
+              ))}
+            </div>
+          ))}
+        </div>
       </div>
     </GlossyCard>
-  )
+  );
 };
 
 export default GameControls;
