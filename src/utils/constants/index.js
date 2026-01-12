@@ -1,5 +1,6 @@
 export {
   COLORS as colors,
+  CONFETTI_COLORS as confettiColors,
   TERRAIN_COLORS as terrainColors,
 } from './colorConstants';
 

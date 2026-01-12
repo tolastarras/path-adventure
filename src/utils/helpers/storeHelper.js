@@ -68,3 +68,11 @@ export const setCurrentPlayer = (data) => {
 export const removeCurrentPlayer = () => {
   return storage.remove(currentPlayerKey);
 }
+
+export const getPlayerById = (userId) => {
+  return storage.get(storeKey).users?.find((u) => u.id?.toLowerCase() === userId.toLowerCase()) || null;
+}
+
+export const playerExists = (userId) => {
+  return storage.get(storeKey).users.some((u) => u.id.toLowerCase() === userId.toLowerCase());
+}

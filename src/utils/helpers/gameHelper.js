@@ -54,11 +54,3 @@ export const buildGameStatsCards = (stats) => {
     return card;
   });
 }
-
-export const getPlayer = (userId) => {
-  return getStorage().users?.find((u) => u.id?.toLowerCase() === userId.toLowerCase()) || null;
-}
-
-export const playerExists = (userId) => {
-  return getStorage().users.some((u) => u.id.toLowerCase() === userId.toLowerCase());
-}
