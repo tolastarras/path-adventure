@@ -1,12 +1,12 @@
 @import 'tailwindcss';
 
 .leaderboard__header {
-  @apply grid grid-cols-4 md:grid-cols-[1fr_3fr_2fr_1fr] items-center mb-4 p-4 bg-linear-to-r;
+  @apply grid grid-cols-3 md:grid-cols-[2fr_1fr_1fr] items-center mb-4 p-4 bg-linear-to-r;
   @apply from-blue-500/40 to-blue-500/40 rounded-xl border border-white/10 text-white/90;
 }
 
 .leaderboard-item {
   @apply px-4 py-2 rounded-xl border transition-all duration-300;
-  @apply grid grid-cols-4 md:grid-cols-[1fr_3fr_2fr_1fr] items-center;
+  @apply grid grid-cols-3 md:grid-cols-[2fr_1fr_1fr] items-center;
   @apply bg-linear-to-r bg-white/20 border-white/30 hover:scale-[1.04] hover:shadow-md ;
 }

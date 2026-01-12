@@ -23,6 +23,8 @@ export { default as LeaderboardAlert } from './alerts/game/LeaderboardAlert';
 export { default as CreateAccountDialog } from './alerts/auth/CreateAccountDialog';
 export { default as UserLoginDialog } from './alerts/auth/UserLoginDialog';
 export { default as GameCanvasCard } from './GameCanvasCard';
+export { default as Confetti } from './Confetti';
+export { default as NewAchievement } from './NewAchievement';
 
 // ui components
 export { default as HeaderTitle } from './ui/HeaderTitle';
