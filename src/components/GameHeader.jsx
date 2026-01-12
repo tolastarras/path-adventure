@@ -28,9 +28,12 @@ const GameHeader = ({
         <BubbleDialog showBubble={showBubble} />
         <div className="flex-1 min-w-[200px]">
           <HeaderTitle className="glossy-card__title">{title}</HeaderTitle>
-          <div className="glossy-card__description">
-            <span className="inline md:hidden">{description.mobile}</span>
-            <span className="hidden md:inline">{description.desktop}</span>
+          <div className="glossy-card__description flex">
+            <span>{description}</span>
+            <span className="hidden md:flex ml-2">
+              from <img src="/bicycle-kid.webp" className="mx-2" alt="bicycle" width="25" />
+              to <img src="/finish-flag.webp" className="ml-2" alt="flag" width="25" />
+            </span>
           </div>
         </div>
         <picture

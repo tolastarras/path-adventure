@@ -8,8 +8,6 @@
 ├── public
 │   ├── bicycle-kid.png
 │   ├── bicycle-kid.webp
-│   ├── cyclist-logo-DELETE.png
-│   ├── cyclist.gif
 │   ├── finish-flag.webp
 │   ├── logo.png
 │   └── logo.webp
@@ -46,6 +44,8 @@
 │   ├── components
 │   │   ├── AvatarSelector.css
 │   │   ├── AvatarSelector.jsx
+│   │   ├── Confetti.css
+│   │   ├── Confetti.jsx
 │   │   ├── ControlsPanel.jsx
 │   │   ├── GameArea.jsx
 │   │   ├── GameCanvas.css
@@ -60,6 +60,8 @@
 │   │   ├── IconMenu.jsx
 │   │   ├── LeaderboardContainer.css
 │   │   ├── LeaderboardContainer.jsx
+│   │   ├── NewAchievement.css
+│   │   ├── NewAchievement.jsx
 │   │   ├── alerts
 │   │   │   ├── AlertRegistry.jsx
 │   │   │   ├── auth
@@ -203,4 +205,4 @@
 │           └── user.js
 └── vite.config.js
 
-28 directories, 176 files
+28 directories, 178 files

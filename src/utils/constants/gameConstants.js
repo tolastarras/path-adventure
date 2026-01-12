@@ -12,10 +12,7 @@ import { colors } from '.';
 
 export const DATA = {
   title: 'Path Adventure',
-  description: {
-    mobile: 'Follow the path',
-    desktop: 'Follow the path from 🚴‍♂️ to 🏁',
-  },
+  description: 'Follow the path',
 };
 
 export const GAME_MESSAGES = {
