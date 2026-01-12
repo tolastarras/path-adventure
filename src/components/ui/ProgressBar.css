@@ -1,0 +1,40 @@
+@import "tailwindcss";
+
+.progress-bar-container {
+  @apply w-full h-9 border overflow-hidden;
+  @apply border-white/20 bg-gray-200 rounded-full;
+}
+
+.progress-bar {
+  @apply flex items-center justify-center h-full p-0.5 leading-none rounded-full;
+  @apply text-xl font-medium; 
+}
+
+.progress-bar--gradient {
+  @apply bg-size-[1rem_1rem] bg-linear-to-r bg-[linear-gradient(45deg,rgba(255,255,255,0.15)_25%,transparent_25%,transparent_50%,rgba(255,255,255,0.15)_50%,rgba(255,255,255,0.15)_75%,transparent_75%,transparent)];
+}
+
+.progress-bar--primary {
+  @apply bg-blue-500 from-blue-400 to-blue-500 text-blue-100;
+}
+
+.progress-bar--success {
+  @apply bg-green-500 from-green-400 to-green-500 text-green-100;
+}
+
+.progress-bar--danger {
+  @apply bg-red-500 from-red-400 to-red-500 text-red-100;
+}
+
+.progress-bar--warning {
+  @apply bg-amber-500 from-amber-400 to-amber-500 text-amber-100;  
+}
+
+@keyframes stripes {
+  0% { background-position: 1rem 0; }
+  100% { background-position: 0 0; }
+}
+
+.animate-stripes {
+  @apply animate-[stripes_1s_linear_infinite];
+}

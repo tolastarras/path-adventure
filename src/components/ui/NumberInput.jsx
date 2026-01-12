@@ -1,11 +1,21 @@
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
+import { gridRows } from '@/utils/constants';
 
 import './NumberInput.css';
 
-const NumberInput = ({ onChange }) => {
+const NumberInput = ({ onChange, gameStatus, resetInput = false }) => {
   const inputRef = useRef(null);
-
   const [count, setCount] = useState(1);
+
+  // Reset when resetInput prop changes
+  useEffect(() => {
+    if (resetInput) {
+      setCount(1);
+      if (inputRef.current) {
+        inputRef.current.value = 1;
+      }
+    }
+  }, [resetInput]);
 
   const handleInputChange = (value) => {
     setCount(value);
@@ -25,24 +35,26 @@ const NumberInput = ({ onChange }) => {
   };
 
   return (
-    <div className="number-input-container">
+    <div className={`number-input__container ${gameStatus !== 'playing' ? 'disabled' : ''}`}>
       <button
         className="number-input__button"
         onClick={handleDecrement}
         type="button"
         aria-label="Decrease count"
+        disabled={gameStatus !== 'playing'}
       >
         -
       </button>
       
       <input
         ref={inputRef}
+        name="number-input"
         type="number"
         value={count}
         readOnly
         className="number-input__field"
         min="1"
-        max="100"
+        max={gridRows - 1}  // Min validation to prevent exceeding grid size
         aria-label="Counter value"
         tabIndex={-1} 
       />
@@ -52,6 +64,7 @@ const NumberInput = ({ onChange }) => {
         onClick={handleIncrement}
         type="button"
         aria-label="Increase count"
+        disabled={gameStatus !== 'playing'}
       >
         +
       </button>

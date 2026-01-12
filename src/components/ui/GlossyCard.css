@@ -2,18 +2,22 @@
 
 /* Base glossy card styles */
 .glossy-card {
-  @apply relative w-full h-full rounded-2xl py-6 px-8 overflow-hidden;
+  @apply relative w-full h-full rounded-2xl py-6 px-8;
   @apply bg-linear-to-br from-sky-400 via-sky-500 to-blue-500;
   @apply border-2 border-white/20 transition-all duration-500 ease-out;
 }
 
 .glossy-card--transparent {
-  @apply relative w-full h-full rounded-2xl py-6 px-8 overflow-hidden;
+  @apply relative w-full h-full rounded-2xl;
   @apply bg-linear-to-br from-white/10 via-white/15 to-white/20;
   @apply border-2 border-white/30 transition-all duration-500 ease-out;
 }
 
-.glossy-card:hover, .glossy-card--transparent:hover {
+.glossy-card--padding {
+  @apply py-5 px-4;
+}
+
+.glossy-card--hover:hover {
   @apply scale-105 border-white/70;
 }
 
@@ -74,22 +78,18 @@
 
 /* Content styles */
 .glossy-card__content {
-  @apply relative z-10 text-white text-xl;
+  @apply relative z-10 text-white;
 }
 
 .glossy-card__title {
-  @apply text-2xl drop-shadow-lg;
+  @apply text-3xl drop-shadow-lg;
 }
 
 .glossy-card__description {
-  @apply mt-3 opacity-90 drop-shadow-md;
-}
-
-.glossy-card__children {
-  @apply my-4;
+  @apply text-xl mt-3 opacity-90 drop-shadow-md;
 }
 
 /* Grid container */
 .glossy-card-grid {
-  @apply grid grid-cols-1 lg:grid-cols-2 gap-6;
+  @apply grid grid-cols-1 gap-6;
 }

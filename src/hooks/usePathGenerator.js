@@ -1,12 +1,14 @@
 import { useState, useEffect, useCallback } from 'react';
-import { generateRandomPath } from '../utils/pathUtils';
+import { generateRandomPath } from '@/utils/helpers';
 
-export const usePathGenerator = () => {
+const usePathGenerator = () => {
   const [path, setPath] = useState([]);
 
   const generateNewPath = useCallback(() => {
     const newPath = generateRandomPath();
     setPath(newPath);
+
+    return newPath;
   }, []);
 
   const clearGame = useCallback(() => {
@@ -18,8 +20,10 @@ export const usePathGenerator = () => {
   }, [generateNewPath]);
 
   return {
-    path,
+    currentPath: path,
     generateNewPath,
     clearGame
   };
 };
+
+export default usePathGenerator;

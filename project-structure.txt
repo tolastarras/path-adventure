@@ -1,0 +1,208 @@
+.
+├── README.md
+├── eslint.config.js
+├── index.html
+├── package-lock.json
+├── package.json
+├── project-structure.txt
+├── public
+│   ├── bicycle-kid.png
+│   ├── bicycle-kid.webp
+│   ├── finish-flag.webp
+│   ├── logo.png
+│   └── logo.webp
+├── src
+│   ├── App.css
+│   ├── App.jsx
+│   ├── NewHome.css
+│   ├── NewHome.jsx
+│   ├── assets
+│   │   ├── game-stats.png
+│   │   ├── icons
+│   │   │   ├── arrow.svg
+│   │   │   ├── close.svg
+│   │   │   ├── cog.svg
+│   │   │   ├── danger.svg
+│   │   │   ├── help.svg
+│   │   │   ├── index.js
+│   │   │   ├── info.svg
+│   │   │   ├── login.svg
+│   │   │   ├── success.svg
+│   │   │   ├── trophy.svg
+│   │   │   ├── user.svg
+│   │   │   └── warning.svg
+│   │   ├── index.js
+│   │   ├── landscape
+│   │   │   ├── grass.png
+│   │   │   ├── index.js
+│   │   │   ├── mud.png
+│   │   │   ├── rock.png
+│   │   │   ├── sand.png
+│   │   │   ├── tree.png
+│   │   │   └── water.png
+│   │   └── react.svg
+│   ├── components
+│   │   ├── AvatarSelector.css
+│   │   ├── AvatarSelector.jsx
+│   │   ├── Confetti.css
+│   │   ├── Confetti.jsx
+│   │   ├── ControlsPanel.jsx
+│   │   ├── GameArea.jsx
+│   │   ├── GameCanvas.css
+│   │   ├── GameCanvas.jsx
+│   │   ├── GameCanvasCard.jsx
+│   │   ├── GameControls.css
+│   │   ├── GameControls.jsx
+│   │   ├── GameHeader.css
+│   │   ├── GameHeader.jsx
+│   │   ├── GameStats.css
+│   │   ├── GameStats.jsx
+│   │   ├── IconMenu.jsx
+│   │   ├── LeaderboardContainer.css
+│   │   ├── LeaderboardContainer.jsx
+│   │   ├── NewAchievement.css
+│   │   ├── NewAchievement.jsx
+│   │   ├── alerts
+│   │   │   ├── AlertRegistry.jsx
+│   │   │   ├── auth
+│   │   │   │   ├── CreateAccountDialog.jsx
+│   │   │   │   └── UserLoginDialog.jsx
+│   │   │   └── game
+│   │   │       ├── GameStatusAlert.css
+│   │   │       ├── GameStatusAlert.jsx
+│   │   │       ├── HowToPlayAlert.css
+│   │   │       ├── HowToPlayAlert.jsx
+│   │   │       └── LeaderboardAlert.jsx
+│   │   ├── auth
+│   │   │   ├── AuthLink.jsx
+│   │   │   ├── GuestMenu.jsx
+│   │   │   ├── UserDropdownMenu.css
+│   │   │   ├── UserDropdownMenu.jsx
+│   │   │   ├── UserMenu.css
+│   │   │   └── UserMenu.jsx
+│   │   ├── index.js
+│   │   └── ui
+│   │       ├── AlertBox.css
+│   │       ├── AlertBox.jsx
+│   │       ├── AnimatedBorder.jsx
+│   │       ├── BubbleDialog.css
+│   │       ├── BubbleDialog.jsx
+│   │       ├── CustomIcon.css
+│   │       ├── CustomIcon.jsx
+│   │       ├── GlossyButton.css
+│   │       ├── GlossyButton.jsx
+│   │       ├── GlossyCard.css
+│   │       ├── GlossyCard.jsx
+│   │       ├── HeaderTitle.css
+│   │       ├── HeaderTitle.jsx
+│   │       ├── NumberAnimation.jsx
+│   │       ├── NumberInput.css
+│   │       ├── NumberInput.jsx
+│   │       ├── ProgressBar.css
+│   │       ├── ProgressBar.jsx
+│   │       ├── RoundButton.css
+│   │       ├── RoundButton.jsx
+│   │       ├── TextInput.css
+│   │       └── TextInput.jsx
+│   ├── context
+│   │   ├── AlertBoxContext.js
+│   │   ├── AlertBoxProvider.jsx
+│   │   ├── AuthContext.jsx
+│   │   ├── AuthProvider.jsx
+│   │   └── index.js
+│   ├── hooks
+│   │   ├── index.js
+│   │   ├── useAlertBoxManager.js
+│   │   ├── useAuthManager.js
+│   │   ├── useBicycleDraw.js
+│   │   ├── useCanvas.js
+│   │   ├── useCanvasGridDraw.js
+│   │   ├── useCanvasLogic.js
+│   │   ├── useEnvironmentDraw.js
+│   │   ├── useEnvironmentGeneration.js
+│   │   ├── useFlagDraw.js
+│   │   ├── useGameAnimationDraw.js
+│   │   ├── useGameDraw.js
+│   │   ├── useGameElementsDraw.js
+│   │   ├── useGameLogic.js
+│   │   ├── useGameState.js
+│   │   ├── useImageLoader.js
+│   │   ├── usePathDraw.js
+│   │   ├── usePathGenerator.js
+│   │   ├── usePathManagement.js
+│   │   ├── usePlayerPathDraw.js
+│   │   ├── useSmoothPathAnimationDraw.js
+│   │   ├── useStepManagement.js
+│   │   ├── useTerrainImages.js
+│   │   └── useTextDraw.js
+│   ├── index.css
+│   ├── legacy
+│   │   ├── LegacyHome.jsx
+│   │   ├── components
+│   │   │   ├── Footer.jsx
+│   │   │   ├── GameCanvas.jsx
+│   │   │   ├── GameControls.jsx
+│   │   │   ├── GameStats.jsx
+│   │   │   ├── GameStatus.jsx
+│   │   │   ├── Instructions.jsx
+│   │   │   ├── Navbar.jsx
+│   │   │   └── index.js
+│   │   ├── hooks
+│   │   │   ├── index.js
+│   │   │   ├── useCanvasDraw.js
+│   │   │   ├── useGameAnimation.js
+│   │   │   └── usePathGenerator.js
+│   │   ├── index.js
+│   │   ├── pages
+│   │   │   ├── About.jsx
+│   │   │   ├── ComponentsTest.jsx
+│   │   │   └── Leaderboard.jsx
+│   │   └── utils
+│   │       ├── constants.js
+│   │       ├── gameLogic.js
+│   │       ├── helpers
+│   │       │   ├── canvasHelper.js
+│   │       │   └── terrainDrawerHelper.js
+│   │       └── pathUtils.js
+│   ├── main.jsx
+│   └── utils
+│       ├── constants
+│       │   ├── aboutConstants.js
+│       │   ├── canvasConstants.js
+│       │   ├── colorConstants.js
+│       │   ├── gameConstants.js
+│       │   ├── howToPlayConstants.js
+│       │   ├── index.js
+│       │   ├── leaderboardConstants.js
+│       │   ├── scoreConstants.js
+│       │   └── storeConstants.js
+│       ├── formatters
+│       │   ├── formatNumber.js
+│       │   └── index.js
+│       ├── gameLogic
+│       │   ├── index.js
+│       │   ├── pathLogic.js
+│       │   └── scoreLogic.js
+│       ├── helpers
+│       │   ├── canvasHelper.js
+│       │   ├── gameHelper.js
+│       │   ├── index.js
+│       │   ├── leaderboardHelper.js
+│       │   ├── path
+│       │   │   ├── conversion.js
+│       │   │   ├── generation.js
+│       │   │   ├── index.js
+│       │   │   └── validation.js
+│       │   ├── storeHelper.js
+│       │   ├── terrainDrawerHelper.js
+│       │   └── userHelper.js
+│       ├── storage
+│       │   ├── index.js
+│       │   └── leaderboardStorage.js
+│       └── validation
+│           ├── general.js
+│           ├── index.js
+│           └── user.js
+└── vite.config.js
+
+28 directories, 178 files

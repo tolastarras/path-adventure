@@ -2,12 +2,15 @@
 @import "tailwindcss";
 
 * {
-  box-sizing: border-box;
+  @apply box-border;
 }
 
 html, body {
   font-family: 'Righteous', cursive;
   overscroll-behavior: none;
-  height: 100%;
 }
 
+html:has(.alert-box-overlay),
+body:has(.alert-box-overlay) {
+  @apply overflow-hidden;
+}

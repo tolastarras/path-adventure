@@ -1,6 +1,10 @@
+import { useState } from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import { CreateAccountDialog, UserLoginDialog, HowToPlayAlert } from '@/components';
+import { AuthProvider, AlertBoxProvider } from '@/context';
+import { AlertRegistry } from '@/components';
 
-import NewHome from './new/NewHome';
+import NewHome from './NewHome';
 
 // Legacy Code
 import {
@@ -16,29 +20,35 @@ import './App.css';
 
 function App() {
   return (
-    <Router>
-      <Routes>
-        {/* New Code Routes */}
-        <Route path="/new/*" element={<NewApp />} />
-        
-        {/* Legacy Code Routes */}
-        <Route path="/legacy/*" element={<LegacyApp />} />
-        
-        {/* Default redirect */}
-        <Route path="/*" element={<Navigate to="/new" replace />} />
-      </Routes>
-    </Router>
+    <AuthProvider>
+      <AlertBoxProvider>
+        <Router>
+          <Routes>
+            <Route path="/*" element={<NewApp />} />
+            <Route path="/legacy/*" element={<LegacyApp />} />
+          </Routes>
+        </Router>
+      </AlertBoxProvider>
+    </AuthProvider>
   );
 }
 
-// New Code App
 function NewApp() {
+  const [gameResultData, setGameResultData] = useState(null);
+
   return (
     <div className="new-app">
-      <nav>New Navigation</nav>
-      <Routes>
-        <Route path="/" element={<NewHome />} />
-      </Routes>
+      <AlertRegistry gameData={gameResultData} />
+      <main className="flex flex-col grow">
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <NewHome onGameComplete={(data) => setGameResultData(data)} />
+            }
+          />
+        </Routes>
+      </main>
     </div>
   );
 }

@@ -1,16 +1,20 @@
 import React, { useState, useCallback } from 'react';
 
-import GameCanvas from '../components/Canvas/GameCanvas';
+import GameCanvas from './components/GameCanvas';
 import { GameControls, GameStats, GameStatus, Instructions } from './components';
 
-import { usePathGenerator } from '../hooks/usePathGenerator';
-import { useGameAnimation } from '../hooks/useGameAnimation';
+import { usePathGenerator } from './hooks/usePathGenerator';
+import { useGameAnimation } from './hooks/useGameAnimation';
+
+import { DATA } from './utils/constants';
 
 const LegacyHome = () => {
   const [playerMoves, setPlayerMoves] = useState([]);
   const [currentDirection, setCurrentDirection] = useState('');
   const [moveCount, setMoveCount] = useState(1);
   const [gameStatus, setGameStatus] = useState('planning');
+
+  const { title, description } = DATA;
   
   const {
     path,
@@ -45,8 +49,8 @@ const LegacyHome = () => {
 
   return (
     <div className="flex flex-col items-center bg-linear-to-br from-blue-50 to-green-50 min-h-screen py-8">
-      <h1 className="text-4xl font-bold text-blue-800">Path Adventure! 🚴‍♂️</h1>
-      <p className="text-gray-600 mb-4 text-lg">Follow the blue path from 🚴‍♂️ to 🏁 with your moves!</p>
+      <h1 className="text-4xl font-bold text-blue-800">{title}</h1>
+      <p className="text-gray-600 mb-4 text-lg">{description}</p>
 
       <div className="pt-5">
         <GameStats gamesWon={gamesWon} totalPoints={totalPoints} />
@@ -69,12 +73,7 @@ const LegacyHome = () => {
         setPlayerMoves={setPlayerMoves}
         gameStatus={gameStatus}
         checkPath={checkPath}
-        addMove={useCallback(() => {
-          if (!currentDirection || moveCount < 1) return;
-          setPlayerMoves(prev => [...prev, `${moveCount}${currentDirection}`]);
-          setCurrentDirection('');
-          setMoveCount(1);
-        }, [currentDirection, moveCount])}
+c
         removeLastMove={useCallback(() => {
           setPlayerMoves(prev => prev.slice(0, -1));
         }, [])}

@@ -1,0 +1,15 @@
+@import 'tailwindcss';
+
+.custom-icon {
+  @apply flex justify-center items-center stroke-current;
+  @apply transition-transform duration-200;
+}
+
+.custom-icon__default {
+  @apply flex items-center justify-center cursor-pointer transition-all duration-300 border-2 rounded-full p-1;
+  @apply text-blue-200 hover:scale-110 hover:text-white/90;
+}
+
+.custom-icon--scale {
+  @apply hover:scale-125;
+}

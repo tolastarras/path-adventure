@@ -1,0 +1,154 @@
+@import 'tailwindcss';
+
+.alert-box-overlay {
+  @apply fixed w-full bg-black/50 inset-0 flex justify-center items-center z-50;
+}
+
+.alert-box {
+  @apply relative w-2xl mx-auto rounded-2xl p-5 md:p-10 overflow-hidden;
+  @apply border-2 md:border-4 transition-all duration-500 ease-out max-h-[90vh] overflow-y-scroll;
+  @apply bg-linear-to-br shadow-lg backdrop-blur-sm;
+  @apply transition-all duration-300 ease-in-out;
+  @apply hover:shadow-xl;
+}
+
+.alert-box::before {
+  @apply content-[''] absolute top-0 -left-full w-full h-full bg-linear-to-r from-transparent via-white/40 to-transparent transition-[left] duration-500 ease-in-out;
+}
+
+.alert-box:hover {
+  @apply bg-linear-to-br from-transparent via-white/10 to-white/50;
+}
+
+.alert-box:hover::before {
+  left: 100%;
+}
+
+.alert-box--transparent {
+  @apply border-white/60;
+  @apply text-white;
+  @apply from-white/30 via-white/30 to-white/40;
+  @apply shadow-white/20;
+  @apply hover:from-white/40 hover:via-white/40 hover:to-white/50;
+}
+
+.alert-box--info,
+.alert-box--primary {
+  @apply border-blue-600/60;
+  @apply text-blue-700;
+  @apply from-blue-300/60 via-blue-300/60 to-blue-400/60;
+  @apply shadow-blue-200/40;
+  @apply hover:from-blue-300/80 hover:via-blue-300/80 hover:to-blue-400/80;
+}
+
+.alert-box--success {
+  @apply border-green-600/60;
+  @apply text-green-700;
+  @apply from-green-300/60 via-green-300/60 to-green-400/60;
+  @apply shadow-green-200/40;
+  @apply hover:from-green-300/80 hover:via-green-300/80 hover:to-green-400/80;
+}
+
+.alert-box--danger {
+  @apply border-red-600/60;
+  @apply text-red-700;
+  @apply from-red-300/60 via-red-300/60 to-red-400/60;
+  @apply shadow-red-200/40;
+  @apply hover:from-red-300/80 hover:via-red-300/80 hover:to-red-400/80;
+}
+
+.alert-box--warning {
+  @apply border-amber-600/60;
+  @apply text-amber-700;
+  @apply from-amber-300/60 via-amber-300/60 to-amber-400/60;
+  @apply shadow-amber-200/40;
+  @apply hover:from-amber-300/80 hover:via-amber-300/80 hover:to-amber-400/80;
+}
+
+/* Optional asymmetric glare */
+.alert-box--with-glare::before {
+  @apply content-[''] absolute -top-1/2 -right-1/2 w-full h-full pointer-events-none;
+  @apply bg-linear-to-br from-transparent via-white/10 via-20% to-white/20 to-40%;
+  @apply rotate-35 transition-all duration-500 opacity-70;
+}
+
+.alert-box--with-glare:hover::before {
+  @apply opacity-90 -top-2/3 -right-1/3;
+}
+
+/* Optional shadow effects */
+.alert-box--with-shadow {
+  box-shadow: 
+    0 0 15px rgba(125, 211, 252, 0.4),
+    0 0 30px rgba(56, 189, 248, 0.2);
+  filter: drop-shadow(8px 0 12px rgba(125, 211, 252, 0.3));
+}
+
+.alert-box--with-shadow:hover {
+  box-shadow: 
+    0 0 20px rgba(125, 211, 252, 0.5),
+    0 0 40px rgba(56, 189, 248, 0.3);
+  filter: drop-shadow(10px 0 15px rgba(125, 211, 252, 0.4));
+}
+
+.alert-box--with-glow-soft {
+  box-shadow: 
+    0 0 20px rgba(255, 255, 255, 0.3),
+    0 0 40px rgba(255, 255, 255, 0.15);
+  filter: drop-shadow(6px 0 10px rgba(255, 255, 255, 0.2));
+}
+
+.alert-box--with-glow-soft:hover {
+  box-shadow: 
+    0 0 25px rgba(255, 255, 255, 0.4),
+    0 0 50px rgba(255, 255, 255, 0.2);
+  filter: drop-shadow(8px 0 12px rgba(255, 255, 255, 0.3));
+}
+
+/* Optional top edge shine */
+.alert-box--with-shine::after {
+  @apply content-[''] absolute top-0 left-0 right-0 h-0.5 rounded-t-2xl;
+  @apply bg-linear-to-r from-transparent via-white/80 via-50% to-transparent;
+  @apply transition-all duration-500 opacity-90;
+}
+
+.alert-box--with-shine:hover::after {
+  @apply opacity-100 h-1.5 blur-[1px];
+}
+
+.alert-box__container {
+  @apply relative;
+}
+
+.alert-box__close-button {
+  @apply flex z-10 absolute top-5 right-5 p-2 hover:cursor-pointer;
+}
+
+.alert-box__close-icon {
+  @apply h-5 w-5 cursor-pointer duration-200 ease-in-out transition-transform;
+}
+
+.alert-box__close-button:hover .alert-box__close-icon {
+  @apply scale-120;
+}
+
+.text-success {
+  @apply text-green-700;
+}
+
+.text-transparent {
+  @apply text-white/80;
+}
+
+.text-info,
+.text-primary {
+  @apply text-blue-700;
+}
+
+.text-warning {
+  @apply text-amber-700;
+}
+
+.text-danger {
+  @apply text-red-700;
+}
