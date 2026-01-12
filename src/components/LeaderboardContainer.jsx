@@ -20,21 +20,19 @@ const LeaderboardContainer = ({ topPlayer, topPlayers }) => {
   return (
     <div className="leaderboard__container">
       <div className="leaderboard__header">
-        <span className="text-left">Rank</span>
         <span className="text-left">Player</span>
         <span className="text-center">Score</span>
-        <span className="text-center">Wins</span>
+        <span className="text-right">Wins</span>
       </div>
       <div className="space-y-3">
         {topPlayers.map(({ id, avatar, totalScore, gamesWon, gamesPlayed }, index) => (
           <div key={id} className="leaderboard-item space-x-0 sm:space-x-6">
             <div className="flex items-center space-x-3">
               <RoundButton color={getRankColor(totalScore > 0 ? index + 1 : -1)} value={index + 1} />
+              <span className="pl-2 text-left text-white/90 truncate">
+                <span className="mr-2">{avatar}</span>{id}
+              </span>
             </div>
-
-            <span className="text-left text-white/90 truncate">
-              <span className="mr-2">{avatar}</span>{id}
-            </span>
 
             <span className="text-right font-mono simple-text truncate">
               {formatNumber(totalScore)}

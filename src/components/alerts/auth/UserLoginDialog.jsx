@@ -1,13 +1,7 @@
 import { useState, useRef, useEffect } from 'react';
-import {
-  AlertBox,
-  HeaderTitle,
-  TextInput,
-  GlossyButton,
-  AuthLink,
-} from '@/components';
+import { AlertBox, HeaderTitle, TextInput, GlossyButton, AuthLink } from '@/components';
 import { useAlertBoxManager, useAuthManager } from '@/hooks';
-import { getPlayer } from '@/utils/helpers';
+import { getPlayerById } from '@/utils/helpers';
 import { gameMessages } from '@/utils/constants';
 
 const UserLoginDialog = ({ onClose }) => {
@@ -44,7 +38,7 @@ const UserLoginDialog = ({ onClose }) => {
       error: '',
     });
 
-    const player = getPlayer(loginState?.username);
+    const player = getPlayerById(loginState?.username);
 
     try {
       if (!player?.id) {

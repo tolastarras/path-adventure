@@ -23,6 +23,8 @@ export {
   getTopPlayers,
   getRankColor,
   getRankIcon,
+  hasAchievedTopScore,
+  hasAchievedGoldMedal,
 } from './leaderboardHelper';
 
 export {
@@ -42,14 +44,14 @@ export {
   setCurrentPlayer,
   getCurrentPlayer,
   removeCurrentPlayer,
+  getPlayerById,
+  playerExists,
 } from './storeHelper';
 
 export {
   formatStep,
   gameResultsHeading,
   buildGameStatsCards,
-  getPlayer,
-  playerExists,
 } from './gameHelper';
 
 export {

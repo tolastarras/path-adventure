@@ -1,4 +1,4 @@
-import { getStorage } from '@/utils/helpers';
+import { getStorage, getCurrentPlayer, getPlayerById } from '@/utils/helpers';
 import { sessionHistoryLimit, medals } from '@/utils/constants';
 
 export const getTopPlayers = (maxPlayers = 10) => {
@@ -63,4 +63,50 @@ export const getTopSingleGamePlayer = () => {
   return getStorage().users.reduce((best, current) =>
     current.bestScore > best.bestScore ? current : best
   );
+};
+
+/**
+ * Checks if current player will achieve gold medal after adding current game score
+ * @param {number} currentGameScore - Score from current game
+ */
+export const hasAchievedGoldMedal = (currentGameScore = 0) => {
+  try {
+    const currentPlayer = getPlayerById(getCurrentPlayer()?.id) || null;
+    if (!currentPlayer?.id) return false;
+
+    const topPlayer = getTopPlayers()?.[0] || null;
+
+    // If no top player exists, can't achieve gold medal
+    if (!topPlayer?.totalScore) return false;
+
+    // Player is already #1 (before this game)
+    if (currentPlayer.id === topPlayer.id) return false;
+
+    // Check if new total beats current #1
+    return currentPlayer.totalScore + currentGameScore > topPlayer.totalScore;
+  } catch (error) {
+    console.error('Error checking gold medal:', error);
+    return false;
+  }
+};
+
+/**
+ * Checks if current game score beats the top single game score
+ * @param {number} currentGameScore - Score from current game
+ */
+export const hasAchievedTopScore = (currentGameScore) => {
+  try {
+    if (!currentGameScore) return false;
+
+    const topSingleGamePlayer = getTopSingleGamePlayer();
+
+    // If no existing record, this game doesn't count
+    if (!topSingleGamePlayer?.bestScore) return false;
+
+    // Compare current game score with the record
+    return currentGameScore > topSingleGamePlayer.bestScore;
+  } catch (error) {
+    console.error('Error checking top score:', error);
+    return false;
+  }
 };

@@ -1,6 +1,6 @@
 
 import { validateRequired, validateLength } from './general';
-import { getPlayer } from '@/utils/helpers';
+import { playerExists } from '@/utils/helpers';
 
 export const validateUsername = (value, fieldName = 'Username') => {
   const minLength = 4;
@@ -9,13 +9,11 @@ export const validateUsername = (value, fieldName = 'Username') => {
   const basicErrors = validateRequired(value, fieldName) || validateLength(value, minLength, maxLength, fieldName);
   if (basicErrors) return basicErrors;
 
-  const playerExists = getPlayer(value)?.id;
-
   if (value.includes(' ')) {
     return `${fieldName} cannot contain spaces`;
   }
 
-  if (playerExists) return `${fieldName} already exists`;
+  if (playerExists(value)) return `${fieldName} already exists`;
 
   return '';
 };
