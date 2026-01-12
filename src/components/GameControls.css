@@ -4,6 +4,18 @@
   @apply flex flex-wrap justify-between lg:flex-col;
 }
 
+.game-controls-small {
+  @apply flex flex-row md:hidden gap-2 w-full;
+}
+
+.game-controls-medium {
+  @apply hidden md:grid md:grid-cols-2 md:gap-4 lg:hidden;
+}
+
+.game-controls-large {
+  @apply hidden lg:block;
+}
+
 .middle-row {
   /* 60px button width * 2 */
   @apply w-[calc(100%-120px)] justify-evenly md:gap-4 md:justify-between md:w-auto;
