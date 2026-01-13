@@ -13,7 +13,7 @@ const HeaderTitle = ({ title, className = '', size = 'md', children }) => {
   
   return (
     <Tag className={`mb-1 ${style} ${className} font-bold`}>
-      <div className="cool-text">{title || children}</div>
+      <div>{title || children}</div>
     </Tag>
   );
 };

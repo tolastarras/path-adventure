@@ -5,6 +5,7 @@ import {
   GameStatusAlert,
   HowToPlayAlert,
   LeaderboardAlert,
+  NotificationToast,
 } from '@/components';
 
 const AlertRegistry = ({ gameData }) => {
@@ -15,6 +16,7 @@ const AlertRegistry = ({ gameData }) => {
     'game-result': GameStatusAlert,
     'about-game': HowToPlayAlert,
     'leaderboard': LeaderboardAlert,
+    'notification-toast': NotificationToast,
   };
   
   return (

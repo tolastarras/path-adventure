@@ -8,6 +8,9 @@ export { default as GameArea } from './GameArea';
 export { default as IconMenu } from './IconMenu';
 export { default as AvatarSelector } from './AvatarSelector';
 export { default as LeaderboardContainer } from './LeaderboardContainer';
+export { default as GameCanvasCard } from './GameCanvasCard';
+export { default as Confetti } from './Confetti';
+export { default as NewAchievement } from './NewAchievement';
 
 // auth components
 export { default as AuthLink } from './auth/AuthLink';
@@ -17,14 +20,14 @@ export { default as UserMenu } from './auth/UserMenu';
 
 // alerts
 export { default as AlertRegistry } from './alerts/AlertRegistry';
+
+export { default as CreateAccountDialog } from './alerts/auth/CreateAccountDialog';
+export { default as UserLoginDialog } from './alerts/auth/UserLoginDialog';
+
 export { default as GameStatusAlert } from './alerts/game/GameStatusAlert';
 export { default as HowToPlayAlert } from './alerts/game/HowToPlayAlert';
 export { default as LeaderboardAlert } from './alerts/game/LeaderboardAlert';
-export { default as CreateAccountDialog } from './alerts/auth/CreateAccountDialog';
-export { default as UserLoginDialog } from './alerts/auth/UserLoginDialog';
-export { default as GameCanvasCard } from './GameCanvasCard';
-export { default as Confetti } from './Confetti';
-export { default as NewAchievement } from './NewAchievement';
+export { default as NotificationToast } from './alerts/game/NotificationToast';
 
 // ui components
 export { default as HeaderTitle } from './ui/HeaderTitle';
