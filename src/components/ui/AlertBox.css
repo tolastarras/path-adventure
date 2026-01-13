@@ -13,7 +13,8 @@
 }
 
 .alert-box::before {
-  @apply content-[''] absolute top-0 -left-full w-full h-full bg-linear-to-r from-transparent via-white/40 to-transparent transition-[left] duration-500 ease-in-out;
+  @apply content-[''] absolute top-0 -left-full w-full h-full pointer-events-none z-0;
+  @apply bg-linear-to-r from-transparent via-white/40 to-transparent transition-[left] duration-500 ease-in-out;
 }
 
 .alert-box:hover {
@@ -21,7 +22,7 @@
 }
 
 .alert-box:hover::before {
-  left: 100%;
+  @apply left-full;
 }
 
 .alert-box--transparent {

@@ -37,7 +37,7 @@ const CreateAccountDialog = ({ onClose }) => {
   
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
+
     let store = getStorage();
     const newErrors = {};
     
@@ -62,16 +62,19 @@ const CreateAccountDialog = ({ onClose }) => {
 
     // Login user: set as current user
     const newPlayer = await createAccount(form);
+
+    if (!newPlayer) return;
     
-    if (newPlayer) {
-      // Update global users list
-      saveUser(store.users, newPlayer);
-    }
+    // Update global users list
+    saveUser(store.users, newPlayer);
 
-    // TODO: Replace with toast notification
-    console.log('Account created successfully!');
+    // Account created successfully
+    openAlert('notification-toast');
 
-    onClose();
+    // Close dialog delay to ensure toast opens
+    setTimeout(() => {
+      onClose();
+    }, 5000);
   };
 
   const handleUserLogin = () => {

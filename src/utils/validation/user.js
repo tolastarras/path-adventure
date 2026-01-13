@@ -4,7 +4,7 @@ import { playerExists } from '@/utils/helpers';
 
 export const validateUsername = (value, fieldName = 'Username') => {
   const minLength = 4;
-  const maxLength = 16;
+  const maxLength = 15;
 
   const basicErrors = validateRequired(value, fieldName) || validateLength(value, minLength, maxLength, fieldName);
   if (basicErrors) return basicErrors;
